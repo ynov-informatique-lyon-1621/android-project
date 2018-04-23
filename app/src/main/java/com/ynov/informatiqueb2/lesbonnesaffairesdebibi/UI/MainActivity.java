@@ -9,7 +9,7 @@ import android.widget.ListView;
 
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
 
     private String[] drawerItemsList;
