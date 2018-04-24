@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Les Bonnes Affaires De Bibi</string>
+    <string name="search_label">Que cherchez vous ?</string>
+    <string name="date_label">Date</string>
+    <string-array name="type_select">
+        <item>Voitures</item>
+        <item>Vêtements</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

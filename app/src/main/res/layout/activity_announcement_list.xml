@@ -4,41 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
-    tools:context=".ui.SplashActivity">
+    tools:context=".ui.AnnouncementListActivity">
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="255dp"
-        android:layout_height="372dp"
-        android:src="@drawable/ic_logo_light"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar"
+    <EditText
+        android:id="@+id/editText6"
+        android:layout_width="368dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:hint="@string/search_label"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/dateIpt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+    <EditText
+        android:id="@+id/dateIpt"
+        android:layout_width="365dp"
+        android:layout_height="49dp"
+        android:ems="10"
+        android:hint="@string/date_label"
+        android:inputType="date"
+        app:layout_constraintBottom_toTopOf="@+id/spinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+        app:layout_constraintTop_toBottomOf="@+id/editText6" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="368dp"
         android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textColor="@android:color/white"
-        android:textSize="24sp"
+        android:entries="@array/type_select"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+        app:layout_constraintTop_toBottomOf="@+id/dateIpt" />
+
 </android.support.constraint.ConstraintLayout>
