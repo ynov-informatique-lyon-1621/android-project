@@ -20,7 +20,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".UI.DetailAnnonceActivity" />
-        <activity android:name=".UI.testLayout"></activity>
     </application>
 
 </manifest>
