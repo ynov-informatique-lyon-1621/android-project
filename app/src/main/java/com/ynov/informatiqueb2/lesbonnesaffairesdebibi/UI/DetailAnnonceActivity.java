@@ -39,7 +39,7 @@ public class DetailAnnonceActivity extends AppCompatActivity {
         dateDetail = findViewById(R.id.dateDetail);
         vendeurDetail = findViewById(R.id.vendeurDetail);
         descriptionDetail = findViewById(R.id.descriptionDetail);
-        
+
 
         titleDetail.setText(title);
         categorieDetail.setText(categorie);
