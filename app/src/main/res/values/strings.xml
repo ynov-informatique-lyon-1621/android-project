@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Les Bonnes Affaires De Bibi</string>
+    <string name="connexion_l_appilication_message_manager">Connexion à l\'appilication Message Manager</string>
+    <string name="identifiant">Identifiant</string>
+    <string name="mot_de_passe">Mot de passe</string>
+    <string name="vider">Vider</string>
+    <string name="valider">Valider</string>
+    <string name="se_souvenir_de_moi">Se souvenir de moi</string>
+    <string name="title_activity_dashboard">ActivityDashboard</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 </resources>

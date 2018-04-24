@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".FormActivity">
+
+    <TextView
+        android:id="@+id/Welcome"
+        app:fontFamily="serif"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.058"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp"
+        android:text="@string/connexion_l_appilication_message_manager"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:typeface="serif" />
+
+    <TextView
+        android:id="@+id/ViewUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/Welcome"
+        android:layout_marginTop="83dp"
+        android:text="@string/identifiant"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="74dp"
+        android:layout_alignLeft="@+id/Welcome" />
+
+    <EditText
+        android:id="@+id/IDuser"
+        app:layout_constraintTop_toBottomOf="@+id/ViewUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="105dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="0dp"
+        android:layout_alignParentLeft="true"
+        tools:ignore="LabelFor" />
+
+    <TextView
+        android:id="@+id/V_PASS"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/Welcome"
+        android:layout_marginTop="177dp"
+        android:text="@string/mot_de_passe"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="164dp"
+        android:layout_alignLeft="@+id/Welcome" />
+
+    <EditText
+        android:id="@+id/IDpass"
+        app:layout_constraintTop_toBottomOf="@+id/V_PASS"
+        android:layout_width="384dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="207dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteX="0dp"
+        android:layout_alignParentLeft="true" />
+
+    <Button
+        android:id="@+id/Btn_reset"
+        android:layout_width="144dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/Btn_submit"
+        android:text="@string/vider"
+        android:layout_alignParentRight="true" />
+
+    <Button
+        android:id="@+id/Btn_submit"
+        android:layout_width="144dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="100dp"
+        android:text="@string/valider"
+        android:layout_alignParentLeft="true" />
+
+    <CheckBox
+        android:id="@+id/IDcheck"
+        android:layout_width="303dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/Welcome"
+        android:layout_marginBottom="188dp"
+        android:text="@string/se_souvenir_de_moi"
+        android:layout_alignLeft="@+id/Welcome" />
+
+
+</RelativeLayout>
