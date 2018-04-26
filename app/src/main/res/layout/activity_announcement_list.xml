@@ -1,47 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:gravity="left"
+    android:orientation="vertical"
     tools:context=".ui.AnnouncementListActivity">
 
-    <EditText
-        android:id="@+id/editText6"
-        android:layout_width="368dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="40dp"
-        android:ems="10"
-        android:hint="@string/search_label"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/dateIpt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/dateIpt"
-        android:layout_width="365dp"
-        android:layout_height="49dp"
-        android:ems="10"
-        android:hint="@string/date_label"
-        android:inputType="date"
-        app:layout_constraintBottom_toTopOf="@+id/spinner"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText6" />
-
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="368dp"
+    <TextView
+        android:id="@+id/filterToogle"
+        style="@style/collapseHead"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:entries="@array/type_select"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateIpt" />
+        android:layout_marginBottom="@dimen/vertical_card_spacing"
+        android:background="@drawable/borders"
+        android:drawableBottom="@drawable/borders"
+        android:paddingLeft="@dimen/vertical_card_spacing"
+        android:paddingRight="@dimen/vertical_card_spacing"
+        android:text="@string/filter_label" />
 
-</android.support.constraint.ConstraintLayout>
+    <com.github.chuross.library.ExpandableLayout
+        android:id="@+id/expandable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!-- any child views -->
+
+        <LinearLayout
+            android:id="@+id/linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteY="42dp">
+
+            <EditText
+                android:id="@+id/search"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:ems="10"
+                android:hint="@string/search_label"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/dateIpt"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:ems="10"
+                android:hint="@string/date_label"
+                android:inputType="date" />
+
+            <Spinner
+                android:id="@+id/type"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="16dp"
+                android:entries="@array/type_select" />
+        </LinearLayout>
+
+    </com.github.chuross.library.ExpandableLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+</LinearLayout>

@@ -21,16 +21,13 @@ import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.utils.Constant;
 
 public class DatePickerFragment extends DialogFragment {
 
-    public static DatePickerFragment newInstance(int date_field_id) {
+    private DatePickerDialog.OnDateSetListener listener;
 
-        Bundle args = new Bundle();
-        args.putInt("date_field_id",date_field_id);
-
+    public static DatePickerFragment newInstance(DatePickerDialog.OnDateSetListener listener) {
         DatePickerFragment fragment = new DatePickerFragment();
-        fragment.setArguments(args);
+        fragment.setListener(listener);
         return fragment;
     }
-
 
     @NonNull
     @Override
@@ -41,22 +38,18 @@ public class DatePickerFragment extends DialogFragment {
         int day = c.get(Calendar.DAY_OF_MONTH);
 
         // Create a new instance of DatePickerDialog and return it
-        return new DatePickerDialog(getActivity(), this.dateChangedListener, year, month, day);
+        return new DatePickerDialog(getActivity(), this.listener, year, month, day);
     }
 
-    protected DatePickerDialog.OnDateSetListener dateChangedListener = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            EditText dateIpt = getActivity().findViewById(getArguments().getInt("date_field_id"));
-            Calendar calendar = Calendar.getInstance();
-            calendar.set(year,month,dayOfMonth);
-            if(dateIpt != null) {
-                dateIpt.setText(Constant.dateFormat.format(calendar.getTime()));
-            }
-        }
 
 
-    };
+    public DatePickerDialog.OnDateSetListener getListener() {
+        return listener;
+    }
+
+    public void setListener(DatePickerDialog.OnDateSetListener listener) {
+        this.listener = listener;
+    }
 
 
 }

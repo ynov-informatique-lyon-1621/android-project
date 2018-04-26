@@ -7,4 +7,5 @@ public class Constant {
     public static final String endpoint = "http://thibault01.com:8081";
     public static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss.", Locale.FRANCE);
     public static final SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm:ss", Locale.FRANCE);
+    public static final SimpleDateFormat ISODateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
 }
