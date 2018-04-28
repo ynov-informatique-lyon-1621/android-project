@@ -13,7 +13,7 @@ public class ActivityDashboard extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
         setTitle("Dashboard");
 
-        // Execution du 'GetViewController' sur le MainActivityView
+        // Execution du 'GetViewController' sur le ActivityDashboard
         new GetViewController(ActivityDashboard.this).execute();
     }
 }

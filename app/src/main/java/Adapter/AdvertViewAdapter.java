@@ -33,12 +33,20 @@ public class AdvertViewAdapter extends ArrayAdapter<AdvertList> {
         }
 
         // Permet de remplacer le TextView comportant les IDs
-        TextView nom = convertView.findViewById(R.id.NameView);
-        TextView espece = convertView.findViewById(R.id.SpecieView);
+        TextView NomVendeur = convertView.findViewById(R.id.NameView);
+        TextView Email = convertView.findViewById(R.id.EmailView);
+        TextView Titre = convertView.findViewById(R.id.TitleView);
+        TextView Localisation = convertView.findViewById(R.id.LcoView);
+        TextView Categorie = convertView.findViewById(R.id.CatView);
+        TextView Prix = convertView.findViewById(R.id.PriceView);
 
-        // Remplace les informations comportant Nom et Espece dans la liste
-        nom.setText(listItem.getNom());
-        espece.setText(listItem.getEspece());
+        // Remplace les informations
+        NomVendeur.setText(listItem.getNomVendeur());
+        Email.setText(listItem.getEmail());
+        Titre.setText(listItem.getTitre());
+        Localisation.setText(listItem.getLocalisation());
+        Categorie.setText(listItem.getCategorie());
+        Prix.setText(listItem.getPrix());
 
         return convertView;
     }

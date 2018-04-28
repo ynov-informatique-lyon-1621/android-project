@@ -3,34 +3,62 @@ package Model;
 public class AdvertList {
 
     // Récupération en priver des informations
-    private String nom;
-    private String espece;
-    private String sexe;
+    private String nomVendeur;
+    private String email;
+    private String titre;
+    private String localisation;
+    private String categorie;
+    private Integer prix;
     private String description;
 
+
     // Mise en place en public les variables
-    public String getNom() {
-        return nom;
+    public String getNomVendeur() {
+        return nomVendeur;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setNomVendeur(String nomVendeur) {
+        this.nomVendeur = nomVendeur;
     }
 
-    public String getEspece() {
-        return espece;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEspece(String espece) {
-        this.espece = espece;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getSexe() {
-        return sexe;
+    public String getTitre() {
+        return titre;
     }
 
-    public void setSexe(String sexe) {
-        this.sexe = sexe;
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
+
+    public String getLocalisation() {
+        return localisation;
+    }
+
+    public void setLocalisation(String localisation) {
+        this.localisation = localisation;
+    }
+
+    public String getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(String categorie) {
+        this.categorie = categorie;
+    }
+
+    public Integer getPrix() {
+        return prix;
+    }
+
+    public void setPrix(Integer prix) {
+        this.prix = prix;
     }
 
     public String getDescription() {
@@ -41,4 +69,5 @@ public class AdvertList {
         this.description = description;
     }
 }
+
 

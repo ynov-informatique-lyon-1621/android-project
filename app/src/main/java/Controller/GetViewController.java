@@ -38,7 +38,7 @@ public class GetViewController extends AsyncTask<String, String, String> {
         String contenu;
         try {
             // Connexion à l'API
-            URL url = new URL("http://thibault01.com:8081/getEntree");
+            URL url = new URL("http://139.99.98.119:8080/findAnnonces");
 
             httpUrlConnection = (HttpURLConnection) url.openConnection();
 
@@ -73,10 +73,13 @@ public class GetViewController extends AsyncTask<String, String, String> {
             for (int i = 0; i < arr.length(); i++) {
                 // Récupération des information de la base données
                 view = new AdvertList();
-                view.setNom(arr.getJSONObject(i).getString("nom"));
-                view.setEspece(arr.getJSONObject(i).getString("espece"));
-                view.setSexe(arr.getJSONObject(i).getString("sexe"));
+                view.setNomVendeur(arr.getJSONObject(i).getString("name"));
+                view.setEmail(arr.getJSONObject(i).getString("email"));
+                view.setTitre(arr.getJSONObject(i).getString("title"));
                 view.setDescription(arr.getJSONObject(i).getString("description"));
+                view.setLocalisation(arr.getJSONObject(i).getString("localisation"));
+                view.setCategorie(arr.getJSONObject(i).getString("categorie"));
+                view.setPrix(arr.getJSONObject(i).getInt("prix"));
                 viewlists.add(view);
             }
 
