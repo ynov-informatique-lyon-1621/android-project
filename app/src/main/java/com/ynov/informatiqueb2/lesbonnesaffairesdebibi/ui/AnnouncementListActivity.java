@@ -1,11 +1,13 @@
 package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui;
 
+import android.app.ActionBar;
 import android.app.DatePickerDialog;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -35,7 +37,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AnnouncementListActivity extends AppCompatActivity {
+public class AnnouncementListActivity extends BaseActivity {
 
     RecyclerView list;
     Map<String,String> filters = new HashMap<>();
@@ -43,7 +45,8 @@ public class AnnouncementListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_announcement_list);
+//        setContentView(R.layout.activity_announcement_list);
+
         EditText dateInput = findViewById(R.id.dateIpt);
         dateInput.setOnFocusChangeListener(this.dateInputListener);
 
@@ -74,6 +77,11 @@ public class AnnouncementListActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected int getLayoutResource() {
+        return R.layout.activity_announcement_list;
     }
 
     private void fetchAnnouncements() {

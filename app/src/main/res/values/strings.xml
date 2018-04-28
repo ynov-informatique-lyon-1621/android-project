@@ -4,6 +4,7 @@
     <string name="date_label">Date</string>
     <string name="add_fav_btn">Ajouter aux favoris</string>
     <string name="filter_label">Filtrer </string>
+    <string name="action_settings">Settings </string>
     <string-array name="type_select">
         <item>Tous</item>
         <item>Voitures</item>
