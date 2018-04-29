@@ -21,7 +21,6 @@ public class ActivityForm extends AppCompatActivity {
         protected void onCreate (Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
-        setTitle("Formulaire de connexion");
 
         final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(ActivityForm.this);
 
@@ -34,7 +33,7 @@ public class ActivityForm extends AppCompatActivity {
 
         if (sharedPreferences.getBoolean("save", false)) {
             save.setChecked(true);
-            LogUser.setText(sharedPreferences.getString("login", ""));
+            LogUser.setText(sharedPreferences.getString("nomVendeur", ""));
             LogPass.setText(sharedPreferences.getString("password", ""));
         }
 
@@ -42,11 +41,11 @@ public class ActivityForm extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String login = LogUser.getText().toString();
+                String nomVendeur = LogUser.getText().toString();
                 String password = LogPass.getText().toString();
 
-                if (TextUtils.isEmpty(login)) {
-                    LogUser.setError("Nom d'utilisateur manquant");
+                if (TextUtils.isEmpty(nomVendeur)) {
+                    LogUser.setError("nomVendeur manquant");
                 } else if (TextUtils.isEmpty(password)) {
                     LogPass.setError("Mot de passe manquant");
                 } else {
@@ -55,7 +54,7 @@ public class ActivityForm extends AppCompatActivity {
                     if (save.isChecked()) {
                         sharedPreferences.edit()
                                 .putBoolean("save", true)
-                                .putString("login", login)
+                                .putString("nomVendeur", nomVendeur)
                                 .putString("password", password)
                                 .apply();
                     } else {
@@ -65,7 +64,7 @@ public class ActivityForm extends AppCompatActivity {
                     }
 
                     Toast.makeText(ActivityForm.this
-                            , "Connexion Réussite"
+                            , "Connexion au serveur"
                             , Toast.LENGTH_LONG).show();
 
                     new AuthorizationController(ActivityForm.this).execute(LogUser.getText().toString(), LogPass.getText().toString());
