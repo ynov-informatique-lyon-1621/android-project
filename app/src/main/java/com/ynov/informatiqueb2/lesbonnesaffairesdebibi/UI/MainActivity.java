@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         spinner = findViewById(R.id.spinner);
-        String[] itemsCat = new String[]{"Categorie", "Vêtement", "Voiture"};
+        String[] itemsCat = new String[]{"Tous", "Vêtement", "Voiture"};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, R.layout.support_simple_spinner_dropdown_item, itemsCat) {
             @Override

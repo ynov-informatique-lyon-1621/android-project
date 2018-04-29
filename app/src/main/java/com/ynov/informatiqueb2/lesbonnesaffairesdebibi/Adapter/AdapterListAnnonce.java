@@ -69,7 +69,7 @@ public AdapterListAnnonce(@NonNull Context context, int resource, @NonNull List<
         v.title.setText(listAnnonceModel.getTitle());
         v.categorie.setText(listAnnonceModel.getCategorie());
         //v.date.setText(listAnnonceModel.getDate());
-        v.prix.setText(listAnnonceModel.getPrix());
+        v.prix.setText(listAnnonceModel.getPrix() + " €");
 
 
         //Pour les images, on utilise notre methode DownloadImage, avec notre champ d'image présent dans le template en parametres.
@@ -92,8 +92,8 @@ public AdapterListAnnonce(@NonNull Context context, int resource, @NonNull List<
                 intentDetailAnnonce.putExtra("prix", details.getPrix());
                 intentDetailAnnonce.putExtra("description", details.getDescription());
                 //intentDetailAnnonce.putExtra("date", details.getDate());
-                //intentDetailAnnonce.putExtra("imageId", details.getID());
                 intentDetailAnnonce.putExtra("vendeur", details.getVendeur());
+                intentDetailAnnonce.putExtra("image", details.getImage());
 
 
                 //On démarre notre activity qui va nous montrer les details du perso sur lequel on a cliqué.
