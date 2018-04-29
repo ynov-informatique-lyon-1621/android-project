@@ -1,6 +1,7 @@
 package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.UI;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -33,12 +35,22 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     Spinner spinner;
+    Button menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         new GetAnnonces().execute();
+        menu = (Button) findViewById(R.id.menu);
+
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent ChoiceActivityIntent = new Intent(MainActivity.this, ChoiceActivity.class);
+                startActivity(ChoiceActivityIntent);
+            }
+        });
 
         spinner = findViewById(R.id.spinner);
         String[] itemsCat = new String[]{"Categorie", "Vêtement", "Voiture"};

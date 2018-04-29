@@ -6,4 +6,43 @@
     android:layout_height="match_parent"
     tools:context=".UI.ChoiceActivity">
 
+    <Button
+        android:id="@+id/identification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="S'indentifier"
+        tools:layout_editor_absoluteX="128dp"
+        tools:layout_editor_absoluteY="38dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="128dp"
+        tools:layout_editor_absoluteY="131dp" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="128dp"
+        tools:layout_editor_absoluteY="220dp" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="128dp"
+        tools:layout_editor_absoluteY="314dp" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="128dp"
+        tools:layout_editor_absoluteY="403dp" />
 </android.support.constraint.ConstraintLayout>
