@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        new GetAnnonces().execute();
 
         spinner = findViewById(R.id.spinner);
         String[] itemsCat = new String[]{"Categorie", "Vêtement", "Voiture"};
@@ -69,10 +70,11 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         spinner.setAdapter(adapter);
+
     }
 
 
-        public  class GetAnnonces extends AsyncTask<String,String,String> {
+        public class GetAnnonces extends AsyncTask<String,String,String> {
 
             @Override
             protected String doInBackground(String... strings) {
@@ -82,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 //Nous faisons un try catch pour gérer les exceptions unchecked. C'est à dire les exceptions qui ne sont pas gérées par l'application.
                 try {
                     //On donne l'URL pour récupérer notre liste JSON.
-                    URL urlWS = new URL("http://thibault01.com:8081/findAnnonces");
+                    URL urlWS = new URL("http://139.99.98.119:8080/findAnnonces");
 
                     //On ouvre une connexion
                     myWebService = (HttpURLConnection)urlWS.openConnection();
@@ -122,19 +124,15 @@ public class MainActivity extends AppCompatActivity {
                     for (int i = 0; i<jsonArray.length(); i++){
                         JSONObject o = (JSONObject) jsonArray.getJSONObject(i);
                         ListAnnonceModel list = new ListAnnonceModel();
-                        /*list.setID(o.getString("id"));
-                        list.setNom(o.getString("nom"));
-                        list.setEspece(o.getString("espece"));
-                        list.setSexe(o.getString("sexe"));
-                        list.setDescription(o.getString("description"));
-                        persoList.add(list);*/
 
                         list.setTitle(o.getString("titre"));
                         list.setCategorie(o.getString("categorie"));
-                        list.setDate(o.getString("date"));
+                        //list.setDate(o.getString("date"));
                         list.setDescription(o.getString("description"));
                         list.setPrix(o.getString("prix"));
-                        list.setVendeur(o.getString("vendeur"));
+                        list.setVendeur(o.getString("nomVendeur"));
+
+                        listAnnonce.add(list);
                     }
                     //On instancie notre Adapter et lui passe en argument notre liste d'objets
                     AdapterListAnnonce adapter = new AdapterListAnnonce(MainActivity.this,0,listAnnonce);
