@@ -4,7 +4,30 @@
     tools:context="com.ynov.informatiqueb2.lesbonnesaffairesdebibi.app.ActivityDashboard">
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="100"
+        android:orderInCategory="101"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_settings_two"
+        android:orderInCategory="101"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_settings_three"
+        android:orderInCategory="101"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_settings_four"
+        android:orderInCategory="101"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_settings_five"
+        android:orderInCategory="101"
         android:title="@string/action_settings"
         app:showAsAction="never" />
 </menu>

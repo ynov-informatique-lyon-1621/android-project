@@ -10,6 +10,7 @@ public class AdvertList {
     private String categorie;
     private Integer prix;
     private String description;
+    private String picture;
 
 
     // Mise en place en public les variables
@@ -67,6 +68,14 @@ public class AdvertList {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 }
 
