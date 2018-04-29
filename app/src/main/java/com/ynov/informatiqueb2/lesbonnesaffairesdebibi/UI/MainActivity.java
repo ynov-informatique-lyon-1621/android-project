@@ -39,20 +39,28 @@ public class MainActivity extends AppCompatActivity {
     Button rechercheButton;
     EditText rechercheMenu;
     EditText rechercheCPVille;
+    Button menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         new GetAnnonces().execute();
+        menu = (Button) findViewById(R.id.menu);
+
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent ChoiceActivityIntent = new Intent(MainActivity.this, ChoiceActivity.class);
+                startActivity(ChoiceActivityIntent);
+            }
+        });
 
         spinner = findViewById(R.id.spinner);
         rechercheButton = findViewById(R.id.boutonRechercher);
         rechercheMenu = findViewById(R.id.rechercheMenu);
         rechercheCPVille = findViewById(R.id.villecpMenu);
-
-
-        String[] itemsCat = new String[]{"Categorie", "Vêtements", "Voitures"};
+        String[] itemsCat = new String[]{"Tous", "Vêtement", "Voiture"};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, R.layout.support_simple_spinner_dropdown_item, itemsCat) {
             @Override

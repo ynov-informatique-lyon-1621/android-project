@@ -20,6 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".UI.DetailAnnonceActivity" />
+        <activity android:name=".UI.ChoiceActivity" />
+        <activity android:name=".UI.IdentificationActivity"></activity>
     </application>
 
 </manifest>

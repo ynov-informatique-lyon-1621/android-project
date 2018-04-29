@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.Controller.DownloadImage;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 
 
@@ -15,7 +16,7 @@ public class DetailAnnonceActivity extends AppCompatActivity {
     TextView titleDetail;
     TextView categorieDetail;
     TextView prixDetail;
-    TextView dateDetail;
+    //TextView dateDetail;
     TextView vendeurDetail;
     TextView descriptionDetail;
 
@@ -32,6 +33,7 @@ public class DetailAnnonceActivity extends AppCompatActivity {
         //String date = intentDetails.getStringExtra("date");
         String vendeur = intentDetails.getStringExtra("vendeur");
         String description = intentDetails.getStringExtra("description");
+        String image = intentDetails.getStringExtra("image");
 
         titleDetail = findViewById(R.id.titleDetail);
         categorieDetail = findViewById(R.id.categorieDetail);
@@ -39,13 +41,17 @@ public class DetailAnnonceActivity extends AppCompatActivity {
         //dateDetail = findViewById(R.id.dateDetail);
         vendeurDetail = findViewById(R.id.vendeurDetail);
         descriptionDetail = findViewById(R.id.descriptionDetail);
+        imageDetail = (ImageView) findViewById(R.id.imageDetail);
 
 
         titleDetail.setText(title);
-        categorieDetail.setText(categorie);
-        prixDetail.setText(prix);
+        categorieDetail.setText("Catégorie : " + categorie);
+        prixDetail.setText("Prix : " + prix + " €");
         //dateDetail.setText(date);
-        vendeurDetail.setText(vendeur);
+        vendeurDetail.setText("Vendeur : " + vendeur);
         descriptionDetail.setText(description);
+
+        new DownloadImage((ImageView) imageDetail)
+                .execute("http://139.99.98.119:8080/images/lesbonsplansdebibi/" + image);
     }
 }
