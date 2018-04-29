@@ -29,14 +29,14 @@ public class DetailAnnonceActivity extends AppCompatActivity {
         String title = intentDetails.getStringExtra("titre");
         String categorie = intentDetails.getStringExtra("categorie");
         String prix = intentDetails.getStringExtra("prix");
-        String date = intentDetails.getStringExtra("date");
+        //String date = intentDetails.getStringExtra("date");
         String vendeur = intentDetails.getStringExtra("vendeur");
         String description = intentDetails.getStringExtra("description");
 
         titleDetail = findViewById(R.id.titleDetail);
         categorieDetail = findViewById(R.id.categorieDetail);
         prixDetail = findViewById(R.id.prixDetail);
-        dateDetail = findViewById(R.id.dateDetail);
+        //dateDetail = findViewById(R.id.dateDetail);
         vendeurDetail = findViewById(R.id.vendeurDetail);
         descriptionDetail = findViewById(R.id.descriptionDetail);
 
@@ -44,7 +44,7 @@ public class DetailAnnonceActivity extends AppCompatActivity {
         titleDetail.setText(title);
         categorieDetail.setText(categorie);
         prixDetail.setText(prix);
-        dateDetail.setText(date);
+        //dateDetail.setText(date);
         vendeurDetail.setText(vendeur);
         descriptionDetail.setText(description);
     }
