@@ -1,4 +1,4 @@
-package Adapter;
+package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,14 +10,16 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model.AdvertList;
 
 import java.util.List;
 
-import Model.AdvertList;
+
 
 public class AdvertViewAdapter extends ArrayAdapter<AdvertList> {
 
     public AdvertViewAdapter(@NonNull Context context, int resource, @NonNull List<AdvertList> objects) {
+
         super(context, resource, objects);
     }
 

@@ -1,9 +1,11 @@
-package com.ynov.informatiqueb2.lesbonnesaffairesdebibi;
+package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.app;
 
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 
 public class ActivitySplashScreen extends AppCompatActivity {
 

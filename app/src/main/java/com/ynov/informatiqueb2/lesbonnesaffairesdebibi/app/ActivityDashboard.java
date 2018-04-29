@@ -1,9 +1,11 @@
-package com.ynov.informatiqueb2.lesbonnesaffairesdebibi;
+package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.app;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import Controller.GetViewController;
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.controller.GetViewController;
+
 
 public class ActivityDashboard extends AppCompatActivity {
 

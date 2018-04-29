@@ -14,15 +14,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ActivitySplashScreen">
+        <activity android:name=".app.ActivitySplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityDashboard" />
-        <activity android:name=".FormActivity" />
+        <activity android:name=".app.ActivityDashboard" />
+        <activity android:name=".app.FormActivity" />
     </application>
 
 </manifest>

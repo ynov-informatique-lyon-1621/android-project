@@ -1,4 +1,4 @@
-package com.ynov.informatiqueb2.lesbonnesaffairesdebibi;
+package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.app;
 
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -10,7 +10,9 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
-import Controller.AuthorizationController;
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.controller.AuthorizationController;
+
 
 public class FormActivity extends AppCompatActivity {
 

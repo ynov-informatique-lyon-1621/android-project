@@ -1,10 +1,12 @@
-package Controller;
+package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.controller;
 
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.widget.ListView;
 
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.adapter.AdvertViewAdapter;
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model.AdvertList;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,8 +20,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import Adapter.AdvertViewAdapter;
-import Model.AdvertList;
+
 
 
 public class GetViewController extends AsyncTask<String, String, String> {

@@ -1,4 +1,4 @@
-package Model;
+package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model;
 
 public class AdvertList {
 

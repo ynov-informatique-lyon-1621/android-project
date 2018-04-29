@@ -1,4 +1,4 @@
-package Controller;
+package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.controller;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,7 +7,7 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ActivityDashboard;
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.app.ActivityDashboard;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 
 import java.io.BufferedReader;
