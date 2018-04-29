@@ -1,6 +1,7 @@
 package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.UI;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -10,6 +11,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -33,6 +36,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     Spinner spinner;
+    Button rechercheButton;
+    EditText rechercheMenu;
+    EditText rechercheCPVille;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +47,12 @@ public class MainActivity extends AppCompatActivity {
         new GetAnnonces().execute();
 
         spinner = findViewById(R.id.spinner);
-        String[] itemsCat = new String[]{"Categorie", "Vêtement", "Voiture"};
+        rechercheButton = findViewById(R.id.boutonRechercher);
+        rechercheMenu = findViewById(R.id.rechercheMenu);
+        rechercheCPVille = findViewById(R.id.villecpMenu);
+
+
+        String[] itemsCat = new String[]{"Categorie", "Vêtements", "Voitures"};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, R.layout.support_simple_spinner_dropdown_item, itemsCat) {
             @Override
@@ -71,10 +82,35 @@ public class MainActivity extends AppCompatActivity {
         };
         spinner.setAdapter(adapter);
 
+        rechercheButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String filtre1 = rechercheMenu.getText().toString();
+                String filtre2 = spinner.getSelectedItem().toString();
+                String filtre3 = rechercheCPVille.getText().toString();
+
+                new GetAnnonces(filtre1, filtre2, filtre3).execute();
+            }
+        });
+
     }
 
-
         public class GetAnnonces extends AsyncTask<String,String,String> {
+
+            String filtre1;
+            String filtre2;
+            String filtre3;
+
+            public GetAnnonces(String filtre1, String filtre2, String filtre3){
+                this.filtre1 = filtre1;
+                this.filtre2 = filtre2;
+                this.filtre3 = filtre3;
+            }
+
+            public GetAnnonces(){
+
+            }
 
             @Override
             protected String doInBackground(String... strings) {
@@ -83,8 +119,18 @@ public class MainActivity extends AppCompatActivity {
                 StringBuilder stringBuilder = null;
                 //Nous faisons un try catch pour gérer les exceptions unchecked. C'est à dire les exceptions qui ne sont pas gérées par l'application.
                 try {
-                    //On donne l'URL pour récupérer notre liste JSON.
-                    URL urlWS = new URL("http://139.99.98.119:8080/findAnnonces");
+                    URL urlWS;
+
+                    urlWS = new URL("http://139.99.98.119:8080/findAnnonces");
+
+                    /*
+                    if(this.filtre1 == null && this.filtre2 == null && this.filtre3 == null){
+                        //On donne l'URL pour récupérer notre liste JSON.
+
+                    }
+                    else{
+
+                    }*/
 
                     //On ouvre une connexion
                     myWebService = (HttpURLConnection)urlWS.openConnection();
