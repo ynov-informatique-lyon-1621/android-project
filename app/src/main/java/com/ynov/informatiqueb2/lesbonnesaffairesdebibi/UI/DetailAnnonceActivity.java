@@ -36,7 +36,7 @@ public class DetailAnnonceActivity extends AppCompatActivity {
         titleDetail = findViewById(R.id.titleDetail);
         categorieDetail = findViewById(R.id.categorieDetail);
         prixDetail = findViewById(R.id.prixDetail);
-        dateDetail = findViewById(R.id.dateDetail);
+        //dateDetail = findViewById(R.id.dateDetail);
         vendeurDetail = findViewById(R.id.vendeurDetail);
         descriptionDetail = findViewById(R.id.descriptionDetail);
 

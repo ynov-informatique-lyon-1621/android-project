@@ -7,6 +7,15 @@ public class ListAnnonceModel {
     private String categorie;
     private String description;
     private String vendeur;
+    private String image;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public String getTitle() {
         return title;

@@ -143,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
                         list.setDescription(o.getString("description"));
                         list.setPrix(o.getString("prix"));
                         list.setVendeur(o.getString("nomVendeur"));
+                        list.setImage(GetImageName(o.getString("image")));
 
                         listAnnonce.add(list);
                     }
@@ -158,6 +159,15 @@ public class MainActivity extends AppCompatActivity {
                     Log.e("Erreur","Pas de données",e);
                 }
             }
+        }
+
+        public String GetImageName(String fullPath){
+            String imageName;
+
+            String[] parts = fullPath.split("/");
+            imageName = parts[6];
+
+            return imageName;
         }
 
 

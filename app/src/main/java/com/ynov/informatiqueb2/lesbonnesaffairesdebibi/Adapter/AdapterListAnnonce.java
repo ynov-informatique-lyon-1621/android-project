@@ -53,7 +53,7 @@ public AdapterListAnnonce(@NonNull Context context, int resource, @NonNull List<
             v.prix = (TextView) convertView.findViewById(R.id.prixMenu);
             v.categorie = (TextView) convertView.findViewById(R.id.categorieMenu);
             //v.date = (TextView) convertView.findViewById(R.id.dateMenu);
-            //v.imageArticle = (ImageView) convertView.findViewById(R.id.imageArticle);
+            v.imageArticle = (ImageView) convertView.findViewById(R.id.imageArticle);
             //On met notre viewHolder en cache
             convertView.setTag(v);
         }
@@ -71,10 +71,11 @@ public AdapterListAnnonce(@NonNull Context context, int resource, @NonNull List<
         //v.date.setText(listAnnonceModel.getDate());
         v.prix.setText(listAnnonceModel.getPrix());
 
+
         //Pour les images, on utilise notre methode DownloadImage, avec notre champ d'image présent dans le template en parametres.
         //Je n'ai pas reussi à gérer le fait de ne pas charger d'images si l'URL n'existe pas.
-       /* new DownloadImage((ImageView) v.imagePerso)
-                .execute("http://thibault01.com:8081/images/" + listEntryPerso.getID() + ".png");*/
+        new DownloadImage((ImageView) v.imageArticle)
+                .execute("http://139.99.98.119:8080/images/lesbonsplansdebibi/" + listAnnonceModel.getImage());
 
 
         //Pour pouvoir cliquer sur un objet et voir les details, on set un clickListener sur notre convertView.
