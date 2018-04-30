@@ -10,6 +10,12 @@
     <style name="h1">
         <item name="android:textSize">24sp</item>
     </style>
+    <style name="h2">
+        <item name="android:textSize">18sp</item>
+    </style>
+    <style name="emphase">
+        <item name="android:textStyle">bold|italic</item>
+    </style>
     <style name="collapseHead">
         <item name="android:textSize">24sp</item>
     </style>

@@ -2,6 +2,7 @@ package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -20,6 +21,7 @@ import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model.Announcement;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.service.FavoritesAnnoucementsManager;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui.AnnouncementListActivity;
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui.DetailActivity;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.utils.Constant;
 
 import java.lang.ref.WeakReference;
@@ -100,7 +102,7 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
         holder.favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("CLICKED","CLICKED");
+                Log.i("CLICKED","FAV BUTTON");
                 favoritesAnnoucementsManager.toggleFav(announcement.getId());
             }
         });
@@ -108,6 +110,7 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
             @Override
             public void onClick(View v) {
                 Log.i("CLICKED","FULL VIEW");
+                navToDetailView(announcement);
             }
         });
     }
@@ -117,6 +120,9 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
         return this.dataset.size();
     }
 
-
-
+    public void navToDetailView(Announcement announcement) {
+        Intent intent = new Intent(activityWeakReference.get(), DetailActivity.class);
+        intent.putExtra("annoucement",announcement);
+        activityWeakReference.get().startActivity(intent);
+    }
 }

@@ -3,12 +3,15 @@
     <string name="empty">Aucune annonces trouvée</string>
     <string name="search_label">Que cherchez vous ?</string>
     <string name="date_label">Date</string>
+    <string name="categorie_label">Catégorie</string>
+    <string name="desc_label">Description</string>
     <string name="add_fav_btn">Ajouter aux favoris</string>
     <string name="filter_label">Filtrer </string>
     <string name="action_home">Acceuil </string>
     <string name="action_fav">Favoris </string>
     <string name="action_add">Ajouter une annonce </string>
     <string name="action_edit">Modifier une annonce </string>
+    <string name="action_contact">Contacter le vendeur  </string>
     <string-array name="type_select">
         <item>Tous</item>
         <item>Voitures</item>
