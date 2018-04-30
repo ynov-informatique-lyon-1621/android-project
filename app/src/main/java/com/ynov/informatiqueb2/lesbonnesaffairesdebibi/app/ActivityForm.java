@@ -21,6 +21,7 @@ public class ActivityForm extends AppCompatActivity {
         protected void onCreate (Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
+        setTitle("Formulaire de connexion");
 
         final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(ActivityForm.this);
 

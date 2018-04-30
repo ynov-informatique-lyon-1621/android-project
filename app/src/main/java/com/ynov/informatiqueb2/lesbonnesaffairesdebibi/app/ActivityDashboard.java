@@ -10,11 +10,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import android.view.View;
+import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.controller.GetViewController;
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model.AdvertList;
 
 
 public class ActivityDashboard extends AppCompatActivity {

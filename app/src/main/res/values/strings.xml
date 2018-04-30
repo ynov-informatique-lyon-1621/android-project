@@ -17,4 +17,8 @@
     <string name="vider">Vider</string>
     <string name="search_hint" />
     <string name="app_search" />
+    <string name="action_add">Déposer une annonce</string>
+    <string name="action_edit">Modifier une annonces</string>
+    <string name="action_favorites">Favoris</string>
+    <string name="action_home">Accueil</string>
 </resources>

@@ -2,20 +2,17 @@ package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.media.Image;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.app.ActivityDetail;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model.AdvertList;
 
 import java.util.List;
@@ -31,9 +28,9 @@ public class AdvertViewAdapter extends ArrayAdapter<AdvertList> {
     @SuppressLint("SetTextI18n")
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        final AdvertList listItem = getItem(position);
+         final AdvertList listItem = getItem(position);
 
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.activity_dashboard, parent, false);
@@ -48,7 +45,6 @@ public class AdvertViewAdapter extends ArrayAdapter<AdvertList> {
         Titre.setText(listItem.getTitre());
         Categorie.setText(String.format("Catégorie: %s", listItem.getCategorie()));
         Prix.setText(String.format("%s €", Integer.toString(listItem.getPrix())));
-
 
         return convertView;
     }

@@ -8,8 +8,19 @@
         android:title="@string/action_connect" />
 
     <item
-        android:id="@+id/action_settings_list"
+        android:id="@+id/action_settings_add"
         android:orderInCategory="103"
-        android:title="@string/action_list"
+        android:title="@string/action_add"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_settings_edit"
+        android:orderInCategory="103"
+        android:title="@string/action_edit"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_settings_favorites"
+        android:orderInCategory="103"
+        android:title="@string/action_favorites"
         app:showAsAction="never" />
 </menu>
