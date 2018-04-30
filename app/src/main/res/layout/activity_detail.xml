@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_marginTop="13dp"
         android:text="Titre"
         android:textAllCaps="true"
         android:textSize="14sp"
@@ -25,8 +26,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_marginEnd="46dp"
-        android:layout_marginTop="47dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginTop="56dp"
         android:text="Categorie"
         android:textSize="10sp"
         android:typeface="serif"
@@ -39,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/CatDetailView"
-        android:layout_marginTop="74dp"
+        android:layout_marginTop="79dp"
         android:text="Prix"
         android:textSize="10sp"
         android:visibility="visible" />
@@ -50,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="202dp"
+        android:layout_marginTop="221dp"
         android:text="Description"
         android:textSize="10sp"
         android:textStyle="italic"
@@ -73,8 +74,8 @@
         android:layout_height="147dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="29dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="48dp"
         app:srcCompat="@android:color/transparent" />
 
     <Button

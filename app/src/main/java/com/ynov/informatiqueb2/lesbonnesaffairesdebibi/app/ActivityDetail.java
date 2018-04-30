@@ -39,7 +39,7 @@ public class ActivityDetail extends AppCompatActivity {
 
         TitreDetail.setText(Titre);
         CategorieDetail.setText("Catégorie: " + Categorie);
-        PrixDetail.setText("Prix: " + Prix + "€");
+        PrixDetail.setText("Prix: " + Prix + " €");
         DescriptionDetail.setText("Description: " + Description);
         NomVendeurDetail.setText("Non du vendeur: " + NomVendeur);
 

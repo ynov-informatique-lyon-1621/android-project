@@ -35,25 +35,4 @@ public class ActivitySplashScreen extends AppCompatActivity {
         Glide.with(ActivitySplashScreen.this).load(R.drawable.giphy).into(gif);
 
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_activity_dashboard, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings_connect) {
-            Intent intent = new Intent(this, ActivityForm.class);
-            this.startActivity(intent);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-
 }
