@@ -55,9 +55,8 @@ public class ChoiceActivity extends AppCompatActivity {
                     break;
                 //Clique sur le bouton Ajouter un personnage
                 case R.id.depAnnonce:
-                    //on crée notre intent et on le start
-//                    Intent AddIntent = new Intent(ChoiceActivity.this, AddPersoActivity.class);
-//                    startActivity(AddIntent);
+                    Intent intentDepAn = new Intent(ChoiceActivity.this,DeposerAnnonceActivity.class);
+                    startActivity(intentDepAn);
                     break;
 
                 case R.id.modifAnnonce:
