@@ -1,6 +1,8 @@
 package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.app;
 
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
@@ -30,6 +33,14 @@ public class ActivityDashboard extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_activity_dashboard, menu);
+
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView =
+                (SearchView) menu.findItem(R.id.app_bar_search).getActionView();
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));
+
         return true;
     }
 
@@ -40,11 +51,6 @@ public class ActivityDashboard extends AppCompatActivity {
         if (id == R.id.action_settings_connect) {
             Intent intent = new Intent(this, ActivityForm.class);
             this.startActivity(intent);
-            return true;
-        }
-
-        if (id == R.id.app_bar_search) {
-            Toast.makeText(this, "Android Menu is Clicked", Toast.LENGTH_LONG).show();
             return true;
         }
         return super.onOptionsItemSelected(item);

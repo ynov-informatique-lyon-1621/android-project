@@ -15,4 +15,6 @@
     <string name="mot_de_passe">Mot de passe</string>
     <string name="utilisateur">Utilisateur</string>
     <string name="vider">Vider</string>
+    <string name="search_hint" />
+    <string name="app_search" />
 </resources>
