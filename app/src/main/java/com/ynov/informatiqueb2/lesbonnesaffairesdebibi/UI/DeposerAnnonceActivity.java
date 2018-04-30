@@ -136,6 +136,8 @@ public class DeposerAnnonceActivity extends AppCompatActivity {
                         // titre.getText().toString(),
                         // description.getText().toString());
                         Toast.makeText(DeposerAnnonceActivity.this, "Valider ", Toast.LENGTH_SHORT).show();
+                    Intent intentConfirmationAn = new Intent(DeposerAnnonceActivity.this,ConfirmationDeposerAnnonce.class);
+                    startActivity(intentConfirmationAn);
 
                     break;
                 //Clique sur le bouton Ajouter un personnage
