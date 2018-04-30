@@ -27,8 +27,8 @@ public class ActivityForm extends AppCompatActivity {
         Button submit = findViewById(R.id.Btn_submit);
         Button reset = findViewById(R.id.Btn_reset);
 
-        final EditText LogUser = findViewById(R.id.IDuser);
-        final EditText LogPass = findViewById(R.id.IDpass);
+        final EditText LogUser = findViewById(R.id.idUser);
+        final EditText LogPass = findViewById(R.id.idPass);
         final CheckBox save = findViewById(R.id.IDcheck);
 
         if (sharedPreferences.getBoolean("save", false)) {
