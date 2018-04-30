@@ -32,7 +32,7 @@ public class AuthorizationController extends AsyncTask<String, String, String> {
         String contend;
         try {
             URL url = new URL("http://139.99.98.119:8080/findAnnonces?" +
-                    "nomVendeur=" + strings[0] + "&mdp=" + strings[1]);
+                    "email=" + strings[0] + "&mdp=" + strings[1]);
 
             httpUrlConnection = (HttpURLConnection) url.openConnection();
 

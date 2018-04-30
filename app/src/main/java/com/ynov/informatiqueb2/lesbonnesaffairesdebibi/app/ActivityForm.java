@@ -33,7 +33,7 @@ public class ActivityForm extends AppCompatActivity {
 
         if (sharedPreferences.getBoolean("save", false)) {
             save.setChecked(true);
-            LogUser.setText(sharedPreferences.getString("nomVendeur", ""));
+            LogUser.setText(sharedPreferences.getString("email", ""));
             LogPass.setText(sharedPreferences.getString("password", ""));
         }
 
@@ -41,11 +41,11 @@ public class ActivityForm extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String nomVendeur = LogUser.getText().toString();
+                String email = LogUser.getText().toString();
                 String password = LogPass.getText().toString();
 
-                if (TextUtils.isEmpty(nomVendeur)) {
-                    LogUser.setError("nomVendeur manquant");
+                if (TextUtils.isEmpty(email)) {
+                    LogUser.setError("email manquant");
                 } else if (TextUtils.isEmpty(password)) {
                     LogPass.setError("Mot de passe manquant");
                 } else {
@@ -54,7 +54,7 @@ public class ActivityForm extends AppCompatActivity {
                     if (save.isChecked()) {
                         sharedPreferences.edit()
                                 .putBoolean("save", true)
-                                .putString("nomVendeur", nomVendeur)
+                                .putString("email", email)
                                 .putString("password", password)
                                 .apply();
                     } else {
