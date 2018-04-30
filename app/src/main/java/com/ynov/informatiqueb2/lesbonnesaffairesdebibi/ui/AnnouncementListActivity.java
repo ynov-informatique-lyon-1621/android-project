@@ -3,6 +3,7 @@ package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui;
 import android.app.ActionBar;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -45,10 +46,14 @@ public class AnnouncementListActivity extends BaseActivity {
     Map<String,String> filters = new HashMap<>();
     ExpandableLayout expandableLayout;
     TextView emptyAlert;
+    boolean favOnly;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_announcement_list);
+
+        Intent intent = getIntent();
+        this.favOnly =  intent.getBooleanExtra("favOnly",false);
 
         EditText dateInput = findViewById(R.id.dateIpt);
         dateInput.setOnFocusChangeListener(this.dateInputListener);
@@ -108,7 +113,7 @@ public class AnnouncementListActivity extends BaseActivity {
         @Override
 
         public void onResponse(@NonNull Call<List<Announcement>> call, Response<List<Announcement>> response) {
-            AnnouncementAdapter adapter = new AnnouncementAdapter(response.body(),AnnouncementListActivity.this);
+            AnnouncementAdapter adapter = new AnnouncementAdapter(response.body(),AnnouncementListActivity.this, AnnouncementListActivity.this.favOnly);
             list.setAdapter(adapter);
             if(adapter.getItemCount() == 0) {
                 emptyAlert.setVisibility(View.VISIBLE);
