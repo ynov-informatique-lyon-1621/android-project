@@ -2,6 +2,8 @@ package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui;
 
 import android.app.ActionBar;
 import android.app.DatePickerDialog;
+import android.content.Context;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -42,6 +44,7 @@ public class AnnouncementListActivity extends BaseActivity {
     RecyclerView list;
     Map<String,String> filters = new HashMap<>();
     ExpandableLayout expandableLayout;
+    TextView emptyAlert;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +65,8 @@ public class AnnouncementListActivity extends BaseActivity {
 
         TextView filterToogle = findViewById(R.id.filterToogle);
         this.expandableLayout = findViewById(R.id.expandable);
+
+        emptyAlert = findViewById(R.id.empty);
 
         filterToogle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,8 +108,13 @@ public class AnnouncementListActivity extends BaseActivity {
         @Override
 
         public void onResponse(@NonNull Call<List<Announcement>> call, Response<List<Announcement>> response) {
-            AnnouncementAdapter adapter = new AnnouncementAdapter(response.body(), Glide.with(AnnouncementListActivity.this));
+            AnnouncementAdapter adapter = new AnnouncementAdapter(response.body(),AnnouncementListActivity.this);
             list.setAdapter(adapter);
+            if(adapter.getItemCount() == 0) {
+                emptyAlert.setVisibility(View.VISIBLE);
+            } else {
+                emptyAlert.setVisibility(View.INVISIBLE);
+            }
         }
 
         @Override
