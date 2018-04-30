@@ -22,10 +22,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="111dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="115dp"
+        android:layout_marginTop="16dp"
         android:textAllCaps="true"
-        android:textSize="14sp"
+        android:textSize="12sp"
         android:textStyle="bold"
         android:visibility="visible" />
 
@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/TitleView"
-        android:layout_below="@+id/TitleView"
+        android:layout_alignTop="@+id/PriceView"
         android:textSize="10sp"
         android:typeface="serif"
         android:visibility="visible"
@@ -44,11 +44,21 @@
         android:id="@+id/PriceView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageViewDash"
         android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/CatView"
-        android:layout_marginEnd="103dp"
+        android:layout_marginEnd="42dp"
         android:textSize="10sp"
         android:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/imageViewDash"
+        android:layout_width="92dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/TitleView"
+        android:layout_marginStart="15dp"
+        app:srcCompat="@android:color/transparent" />
+
 
 
 </RelativeLayout>

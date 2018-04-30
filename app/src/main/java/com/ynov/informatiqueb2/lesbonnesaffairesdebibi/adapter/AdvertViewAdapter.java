@@ -30,7 +30,7 @@ public class AdvertViewAdapter extends ArrayAdapter<AdvertList> {
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-         final AdvertList listItem = getItem(position);
+         AdvertList listItem = getItem(position);
 
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.activity_dashboard, parent, false);
@@ -45,6 +45,26 @@ public class AdvertViewAdapter extends ArrayAdapter<AdvertList> {
         Titre.setText(listItem.getTitre());
         Categorie.setText(String.format("Catégorie: %s", listItem.getCategorie()));
         Prix.setText(String.format("%s €", Integer.toString(listItem.getPrix())));
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AdvertList listItemDetail = getItem(position);
+
+                Intent DetailAdvert = new Intent(getContext(), ActivityDetail.class);
+
+                DetailAdvert.putExtra("Titre", listItemDetail.getTitre());
+                DetailAdvert.putExtra("Categorie", listItemDetail.getCategorie());
+                DetailAdvert.putExtra("Prix", listItemDetail.getPrix());
+                DetailAdvert.putExtra("Description", listItemDetail.getDescription());
+                DetailAdvert.putExtra("NomVendeur", listItemDetail.getNomVendeur());
+                DetailAdvert.putExtra("Picture", listItemDetail.getPicture());
+
+                getContext().startActivity(DetailAdvert);
+            }
+        });
+
 
         return convertView;
     }
