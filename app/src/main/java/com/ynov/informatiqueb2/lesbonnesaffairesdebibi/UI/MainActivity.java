@@ -31,6 +31,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         rechercheButton = findViewById(R.id.boutonRechercher);
         rechercheMenu = findViewById(R.id.rechercheMenu);
         rechercheCPVille = findViewById(R.id.villecpMenu);
-        String[] itemsCat = new String[]{"Tous", "Vêtement", "Voiture"};
+        String[] itemsCat = new String[]{"Tous", "Vêtements", "Voitures"};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, R.layout.support_simple_spinner_dropdown_item, itemsCat) {
             @Override
@@ -98,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                 String filtre2 = spinner.getSelectedItem().toString();
                 String filtre3 = rechercheCPVille.getText().toString();
 
-                new GetAnnonces(filtre1, filtre2, filtre3).execute();
+                new GetAnnonces().execute(filtre1, filtre2, filtre3);
             }
         });
 
@@ -106,40 +107,18 @@ public class MainActivity extends AppCompatActivity {
 
         public class GetAnnonces extends AsyncTask<String,String,String> {
 
-            String filtre1;
-            String filtre2;
-            String filtre3;
-
-            public GetAnnonces(String filtre1, String filtre2, String filtre3){
-                this.filtre1 = filtre1;
-                this.filtre2 = filtre2;
-                this.filtre3 = filtre3;
-            }
-
-            public GetAnnonces(){
-
-            }
-
             @Override
             protected String doInBackground(String... strings) {
                 HttpURLConnection myWebService = null;
                 String contenu = "";
                 StringBuilder stringBuilder = null;
+                String urlAsString;
+
                 //Nous faisons un try catch pour gérer les exceptions unchecked. C'est à dire les exceptions qui ne sont pas gérées par l'application.
                 try {
-                    URL urlWS;
+                    urlAsString = GenerateFilteredURL(strings);
 
-                    urlWS = new URL("http://139.99.98.119:8080/findAnnonces");
-
-                    /*
-                    if(this.filtre1 == null && this.filtre2 == null && this.filtre3 == null){
-                        //On donne l'URL pour récupérer notre liste JSON.
-
-                    }
-                    else{
-
-                    }*/
-
+                    URL urlWS = new URL(urlAsString);
                     //On ouvre une connexion
                     myWebService = (HttpURLConnection)urlWS.openConnection();
 
@@ -212,7 +191,30 @@ public class MainActivity extends AppCompatActivity {
             return imageName;
         }
 
+        public String GenerateFilteredURL(String[] strings)
+        {
+            String url;
+            String[] keysFilter;
 
+            url = "http://139.99.98.119:8080/findAnnonces";
 
+            if(strings.length>0) {
+                keysFilter = new String[]{"motCle", "categorie", "localisation"};
 
+                for (int i = 0; i < strings.length; i++) {
+                    String currentFilterContent = strings[i];
+                    String currentFilterKey = keysFilter[i];
+
+                    if(currentFilterContent != null){
+                        if(url.indexOf("?") < 0){
+                            url = url + "?" + currentFilterKey + "=" + currentFilterContent;
+                        }
+                        else{
+                            url = url + "&" + currentFilterKey + "=" + currentFilterContent;
+                        }
+                    }
+                }
+            }
+            return url;
+        }
 }
