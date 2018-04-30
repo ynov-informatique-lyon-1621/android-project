@@ -23,7 +23,8 @@
         </activity>
         <activity android:name=".app.ActivityDashboard" />
         <activity android:name=".app.ActivityForm" />
-        <activity android:name=".app.ActivityDetail"></activity>
+        <activity android:name=".app.ActivityDetail" />
+        <activity android:name=".ContactActivity"></activity>
     </application>
 
 </manifest>

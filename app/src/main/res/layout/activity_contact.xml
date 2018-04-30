@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ContactActivity">
+
+    <EditText
+        android:id="@+id/namecontact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="106dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="68dp"
+        tools:layout_editor_absoluteY="116dp" />
+
+    <EditText
+        android:id="@+id/mailcontact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="167dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        tools:layout_editor_absoluteX="68dp"
+        tools:layout_editor_absoluteY="187dp" />
+
+    <EditText
+        android:id="@+id/telcontact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:ems="10"
+        android:inputType="phone"
+        tools:layout_editor_absoluteX="68dp"
+        tools:layout_editor_absoluteY="255dp" />
+
+    <EditText
+        android:id="@+id/messagecontact"
+        android:layout_width="wrap_content"
+        android:layout_height="101dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="83dp"
+        android:ems="10"
+        android:inputType="textMultiLine" />
+
+    <Button
+        android:id="@+id/submitcontact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="15dp"
+        android:text="Envoyer" />
+
+    <Button
+        android:id="@+id/resetcontact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/namecontact"
+        android:layout_alignTop="@+id/submitcontact"
+        android:text="Reinitialiser" />
+
+    <Button
+        android:id="@+id/retourcontact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/submitcontact"
+        android:text="Retour à l'annonce" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/namecontact"
+        android:layout_alignStart="@+id/namecontact"
+        android:layout_marginBottom="-106dp"
+        android:text="Nom*" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/mailcontact"
+        android:layout_alignStart="@+id/namecontact"
+        android:layout_marginBottom="-167dp"
+        android:text="Email*" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/namecontact"
+        android:layout_below="@+id/mailcontact"
+        android:text="Numéro de téléphone" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/messagecontact"
+        android:layout_alignStart="@+id/namecontact"
+        android:text="Message*" />
+
+    <ImageView
+        android:id="@+id/imagecontact"
+        android:layout_width="70dp"
+        android:layout_height="68dp"
+        android:layout_above="@+id/textView2"
+        android:layout_toStartOf="@+id/namecontact"
+        app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/titrecontact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/imagecontact"
+        android:layout_marginStart="102dp"
+        android:text="TITRE" />
+
+    <TextView
+        android:id="@+id/prixcontact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="121dp"
+        android:layout_marginTop="45dp"
+        android:text="PRIX" />
+
+    <ImageView
+        android:id="@+id/imagevendeurcontact"
+        android:layout_width="42dp"
+        android:layout_height="66dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="19dp"
+        android:layout_marginTop="11dp"
+        app:srcCompat="@drawable/noun" />
+
+    <TextView
+        android:id="@+id/vendeurcontact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/imagevendeurcontact"
+        android:layout_marginEnd="12dp"
+        android:text="NOM VENDEUR" />
+
+    <TextView
+        android:id="@+id/datecontact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView2"
+        android:layout_toEndOf="@+id/resetcontact"
+        android:text="Date" />
+
+    <TextView
+        android:id="@+id/categoriecontact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textView5"
+        android:layout_below="@+id/prixcontact"
+        android:text="Catégorie" />
+
+</RelativeLayout>

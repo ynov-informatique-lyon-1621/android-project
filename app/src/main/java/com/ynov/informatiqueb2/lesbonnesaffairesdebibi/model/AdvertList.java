@@ -2,7 +2,7 @@ package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model;
 
 public class AdvertList {
 
-    // Récupération en priver des informations
+    // Récupération en privé des informations
     private String nomVendeur;
     private String email;
     private String titre;
@@ -13,7 +13,7 @@ public class AdvertList {
     private String picture;
 
 
-    // Mise en place en public les variables
+    // Mise en place en public des variables
     public String getNomVendeur() {
         return nomVendeur;
     }
