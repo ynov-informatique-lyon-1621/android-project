@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/recherchesucces"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SuccesMessageActivity">
+
+    <ImageView
+        android:id="@+id/imageannoncesucces"
+        android:layout_width="111dp"
+        android:layout_height="97dp"
+        app:srcCompat="@drawable/logo"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="29dp" />
+
+    <TextView
+        android:id="@+id/titresucces"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TITRE"
+        tools:layout_editor_absoluteX="145dp"
+        tools:layout_editor_absoluteY="29dp" />
+
+    <TextView
+        android:id="@+id/prixsucces"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PRIX"
+        tools:layout_editor_absoluteX="219dp"
+        tools:layout_editor_absoluteY="57dp" />
+
+    <TextView
+        android:id="@+id/datesucces"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DATE"
+        tools:layout_editor_absoluteX="219dp"
+        tools:layout_editor_absoluteY="85dp" />
+
+    <TextView
+        android:id="@+id/categoriesucces"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Catégorie"
+        tools:layout_editor_absoluteX="138dp"
+        tools:layout_editor_absoluteY="106dp" />
+
+    <TextView
+        android:id="@+id/messagesucces"
+        android:layout_width="141dp"
+        android:layout_height="178dp"
+        android:text="Récap message"
+        tools:layout_editor_absoluteX="138dp"
+        tools:layout_editor_absoluteY="168dp" />
+
+    <ImageView
+        android:id="@+id/imagevendeursucces"
+        android:layout_width="71dp"
+        android:layout_height="68dp"
+        app:srcCompat="@drawable/noun"
+        tools:layout_editor_absoluteX="312dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/vendeursucces"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nom vendeur"
+        tools:layout_editor_absoluteX="309dp"
+        tools:layout_editor_absoluteY="106dp" />
+
+    <Button
+        android:id="@+id/annoncesucces"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Retour à l'annonce"
+        tools:layout_editor_absoluteX="127dp"
+        tools:layout_editor_absoluteY="433dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Retour à votre recherche"
+        tools:layout_editor_absoluteX="99dp"
+        tools:layout_editor_absoluteY="373dp" />
+</android.support.constraint.ConstraintLayout>

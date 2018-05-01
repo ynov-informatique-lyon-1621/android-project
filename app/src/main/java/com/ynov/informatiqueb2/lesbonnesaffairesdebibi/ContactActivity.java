@@ -74,7 +74,7 @@ public class ContactActivity extends AppCompatActivity {
         retourcontact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            Intent intent = new Intent(ContactActivity.this, ActivityDashboard.class);
+            Intent intent = new Intent(ContactActivity.this, ActivityDetail.class);
                 startActivity(intent);
             }
         });
