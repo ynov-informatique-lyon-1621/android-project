@@ -44,7 +44,7 @@ public class AdvertViewAdapter extends ArrayAdapter<AdvertList> {
         // Remplace les informations
         Titre.setText(listItem.getTitre());
         Categorie.setText(String.format("Catégorie: %s", listItem.getCategorie()));
-        Prix.setText(String.format("Prix: %s €", Integer.toString(listItem.getPrix())));
+        Prix.setText(String.format("Prix: %s €", listItem.getPrix()));
 
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override

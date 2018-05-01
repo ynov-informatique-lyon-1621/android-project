@@ -8,7 +8,7 @@ public class AdvertList {
     private String titre;
     private String localisation;
     private String categorie;
-    private Integer prix;
+    private String prix;
     private String description;
     private String picture;
 
@@ -54,11 +54,11 @@ public class AdvertList {
         this.categorie = categorie;
     }
 
-    public Integer getPrix() {
+    public String getPrix() {
         return prix;
     }
 
-    public void setPrix(Integer prix) {
+    public void setPrix(String prix) {
         this.prix = prix;
     }
 

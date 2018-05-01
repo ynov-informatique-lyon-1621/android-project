@@ -40,7 +40,7 @@ public class PostViewEditController extends AsyncTask<String, String, String> {
         String contenu;
         try {
             // Connexion à l'API
-            URL url = new URL("http://139.99.98.119:8080/updateAnnonce");
+            URL url = new URL("http://139.99.98.119:8080/saveAnnonce");
             HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
             httpUrlConnection = (HttpURLConnection) url.openConnection();
 
