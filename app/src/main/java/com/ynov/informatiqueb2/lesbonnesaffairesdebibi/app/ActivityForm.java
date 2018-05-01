@@ -45,12 +45,11 @@ public class ActivityForm extends AppCompatActivity {
                 String email = LogUser.getText().toString();
                 String password = LogPass.getText().toString();
 
-                if (TextUtils.isEmpty(email)) {
+                if (TextUtils.isEmpty(email + password)) {
                     LogUser.setError("email manquant");
                 } else if (TextUtils.isEmpty(password)) {
                     LogPass.setError("Mot de passe manquant");
                 } else {
-                    Intent intent = new Intent(ActivityForm.this, ActivityDashboard.class);
 
                     if (save.isChecked()) {
                         sharedPreferences.edit()

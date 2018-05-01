@@ -13,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ContactActivity;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 
 public class ActivityDetail extends AppCompatActivity {
@@ -25,14 +24,6 @@ public class ActivityDetail extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
         setTitle("Detail de l'annonce");
 
-        Button idcontact = findViewById(R.id.IDContact);
-        idcontact.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ActivityDetail.this, ContactActivity.class);
-                startActivity(intent);
-            }
-        });
         TextView TitreDetail = findViewById(R.id.TitleDetailView);
         TextView CategorieDetail = findViewById(R.id.CatDetailView);
         TextView  PrixDetail = findViewById(R.id.PriceDetailView);
@@ -56,6 +47,19 @@ public class ActivityDetail extends AppCompatActivity {
         ImageView logo = findViewById(R.id.imageView);
 
         Glide.with(ActivityDetail.this).load(R.drawable.logo).into(logo);
+
+        Button idcontact = findViewById(R.id.IDContact);
+        idcontact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivityDetail.this, ActivityContact.class);
+
+
+
+
+                startActivity(intent);
+            }
+        });
 
     }
 

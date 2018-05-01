@@ -1,89 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/recherchesucces"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SuccesMessageActivity">
-
-    <ImageView
-        android:id="@+id/imageannoncesucces"
-        android:layout_width="111dp"
-        android:layout_height="97dp"
-        app:srcCompat="@drawable/logo"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="29dp" />
+    tools:context=".app.ActivitySuccesMessage">
 
     <TextView
-        android:id="@+id/titresucces"
-        android:layout_width="wrap_content"
+        android:id="@+id/recapMessage"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TITRE"
-        tools:layout_editor_absoluteX="145dp"
-        tools:layout_editor_absoluteY="29dp" />
-
-    <TextView
-        android:id="@+id/prixsucces"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="PRIX"
-        tools:layout_editor_absoluteX="219dp"
-        tools:layout_editor_absoluteY="57dp" />
-
-    <TextView
-        android:id="@+id/datesucces"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="DATE"
-        tools:layout_editor_absoluteX="219dp"
-        tools:layout_editor_absoluteY="85dp" />
-
-    <TextView
-        android:id="@+id/categoriesucces"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Catégorie"
-        tools:layout_editor_absoluteX="138dp"
-        tools:layout_editor_absoluteY="106dp" />
-
-    <TextView
-        android:id="@+id/messagesucces"
-        android:layout_width="141dp"
-        android:layout_height="178dp"
-        android:text="Récap message"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="181dp"
+        android:lineSpacingExtra="8sp"
+        android:text="recapMessage"
+        android:textSize="14sp"
+        android:textStyle="bold"
         tools:layout_editor_absoluteX="138dp"
         tools:layout_editor_absoluteY="168dp" />
 
     <ImageView
-        android:id="@+id/imagevendeursucces"
-        android:layout_width="71dp"
-        android:layout_height="68dp"
+        android:id="@+id/imageLocal"
+        android:layout_width="89dp"
+        android:layout_height="114dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="22dp"
+        android:layout_toStartOf="@+id/advert"
         app:srcCompat="@drawable/noun"
         tools:layout_editor_absoluteX="312dp"
         tools:layout_editor_absoluteY="16dp" />
 
     <TextView
-        android:id="@+id/vendeursucces"
-        android:layout_width="wrap_content"
+        android:id="@+id/recapTelephone"
+        android:layout_width="208dp"
         android:layout_height="wrap_content"
-        android:text="Nom vendeur"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/recapContact"
+        android:layout_marginTop="98dp"
+        android:text="recapTelephone"
+        tools:layout_editor_absoluteX="309dp"
+        tools:layout_editor_absoluteY="106dp" />
+
+    <TextView
+        android:id="@+id/recapEmail"
+        android:layout_width="204dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/recapTelephone"
+        android:layout_marginTop="58dp"
+        android:text="recapEmail"
+        tools:layout_editor_absoluteX="309dp"
+        tools:layout_editor_absoluteY="106dp" />
+
+    <TextView
+        android:id="@+id/recapContact"
+        android:layout_width="201dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/imageLocal"
+        android:layout_marginEnd="86dp"
+        android:text="recapContact"
         tools:layout_editor_absoluteX="309dp"
         tools:layout_editor_absoluteY="106dp" />
 
     <Button
-        android:id="@+id/annoncesucces"
+        android:id="@+id/advert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Retour à l'annonce"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="119dp"
+        android:text="Validation du message"
         tools:layout_editor_absoluteX="127dp"
         tools:layout_editor_absoluteY="433dp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Retour à votre recherche"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="44dp"
+        android:text="Retour aux annonces"
         tools:layout_editor_absoluteX="99dp"
         tools:layout_editor_absoluteY="373dp" />
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
