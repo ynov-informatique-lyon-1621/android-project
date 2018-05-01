@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -76,5 +79,30 @@ public class ActivityAdvertCreate extends AppCompatActivity {
                 startActivity(cancelCreation);
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_activity_dashboard, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_settings_connect) {
+            Intent intent = new Intent(this, ActivityForm.class);
+            this.startActivity(intent);
+            return true;
+        }
+
+        if (id == R.id.action_settings_add){
+            Intent intentAdd = new Intent(this, ActivityAdvertCreate.class);
+            this.startActivity(intentAdd);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -39,6 +39,12 @@ public class ActivityDashboard extends AppCompatActivity {
             this.startActivity(intent);
             return true;
         }
+
+        if (id == R.id.action_settings_add){
+            Intent intentAdd = new Intent(this, ActivityAdvertCreate.class);
+            this.startActivity(intentAdd);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 }
