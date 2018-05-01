@@ -1,9 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".app.ActivityAdvertCreate">
 
-</android.support.constraint.ConstraintLayout>
+    <ImageView
+        android:id="@+id/imageCreation"
+        android:layout_width="63dp"
+        android:layout_height="60dp"
+        android:src="?android:attr/alertDialogIcon"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <Button
+        android:id="@+id/selectImgCreation"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="77dp"
+        android:layout_marginTop="12dp"
+        android:text="Selectionner une photo"
+        tools:layout_editor_absoluteX="91dp"
+        tools:layout_editor_absoluteY="40dp" />
+
+    <EditText
+        android:id="@+id/nameCreation"
+        android:layout_width="311dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="71dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="108dp" />
+
+    <EditText
+        android:id="@+id/mailCreation"
+        android:layout_width="312dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/mdpCreation"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="136dp"
+        android:ems="10"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/mdpCreation"
+        android:layout_width="317dp"
+        android:layout_height="34dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="197dp"
+        android:ems="10"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/mdpConfirmCreation"
+        android:layout_width="320dp"
+        android:layout_height="36dp"
+        android:layout_alignStart="@+id/mailCreation"
+        android:layout_centerVertical="true"
+        android:ems="10"
+        android:inputType="textPassword" />
+
+    <Spinner
+        android:id="@+id/categorieCreation"
+        android:layout_width="314dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/nameCreation"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="189dp" />
+
+    <EditText
+        android:id="@+id/prixCreation"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_alignStart="@+id/mailCreation"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="136dp"
+        android:ems="10"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/descriptionCreation"
+        android:layout_width="322dp"
+        android:layout_height="57dp"
+        android:layout_alignStart="@+id/nameCreation"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="62dp"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/validerCreation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/nameCreation"
+        android:layout_alignParentBottom="true"
+        android:text="Valider" />
+
+    <Button
+        android:id="@+id/cancelCreation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="81dp"
+        android:text="Annuler" />
+</RelativeLayout>
