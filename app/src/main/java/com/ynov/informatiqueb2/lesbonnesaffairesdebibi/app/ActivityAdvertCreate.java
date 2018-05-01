@@ -20,7 +20,7 @@ public class ActivityAdvertCreate extends AppCompatActivity {
 
         Button validerCreation = findViewById(R.id.validerCreation);
         Button cancelCreation = findViewById(R.id.cancelCreation);
-        Button selectImgCreation = findViewById(R.id.selectImgCreation);
+
 
         final EditText NameCreation = findViewById(R.id.nameCreation);
         final EditText MailCreation = findViewById(R.id.mailCreation);
@@ -28,7 +28,7 @@ public class ActivityAdvertCreate extends AppCompatActivity {
         final EditText MdpConfirmCreation = findViewById(R.id.mdpConfirmCreation);
         final EditText PrixCreation = findViewById(R.id.prixCreation);
         final EditText DescriptionCreation = findViewById(R.id.descriptionCreation);
-        final Spinner CategorieCreation = findViewById(R.id.categorieCreation);
+        final EditText CategorieCreation = findViewById(R.id.categorieCreation);
 
         validerCreation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,7 +37,7 @@ public class ActivityAdvertCreate extends AppCompatActivity {
                 String email = MailCreation.getText().toString();
                 String mdp = MdpCreation.getText().toString();
                 String mdpConfirm = MdpConfirmCreation.getText().toString();
-                String categorie = CategorieCreation.getId().toString();
+                String categorie = CategorieCreation.getText().toString();
                 String prix = PrixCreation.getText().toString();
                 String description = DescriptionCreation.getText().toString();
 
@@ -64,11 +64,6 @@ public class ActivityAdvertCreate extends AppCompatActivity {
 
                         }
                     }
-
-                    }
-
-
-                    if (mdp.equals(mdpConfirm)) {
 
                     }
             }
