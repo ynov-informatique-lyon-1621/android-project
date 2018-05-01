@@ -73,6 +73,9 @@ public abstract class BaseActivity extends AppCompatActivity {
                 intent = new Intent(BaseActivity.this, AnnouncementListActivity.class);
                 intent.putExtra("favOnly",true);
                 break;
+                case R.id.action_add:
+                    intent = new Intent(BaseActivity.this, EditionActivity.class);
+                    break;
                 case R.id.action_home:
                 default:
                     intent = new Intent(BaseActivity.this, AnnouncementListActivity.class);

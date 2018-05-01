@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.AnnouncementListActivity" />
-        <activity android:name=".ui.DetailActivity"></activity>
+        <activity android:name=".ui.DetailActivity" />
+        <activity android:name=".ui.EditionActivity"></activity>
     </application>
 
 </manifest>

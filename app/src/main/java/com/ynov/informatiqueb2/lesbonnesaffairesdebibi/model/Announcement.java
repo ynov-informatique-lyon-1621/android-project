@@ -4,17 +4,8 @@ package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.service.ApiInterface;
 
 import java.io.Serializable;
-//
-//"id": 1,
-//        "nomVendeur": "AssKicker",
-//        "email": "asskicker@ynov.com",
-//        "mdp": "asskicker",
-//        "titre": "A vendre Polos Lacoste toutes tailles (neuf)",
-//        "localisation": "Lyon",
-//        "categorie": "Vêtements",
-//        "prix": 35,
-//        "description": "Bonjour,\nJe vends des polos Lacoste neufs.\n35 euros l'unité.\nBonne journée.",
-//        "image": "src/main/resources/static/images/lesbonsplansdebibi/polo.jpeg"
+import java.time.LocalDateTime;
+import java.util.Date;
 
 public class Announcement implements Serializable {
     private String id = null;
@@ -26,6 +17,8 @@ public class Announcement implements Serializable {
     private String categorie = "";
     private String image = "";
     private String nomVendeur = "";
+    private String localisation = "";
+    private Date dateCreation;
 
 
     public String getId() {
@@ -98,5 +91,21 @@ public class Announcement implements Serializable {
 
     public void setNomVendeur(String nomVendeur) {
         this.nomVendeur = nomVendeur;
+    }
+
+    public String getLocalisation() {
+        return localisation;
+    }
+
+    public void setLocalisation(String localisation) {
+        this.localisation = localisation;
+    }
+
+    public Date getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(Date dateCreation) {
+        this.dateCreation = dateCreation;
     }
 }

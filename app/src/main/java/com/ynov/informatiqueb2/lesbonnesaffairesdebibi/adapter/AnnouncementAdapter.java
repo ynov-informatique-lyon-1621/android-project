@@ -1,13 +1,9 @@
 package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.adapter;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,16 +16,12 @@ import com.bumptech.glide.RequestManager;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model.Announcement;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.service.FavoritesAnnoucementsManager;
-import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui.AnnouncementListActivity;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui.DetailActivity;
-import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.utils.Constant;
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.utils.DateFormater;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapter.ViewHolder> {
 
@@ -94,22 +86,26 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final Announcement announcement = this.dataset.get(position);
+
+        //Load date in fields.
         holder.label.setText(announcement.getTitre());
-        holder.price.setText(String.valueOf(announcement.getPrix()) + " €");
-        holder.date.setText(Constant.dateFormat.format(new Date()));
+        holder.price.setText(this.activityWeakReference.get().getString(R.string.price_placeholder,announcement.getPrix()));
+        holder.date.setText(DateFormater.format(announcement.getDateCreation()));
         this.glide.load(announcement.getImage()).into(holder.imageView);
         holder.favButton.setChecked(this.favoritesAnnoucementsManager.isFav(announcement.getId()));
+
+        //Add listener to fav button to toggle fav.
         holder.favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("CLICKED","FAV BUTTON");
                 favoritesAnnoucementsManager.toggleFav(announcement.getId());
             }
         });
+
+        //Add listener to full view to navigate to detail.
         holder.fullView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("CLICKED","FULL VIEW");
                 navToDetailView(announcement);
             }
         });
@@ -120,7 +116,7 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
         return this.dataset.size();
     }
 
-    public void navToDetailView(Announcement announcement) {
+    private void navToDetailView(Announcement announcement) {
         Intent intent = new Intent(activityWeakReference.get(), DetailActivity.class);
         intent.putExtra("annoucement",announcement);
         activityWeakReference.get().startActivity(intent);
