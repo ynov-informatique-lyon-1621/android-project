@@ -4,7 +4,6 @@ package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.service.ApiInterface;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Announcement implements Serializable {
@@ -78,7 +77,7 @@ public class Announcement implements Serializable {
     }
 
     public String getImage() {
-        return ApiInterface.ENDPOINT  +  image.replace("src/main/resources/static","");
+        return ApiInterface.ENDPOINT  + "/images/" +image;
     }
 
     public void setImage(String image) {

@@ -10,10 +10,15 @@ import retrofit2.http.GET;
 import retrofit2.http.QueryMap;
 
 public interface ApiInterface {
-    public static final String ENDPOINT =  "http://139.99.98.119:8080";
+    public static final String ENDPOINT =  "http://affaires-bibi-api.projects.juleslaurent.tk";
 
-    @GET("findAnnonces")
+    @GET("announcements")
     Call<List<Announcement>> getAnnonces(
+            @QueryMap Map<String,String> options
+    );
+
+    @GET("announcements")
+    Call<List<Announcement>> getOwnedAnnonces(
             @QueryMap Map<String,String> options
     );
 

@@ -5,10 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model.Announcement;
 
 import javax.microedition.khronos.egl.EGLDisplay;
 
@@ -20,6 +22,12 @@ public class EditionActivity extends BaseActivity {
     EditText passwdConfirmIpt;
     EditText descIpt;
     EditText priceIpt;
+    Announcement announcement;
+    Button selectImageBtn;
+    private static final int EDITION_MODE = 1;
+    private static final int NEW_MODE = 0;
+    int mode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +38,19 @@ public class EditionActivity extends BaseActivity {
         this.passwdConfirmIpt = findViewById(R.id.passwordConfirmIpt );
         this.descIpt = findViewById(R.id.descIpt);
         this.priceIpt = findViewById(R.id.priceIpt);
+        this.selectImageBtn = findViewById(R.id.findImageBtn);
+
+        Intent intent = getIntent();
+        Announcement announcement = (Announcement)intent.getSerializableExtra("annoucement");
+        if(announcement != null) {
+            this.mode = EDITION_MODE;
+            this.announcement = announcement;
+            this.selectImageBtn.setVisibility(View.GONE);
+            this.fillFields();
+        } else {
+            this.mode = NEW_MODE;
+            this.announcement = new Announcement();
+        }
     }
 
 
@@ -46,6 +67,10 @@ public class EditionActivity extends BaseActivity {
             }
         }
     };
+
+    private void fillFields() {
+        this.mailIpt.setText(this.announcement.getEmail());
+    }
 
     protected void onSendClicked() {
         if(this.checkForm()){

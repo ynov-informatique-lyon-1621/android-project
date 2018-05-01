@@ -46,13 +46,13 @@ public class AnnouncementListActivity extends BaseActivity {
     Map<String,String> filters = new HashMap<>();
     ExpandableLayout expandableLayout;
     TextView emptyAlert;
-    boolean favOnly;
+    int mode;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Intent intent = getIntent();
-        this.favOnly =  intent.getBooleanExtra("favOnly",false);
+        this.mode =  intent.getIntExtra("mode",AnnouncementAdapter.DEFAULT_MODE);
 
         EditText locationIpt = findViewById(R.id.locationIpt);
         locationIpt.addTextChangedListener(this.locationWatcher);
@@ -101,7 +101,7 @@ public class AnnouncementListActivity extends BaseActivity {
         @Override
 
         public void onResponse(@NonNull Call<List<Announcement>> call, Response<List<Announcement>> response) {
-            AnnouncementAdapter adapter = new AnnouncementAdapter(response.body(),AnnouncementListActivity.this, AnnouncementListActivity.this.favOnly);
+            AnnouncementAdapter adapter = new AnnouncementAdapter(response.body(),AnnouncementListActivity.this, AnnouncementListActivity.this.mode);
             list.setAdapter(adapter);
             if(adapter.getItemCount() == 0) {
                 emptyAlert.setVisibility(View.VISIBLE);

@@ -1,20 +1,13 @@
 package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model.Announcement;
-
-import org.w3c.dom.Text;
 
 public class DetailActivity extends BaseActivity {
 

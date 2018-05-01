@@ -7,7 +7,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -17,6 +19,7 @@ import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model.Announcement;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.service.FavoritesAnnoucementsManager;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui.DetailActivity;
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui.EditionActivity;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.utils.DateFormater;
 
 import java.lang.ref.WeakReference;
@@ -25,15 +28,20 @@ import java.util.List;
 
 public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapter.ViewHolder> {
 
+    public static final int DEFAULT_MODE = 0;
+    public static final int FAV_ONLY_MODE = 1;
+    public static final int EDITITON_MODE = 2;
+
     private List<Announcement> dataset;
     private RequestManager glide;
     private FavoritesAnnoucementsManager favoritesAnnoucementsManager;
     private WeakReference<Activity> activityWeakReference;
+    private int mode;
     public AnnouncementAdapter(List<Announcement> dataset, Activity activity) {
-        this(dataset,activity,false);
+        this(dataset,activity,DEFAULT_MODE);
     }
 
-    public AnnouncementAdapter(List<Announcement> dataset, Activity activity, boolean favOnly) {
+    public AnnouncementAdapter(List<Announcement> dataset, Activity activity, int mode) {
         this.dataset = dataset;
 
         this.activityWeakReference = new WeakReference<Activity>(activity);
@@ -42,7 +50,9 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
 
         this.favoritesAnnoucementsManager = new FavoritesAnnoucementsManager(this.activityWeakReference);
 
-        if(favOnly) {
+        this.mode = mode;
+
+        if(this.mode == FAV_ONLY_MODE) {
             List<Announcement> filteredDataset = new ArrayList<>();
             for (int i = 0; i < dataset.size(); i++) {
                 if(this.favoritesAnnoucementsManager.isFav(dataset.get(i).getId()))
@@ -55,16 +65,28 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
         public TextView label;
         public TextView date;
         public TextView price;
         public ImageView imageView;
         public ToggleButton favButton;
-        public View fullView = itemView;
+        public View fullView;
+        public ImageButton editButton;
+        public ImageButton deleteButton;
+        public LinearLayout editionTools;
 
-        private ViewHolder(View itemView) {
-            super(itemView);
+
+        private ViewHolder(View v) {
+            super(v);
+            this.fullView = v;
+            this.label = v.findViewById(R.id.label);
+            this.imageView = v.findViewById(R.id.imageView);
+            this.price = v.findViewById(R.id.price);
+            this.date = v.findViewById(R.id.date);
+            this.favButton = v.findViewById(R.id.favBtn);
+            this.editButton = v.findViewById(R.id.editBtn);
+            this.deleteButton = v.findViewById(R.id.deleteBtn);
+            this.editionTools = v.findViewById(R.id.editionTools);
         }
     }
 
@@ -74,17 +96,11 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.annoucement_list_item, parent, false);
-        ViewHolder vh = new ViewHolder(v);
-        vh.label = v.findViewById(R.id.label);
-        vh.imageView = v.findViewById(R.id.imageView);
-        vh.price = v.findViewById(R.id.price);
-        vh.date = v.findViewById(R.id.date);
-        vh.favButton = v.findViewById(R.id.favBtn);
-        return vh;
+        return new ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         final Announcement announcement = this.dataset.get(position);
 
         //Load date in fields.
@@ -109,6 +125,23 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
                 navToDetailView(announcement);
             }
         });
+
+        //If edition mode display edition tools
+        if(mode == EDITITON_MODE) {
+            holder.editionTools.setVisibility(View.VISIBLE);
+            holder.favButton.setVisibility(View.GONE);
+
+            holder.editButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    navToEditionView(announcement);
+                }
+            });
+
+            //TODO : DELETE BUTTON;
+        }
+
+
     }
 
     @Override
@@ -118,6 +151,12 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
 
     private void navToDetailView(Announcement announcement) {
         Intent intent = new Intent(activityWeakReference.get(), DetailActivity.class);
+        intent.putExtra("annoucement",announcement);
+        activityWeakReference.get().startActivity(intent);
+    }
+
+    private void navToEditionView(Announcement announcement) {
+        Intent intent = new Intent(activityWeakReference.get(), EditionActivity.class);
         intent.putExtra("annoucement",announcement);
         activityWeakReference.get().startActivity(intent);
     }

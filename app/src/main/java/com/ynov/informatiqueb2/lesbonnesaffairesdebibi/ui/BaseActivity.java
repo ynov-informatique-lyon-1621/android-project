@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.adapter.AnnouncementAdapter;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
@@ -71,10 +72,13 @@ public abstract class BaseActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.action_fav:
                 intent = new Intent(BaseActivity.this, AnnouncementListActivity.class);
-                intent.putExtra("favOnly",true);
+                intent.putExtra("mode", AnnouncementAdapter.FAV_ONLY_MODE);
                 break;
                 case R.id.action_add:
                     intent = new Intent(BaseActivity.this, EditionActivity.class);
+                    break;
+                case R.id.action_edit:
+                    intent = new Intent(BaseActivity.this,LoginActivity.class);
                     break;
                 case R.id.action_home:
                 default:

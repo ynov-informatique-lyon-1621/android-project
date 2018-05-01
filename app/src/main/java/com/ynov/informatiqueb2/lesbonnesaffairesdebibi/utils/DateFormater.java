@@ -10,10 +10,10 @@ public class DateFormater {
     public static final SimpleDateFormat ISODateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
 
     public static String  format(Date date)  {
-        if(date.equals(new Date())) {
-            return "Aujourd'hui à" + hourFormat.format(date);
-        } else {
+//        if(date.equals(new Date())) {
+//            return "Aujourd'hui à" + hourFormat.format(date);
+//        } else {
             return dateFormat.format(date);
-        }
+//        }
     }
 }
