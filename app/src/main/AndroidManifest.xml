@@ -25,7 +25,9 @@
         <activity android:name=".app.ActivityForm" />
         <activity android:name=".app.ActivityDetail" />
         <activity android:name=".app.ActivityContact" />
-        <activity android:name=".app.ActivitySuccesMessage"></activity>
+        <activity android:name=".app.ActivitySuccesMessage" />
+        <activity android:name=".app.ActivityAdvertCreate" />
+        <activity android:name=".app.ActivityAdvertEdit"></activity>
     </application>
 
 </manifest>
