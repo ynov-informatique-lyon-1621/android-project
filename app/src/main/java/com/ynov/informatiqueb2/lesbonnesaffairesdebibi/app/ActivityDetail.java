@@ -29,6 +29,7 @@ public class ActivityDetail extends AppCompatActivity {
         TextView  PrixDetail = findViewById(R.id.PriceDetailView);
         TextView DescriptionDetail = findViewById(R.id.DescriptionDetailView);
         TextView NomVendeurDetail = findViewById(R.id.NomVendeurDetailView);
+        ImageView logo = findViewById(R.id.imageView);
 
         Intent intentDetails = getIntent();
 
@@ -37,16 +38,14 @@ public class ActivityDetail extends AppCompatActivity {
         String Prix = intentDetails.getStringExtra("Prix");
         String Description = intentDetails.getStringExtra("Description");
         String NomVendeur = intentDetails.getStringExtra("NomVendeur");
+        String Image = intentDetails.getStringExtra("Image");
 
         TitreDetail.setText(Titre);
         CategorieDetail.setText("Catégorie: " + Categorie);
         PrixDetail.setText("Prix: " + Prix + " €");
         DescriptionDetail.setText("Description: " + Description);
         NomVendeurDetail.setText("Non du vendeur: " + NomVendeur);
-
-        ImageView logo = findViewById(R.id.imageView);
-
-        Glide.with(ActivityDetail.this).load(R.drawable.logo).into(logo);
+        Glide.with(ActivityDetail.this).load(Image).into(logo);
 
         Button idcontact = findViewById(R.id.IDContact);
         idcontact.setOnClickListener(new View.OnClickListener() {

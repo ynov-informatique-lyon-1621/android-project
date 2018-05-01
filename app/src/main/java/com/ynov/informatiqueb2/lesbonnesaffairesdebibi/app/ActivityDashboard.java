@@ -1,8 +1,5 @@
 package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.app;
 
-
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,16 +7,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.SearchView;
-import android.widget.Toast;
-
-import com.bumptech.glide.Glide;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.controller.GetViewController;
-import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model.AdvertList;
 
 
 public class ActivityDashboard extends AppCompatActivity {
@@ -32,10 +21,6 @@ public class ActivityDashboard extends AppCompatActivity {
 
         // Execution du 'GetViewController' sur le ActivityDashboard
         new GetViewController(ActivityDashboard.this).execute();
-
-        ImageView logo = findViewById(R.id.imageViewDash);
-
-        Glide.with(ActivityDashboard.this).load(R.drawable.logo).into(logo);
     }
 
     @Override

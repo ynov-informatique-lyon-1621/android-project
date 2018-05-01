@@ -30,6 +30,18 @@
         android:visibility="visible" />
 
     <TextView
+        android:id="@+id/DateView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/TitleView"
+        android:layout_marginTop="39dp"
+        android:textAllCaps="true"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:visibility="visible" />
+
+    <TextView
         android:id="@+id/CatView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

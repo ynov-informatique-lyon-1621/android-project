@@ -75,9 +75,12 @@ public class GetViewController extends AsyncTask<String, String, String> {
                 view.setNomVendeur(arr.getJSONObject(i).getString("nomVendeur"));
                 view.setEmail(arr.getJSONObject(i).getString("email"));
                 view.setTitre(arr.getJSONObject(i).getString("titre"));
+                view.setDescription(arr.getJSONObject(i).getString("description"));
                 view.setLocalisation(arr.getJSONObject(i).getString("localisation"));
                 view.setCategorie(arr.getJSONObject(i).getString("categorie"));
                 view.setPrix(arr.getJSONObject(i).getString("prix"));
+                view.setPicture(arr.getJSONObject(i).getString("image"));
+                view.setDate(arr.getJSONObject(i).getString("dateCreation"));
                 viewlists.add(view);
             }
 

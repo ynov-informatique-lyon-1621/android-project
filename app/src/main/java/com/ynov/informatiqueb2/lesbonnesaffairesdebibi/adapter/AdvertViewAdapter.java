@@ -9,8 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.app.ActivityDetail;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model.AdvertList;
@@ -40,11 +43,16 @@ public class AdvertViewAdapter extends ArrayAdapter<AdvertList> {
         TextView Titre = convertView.findViewById(R.id.TitleView);
         TextView Categorie = convertView.findViewById(R.id.CatView);
         TextView Prix = convertView.findViewById(R.id.PriceView);
+        ImageView Picture = convertView.findViewById(R.id.imageViewDash);
 
         // Remplace les informations
+        assert listItem != null;
         Titre.setText(listItem.getTitre());
         Categorie.setText(String.format("Catégorie: %s", listItem.getCategorie()));
         Prix.setText(String.format("Prix: %s €", listItem.getPrix()));
+        Glide.with(getContext())
+                .load(listItem.getPicture())
+                .into(Picture);
 
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +62,7 @@ public class AdvertViewAdapter extends ArrayAdapter<AdvertList> {
 
                 Intent DetailAdvert = new Intent(getContext(), ActivityDetail.class);
 
+                assert listItemDetail != null;
                 DetailAdvert.putExtra("Titre", listItemDetail.getTitre());
                 DetailAdvert.putExtra("Categorie", listItemDetail.getCategorie());
                 DetailAdvert.putExtra("Prix", listItemDetail.getPrix());

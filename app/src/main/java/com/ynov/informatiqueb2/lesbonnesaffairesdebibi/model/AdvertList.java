@@ -11,6 +11,7 @@ public class AdvertList {
     private String prix;
     private String description;
     private String picture;
+    private String date;
 
 
     // Mise en place en public des variables
@@ -76,6 +77,14 @@ public class AdvertList {
 
     public void setPicture(String picture) {
         this.picture = picture;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }
 
