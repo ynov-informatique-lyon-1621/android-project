@@ -27,7 +27,8 @@
         <activity android:name=".app.ActivityContact" />
         <activity android:name=".app.ActivitySuccesMessage" />
         <activity android:name=".app.ActivityAdvertCreate" />
-        <activity android:name=".app.ActivityAdvertEdit"></activity>
+        <activity android:name=".app.ActivityAdvertEdit" />
+        <activity android:name=".app.ActivitySuccessCreation"></activity>
     </application>
 
 </manifest>
