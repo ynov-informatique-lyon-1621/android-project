@@ -19,7 +19,7 @@ import java.io.OutputStreamWriter;
 
 
 
-public class PostViewEditController extends AsyncTask<String, String, String> {
+public class PostViewCreateController extends AsyncTask<String, String, String> {
 
 
     private StringBuilder stringBuilder;
