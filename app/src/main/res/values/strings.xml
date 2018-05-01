@@ -5,6 +5,7 @@
     <string name="date_label">Date</string>
     <string name="categorie_label">Catégorie</string>
     <string name="desc_label">Description</string>
+    <string name="location_label">Ville / CP </string>
     <string name="name_label">Nom du vendeur</string>
     <string name="mail_label">E-mail</string>
     <string name="password_label">Mot de passe</string>

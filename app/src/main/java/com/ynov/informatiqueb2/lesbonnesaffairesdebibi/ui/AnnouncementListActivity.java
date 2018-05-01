@@ -50,13 +50,12 @@ public class AnnouncementListActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_announcement_list);
 
         Intent intent = getIntent();
         this.favOnly =  intent.getBooleanExtra("favOnly",false);
 
-        EditText dateInput = findViewById(R.id.dateIpt);
-        dateInput.setOnFocusChangeListener(this.dateInputListener);
+        EditText locationIpt = findViewById(R.id.locationIpt);
+        locationIpt.addTextChangedListener(this.locationWatcher);
 
         this.list = findViewById(R.id.list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -76,7 +75,6 @@ public class AnnouncementListActivity extends BaseActivity {
         filterToogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if(expandableLayout.isExpanded()) {
                     list.requestFocus();
                     expandableLayout.collapse();
@@ -99,16 +97,6 @@ public class AnnouncementListActivity extends BaseActivity {
         apiInterface.getAnnonces(this.filters).enqueue(this.callback);
     }
 
-    private View.OnFocusChangeListener dateInputListener = new View.OnFocusChangeListener() {
-
-        @Override
-        public void onFocusChange(View v, boolean hasFocus) {
-            if(hasFocus) {
-                DatePickerFragment.newInstance(dateChangedListener).show(getSupportFragmentManager(), "dp");
-            }
-        }
-    };
-
     private Callback<List<Announcement>> callback = new Callback<List<Announcement>>() {
         @Override
 
@@ -128,18 +116,25 @@ public class AnnouncementListActivity extends BaseActivity {
         }
     };
 
-    protected DatePickerDialog.OnDateSetListener dateChangedListener = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            EditText dateIpt = findViewById(R.id.dateIpt);
-            Calendar calendar = Calendar.getInstance();
-            calendar.set(year,month,dayOfMonth);
-            if(dateIpt != null) {
-                dateIpt.setText(Constant.dateFormat.format(calendar.getTime()));
-            }
 
-            //TODO Convert to right date format
-            filters.put("date",Constant.ISODateFormat.format(calendar.getTime()));
+    TextWatcher locationWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            if(TextUtils.isEmpty(s)) {
+                filters.remove("location");
+            } else {
+                filters.put("location", s.toString());
+            }
             fetchAnnouncements();
         }
     };
@@ -162,7 +157,6 @@ public class AnnouncementListActivity extends BaseActivity {
             } else {
                 filters.put("motCle", s.toString());
             }
-            Log.i("debug","fetching");
            fetchAnnouncements();
         }
     };

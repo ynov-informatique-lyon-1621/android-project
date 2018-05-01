@@ -44,12 +44,12 @@
                 android:inputType="textPersonName" />
 
             <EditText
-                android:id="@+id/dateIpt"
+                android:id="@+id/locationIpt"
                 android:layout_width="match_parent"
                 android:layout_height="49dp"
                 android:ems="10"
-                android:hint="@string/date_label"
-                android:inputType="date" />
+                android:hint="@string/location_label"
+                android:inputType="text" />
 
             <Spinner
                 android:id="@+id/type"
