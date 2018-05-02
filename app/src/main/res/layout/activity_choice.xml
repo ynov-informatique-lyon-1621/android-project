@@ -43,21 +43,21 @@
         android:id="@+id/favoris"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="201dp"
+        android:layout_marginTop="265dp"
         android:text="Favoris"
-        tools:layout_editor_absoluteX="136dp"
-        tools:layout_editor_absoluteY="315dp" />
+        tools:layout_editor_absoluteX="90dp"
+        tools:layout_editor_absoluteY="308dp" />
 
     <Button
         android:id="@+id/acceuil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="127dp"
+        android:layout_marginTop="333dp"
         android:text="Acceuil"
-        tools:layout_editor_absoluteX="136dp"
-        tools:layout_editor_absoluteY="403dp" />
+        tools:layout_editor_absoluteX="90dp"
+        tools:layout_editor_absoluteY="397dp" />
 </RelativeLayout>
