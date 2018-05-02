@@ -1,10 +1,13 @@
 package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.UI;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -40,6 +43,34 @@ public class IdentificationActivity extends AppCompatActivity {
 
         initbutton();
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //ajoute les entrées de menu_test à l'ActionBar
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    //gère le click sur une action de l'ActionBar
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_menu_un:
+                Intent mainActivityIntent = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(mainActivityIntent);
+                return true;
+            case R.id.action_menu_deux:
+                Intent deposerAnnonceIntent = new Intent(getBaseContext(), DeposerAnnonceActivity.class);
+                startActivity(deposerAnnonceIntent);
+                return true;
+            case R.id.action_menu_trois:
+                Intent favorisIntent = new Intent(getBaseContext(), IdentificationActivity.class);
+                startActivity(favorisIntent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void initbutton(){

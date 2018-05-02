@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_menu_un"
+        android:title="@string/action_menu_un"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_menu_deux"
+        android:title="@string/action_menu_deux"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_menu_trois"
+        android:title="@string/action_menu_trois"
+        app:showAsAction="never" />
+</menu>

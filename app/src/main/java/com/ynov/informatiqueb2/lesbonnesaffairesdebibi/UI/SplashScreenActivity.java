@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,7 +12,7 @@ import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.Controller.DownloadImage;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 
 
-public class SplashScreenActivity extends AppCompatActivity {
+public class SplashScreenActivity extends AppCompatActivity{
     CountDownTimer countDownTimer;
     TextView title;
     ImageView assKicker;

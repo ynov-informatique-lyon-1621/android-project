@@ -53,7 +53,7 @@ public AdapterListAnnonce(@NonNull Context context, int resource, @NonNull List<
             v.title = (TextView) convertView.findViewById(R.id.titreMenu);
             v.prix = (TextView) convertView.findViewById(R.id.prixMenu);
             v.categorie = (TextView) convertView.findViewById(R.id.categorieMenu);
-            //v.date = (TextView) convertView.findViewById(R.id.dateMenu);
+            v.date = (TextView) convertView.findViewById(R.id.dateMenu);
             v.imageArticle = (ImageView) convertView.findViewById(R.id.imageArticle);
             //On met notre viewHolder en cache
             convertView.setTag(v);
@@ -69,7 +69,7 @@ public AdapterListAnnonce(@NonNull Context context, int resource, @NonNull List<
 
         v.title.setText(listAnnonceModel.getTitle());
         v.categorie.setText(listAnnonceModel.getCategorie());
-        //v.date.setText(listAnnonceModel.getDate());
+        v.date.setText(listAnnonceModel.getDate());
         v.prix.setText(listAnnonceModel.getPrix() + " €");
 
 
@@ -93,7 +93,7 @@ public AdapterListAnnonce(@NonNull Context context, int resource, @NonNull List<
                 intentDetailAnnonce.putExtra("categorie", details.getCategorie());
                 intentDetailAnnonce.putExtra("prix", details.getPrix());
                 intentDetailAnnonce.putExtra("description", details.getDescription());
-                //intentDetailAnnonce.putExtra("date", details.getDate());
+                intentDetailAnnonce.putExtra("date", details.getDate());
                 intentDetailAnnonce.putExtra("vendeur", details.getVendeur());
                 intentDetailAnnonce.putExtra("image", details.getImage());
 
