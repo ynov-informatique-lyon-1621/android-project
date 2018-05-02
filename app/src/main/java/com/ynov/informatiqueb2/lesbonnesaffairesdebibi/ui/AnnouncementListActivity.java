@@ -131,9 +131,9 @@ public class AnnouncementListActivity extends BaseActivity {
         @Override
         public void afterTextChanged(Editable s) {
             if(TextUtils.isEmpty(s)) {
-                filters.remove("location");
+                filters.remove("localisation");
             } else {
-                filters.put("location", s.toString());
+                filters.put("localisation", s.toString());
             }
             fetchAnnouncements();
         }

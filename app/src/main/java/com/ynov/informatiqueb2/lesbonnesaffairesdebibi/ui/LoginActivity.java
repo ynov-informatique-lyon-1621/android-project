@@ -78,7 +78,6 @@ public class LoginActivity extends BaseActivity {
                         .create()
                         .show();
             }else {
-                Log.d("CACA2",response.body().toString());
                 Intent intent = new Intent(LoginActivity.this, OwnedAnnoucementListActivity.class);
                 intent.putExtra("annoucements",(Serializable) response.body());
                 startActivity(intent);
