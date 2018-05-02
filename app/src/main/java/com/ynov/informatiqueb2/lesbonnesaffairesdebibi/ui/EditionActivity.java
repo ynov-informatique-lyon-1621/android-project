@@ -1,9 +1,11 @@
 package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Log;
@@ -37,6 +39,8 @@ public class EditionActivity extends BaseActivity {
     EditText passwdConfirmIpt;
     EditText descIpt;
     EditText priceIpt;
+    EditText titreIpt;
+    EditText localisationIpt;
     Spinner categorieSpinner;
     Announcement announcement;
     Button selectImageBtn;
@@ -46,13 +50,14 @@ public class EditionActivity extends BaseActivity {
     private static final int EDITION_MODE = 1;
     private static final int NEW_MODE = 0;
     private static final int IMAGE_REQUEST_CODE = 201;
+    private static final int IMAGE_FILE_ACCESS_REQUEST_CODE = 302;
     int mode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        this.nameIpt = findViewById(R.id.vendorNameIpt);
+        this.nameIpt = findViewById(R.id.vendorIpt);
         this.mailIpt = findViewById(R.id.mailIpt);
         this.passwdIpt = findViewById(R.id.passwordIpt );
         this.passwdConfirmIpt = findViewById(R.id.passwordConfirmIpt );
@@ -60,8 +65,9 @@ public class EditionActivity extends BaseActivity {
         this.priceIpt = findViewById(R.id.priceIpt);
         this.selectImageBtn = findViewById(R.id.findImageBtn);
         this.categorieSpinner = findViewById(R.id.categorieSpinner);
+        this.titreIpt = findViewById(R.id.titreIpt);
         this.imagePreview = findViewById(R.id.imagePreview);
-
+        this.localisationIpt = findViewById(R.id.localisationIpt);
         this.sendButton = findViewById(R.id.confirmBtn);
         this.sendButton.setOnClickListener(this.listener);
         Intent intent = getIntent();
@@ -79,7 +85,7 @@ public class EditionActivity extends BaseActivity {
         this.selectImageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                performFileSearch();
+                initFileAccess(IMAGE_FILE_ACCESS_REQUEST_CODE);
             }
         });
     }
@@ -112,6 +118,8 @@ public class EditionActivity extends BaseActivity {
             this.announcement.setMdp(this.passwdIpt.getText().toString());
             this.announcement.setPrix(Integer.valueOf(priceIpt.getText().toString()));
             this.announcement.setCategorie(this.categorieSpinner.getSelectedItem().toString());
+            this.announcement.setTitre(this.titreIpt.getText().toString());
+            this.announcement.setLocalisation(this.localisationIpt.getText().toString());
 
 
             try {
@@ -169,7 +177,16 @@ public class EditionActivity extends BaseActivity {
     private Callback<Announcement> callback = new Callback<Announcement>() {
         @Override
         public void onResponse(Call<Announcement> call, Response<Announcement> response) {
-            Log.i("BODY",response.body().toString());
+           if(response.code() == 200 && response.body() != null) {
+               announcement = response.body();
+               new AlertDialog.Builder(EditionActivity.this)
+                       .setMessage("Votre annonce à été crée")
+                       .setTitle("Opération réussie")
+                       .setOnDismissListener(navToDetail)
+                       .create()
+                       .show();
+
+           }
         }
 
         @Override
@@ -178,22 +195,12 @@ public class EditionActivity extends BaseActivity {
 
         }
     };
+
+
     public void performFileSearch() {
-
-        // ACTION_OPEN_DOCUMENT is the intent to choose a file via the system's file
-        // browser.
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-
-        // Filter to only show results that can be "opened", such as a
-        // file (as opposed to a list of contacts or timezones)
         intent.addCategory(Intent.CATEGORY_OPENABLE);
-
-        // Filter to show only images, using the image MIME data type.
-        // If one wanted to search for ogg vorbis files, the type would be "audio/ogg".
-        // To search for all documents available via installed storage providers,
-        // it would be "*/*".
         intent.setType("image/*");
-
         startActivityForResult(intent, IMAGE_REQUEST_CODE);
     }
 
@@ -209,4 +216,21 @@ public class EditionActivity extends BaseActivity {
             }
         }
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == IMAGE_FILE_ACCESS_REQUEST_CODE) {
+            performFileSearch();
+        }
+    }
+
+    private DialogInterface.OnDismissListener navToDetail = new DialogInterface.OnDismissListener() {
+        @Override
+        public void onDismiss(DialogInterface dialog) {
+            Intent intent = new Intent(EditionActivity.this,DetailActivity.class);
+            intent.putExtra("annoucement",announcement);
+            startActivity(intent);
+        }
+    };
 }

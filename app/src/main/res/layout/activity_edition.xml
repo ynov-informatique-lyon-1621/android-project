@@ -20,7 +20,23 @@
         android:text="@string/find_image_action" />
 
     <EditText
-        android:id="@+id/vendorNameIpt"
+        android:id="@+id/titreIpt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/titre_label"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/localisationIpt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/location_label"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/vendorIpt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:contentDescription="@string/name_label"

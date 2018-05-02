@@ -8,6 +8,7 @@
     <string name="location_label">Ville / CP </string>
     <string name="name_label">Nom du vendeur</string>
     <string name="mail_label">E-mail</string>
+    <string name="titre_label">Titre</string>
 
     <string name="password_label">Mot de passe</string>
     <string name="password_confirm_label">Confirmation du mot de passe</string>
