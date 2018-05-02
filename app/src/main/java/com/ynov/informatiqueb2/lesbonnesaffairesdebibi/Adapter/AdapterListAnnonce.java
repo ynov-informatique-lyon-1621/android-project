@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,6 +88,7 @@ public AdapterListAnnonce(@NonNull Context context, int resource, @NonNull List<
                 //On crée un nouvel intent entre notre context (ici ListPersoActivity) et le DetailPersoActivity.
                 Intent intentDetailAnnonce = new Intent(getContext(), DetailAnnonceActivity.class);
                 //On fait passer toutes les valeurs de l'objet sur lequel on a cliqué dans notre Intent.
+                intentDetailAnnonce.putExtra("id", details.getId());
                 intentDetailAnnonce.putExtra("titre", details.getTitle());
                 intentDetailAnnonce.putExtra("categorie", details.getCategorie());
                 intentDetailAnnonce.putExtra("prix", details.getPrix());

@@ -1,6 +1,7 @@
 package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.Model;
 
 public class ListAnnonceModel {
+    private String id;
     private String title;
     private String prix;
     private String date;
@@ -64,6 +65,10 @@ public class ListAnnonceModel {
     public void setVendeur(String vendeur) {
         this.vendeur = vendeur;
     }
+
+    public String getId() { return id; }
+
+    public void setId(String id){ this.id = id; }
 }
 
 

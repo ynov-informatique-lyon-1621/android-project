@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UI.ConfirmationMessageActivity">
+
+    <ImageView
+        android:id="@+id/imageContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="57dp"
+        android:layout_marginEnd="-82dp"
+        android:layout_toStartOf="@+id/titreConfirm"
+        app:srcCompat="@mipmap/ic_launcher"
+        tools:layout_editor_absoluteX="42dp"
+        tools:layout_editor_absoluteY="42dp" />
+
+    <TextView
+        android:id="@+id/titreConfirm"
+        android:layout_width="134dp"
+        android:layout_height="17dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="98dp"
+        android:layout_marginTop="24dp"
+        android:text="TextView"
+        android:textColor="@android:color/black"
+        tools:layout_editor_absoluteX="132dp"
+        tools:layout_editor_absoluteY="44dp" />
+
+    <TextView
+        android:id="@+id/vendeurConfirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/titreConfirm"
+        android:layout_marginStart="-86dp"
+        android:layout_toEndOf="@+id/prixConfirm"
+        android:text="TextView"
+        android:textColor="@android:color/black"
+        tools:layout_editor_absoluteX="288dp"
+        tools:layout_editor_absoluteY="61dp" />
+
+    <TextView
+        android:id="@+id/prixConfirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="69dp"
+        android:layout_marginEnd="86dp"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="208dp"
+        tools:layout_editor_absoluteY="70dp" />
+
+    <TextView
+        android:id="@+id/catConfirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/prixConfirm"
+        android:layout_alignBottom="@+id/imageContact"
+        android:text="TextView"
+        android:textColor="@android:color/black"
+        tools:layout_editor_absoluteX="132dp"
+        tools:layout_editor_absoluteY="93dp" />
+
+    <TextView
+        android:id="@+id/dateConfirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/prixConfirm"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="115dp"
+        android:text="TextView"
+        android:textColor="@android:color/black"
+        tools:layout_editor_absoluteX="208dp"
+        tools:layout_editor_absoluteY="93dp" />
+
+    <TextView
+        android:id="@+id/messageDeConfirm"
+        android:layout_width="221dp"
+        android:layout_height="167dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="176dp"
+        android:text="TextView"
+        android:textColor="@android:color/black" />
+
+    <Button
+        android:id="@+id/retourConfirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="47dp"
+        android:text="Retour Recherche" />
+
+    <Button
+        android:id="@+id/retourAnnonceConfirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/retourConfirm"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="18dp"
+        android:text="Retour Annonce" />
+</RelativeLayout>
