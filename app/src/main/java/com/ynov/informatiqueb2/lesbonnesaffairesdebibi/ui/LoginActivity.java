@@ -1,16 +1,13 @@
 package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Switch;
 
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model.Announcement;
@@ -47,9 +44,9 @@ public class LoginActivity extends BaseActivity {
     }
 
 
-    protected void onResetClicked() {
-        passwordIpt.setText("");
-        usernameIpt.setText("");
+    protected void onCancelClicked() {
+       Intent intent = new Intent(LoginActivity.this,AnnouncementListActivity.class);
+       startActivity(intent);
     }
 
     protected void onLoginClicked() {
@@ -74,13 +71,14 @@ public class LoginActivity extends BaseActivity {
     private Callback<List<Announcement>> callback = new Callback<List<Announcement>>() {
         @Override
         public void onResponse(Call<List<Announcement>> call, Response<List<Announcement>> response) {
-            if(response.body().size() < 0) {
+            if(response.body().size() <= 0) {
                 new AlertDialog.Builder(LoginActivity.this)
                         .setMessage("Vos identifiants ne sont pas reconnus")
                         .setTitle("Désolé")
                         .create()
                         .show();
             }else {
+                Log.d("CACA2",response.body().toString());
                 Intent intent = new Intent(LoginActivity.this, OwnedAnnoucementListActivity.class);
                 intent.putExtra("annoucements",(Serializable) response.body());
                 startActivity(intent);
@@ -106,7 +104,7 @@ public class LoginActivity extends BaseActivity {
                     LoginActivity.this.onLoginClicked();
                     break;
                 case R.id.resetBtn:
-                    LoginActivity.this.onResetClicked();
+                    LoginActivity.this.onCancelClicked();
             }
         }
     };
