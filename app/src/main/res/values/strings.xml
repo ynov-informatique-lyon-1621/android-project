@@ -1,6 +1,36 @@
 <resources>
+    <!--App metadata-->
     <string name="app_name">Les Bonnes Affaires De Bibi</string>
+    <!--Utils-->
+
+
+    <!--Call to actions-->
+    <string name="login">Se connecter</string>
+    <string name="find_image_action">Séléctionner une image</string>
+    <string name="add_fav_btn">Ajouter aux favoris</string>
+    <string name="filter_label">Filtrer </string>
+    <string name="action_add">Ajouter une annonce </string>
+    <string name="action_edit">Modifier une annonce </string>
+    <string name="action_contact">Contacter le vendeur  </string>
+    <string name="edit_annoucement">Modifier vos annonces</string>
+
+    <!--Error messages-->
     <string name="empty">Aucune annonces trouvée</string>
+    <string name="sorry">Ooops.. Désolé</string>
+    <string name="empty_error">Ce champ est obligatoire</string>
+    <string name="error_generic">Une erreur est survenue</string>
+    <string name="error_generic_form">Le formulaire contient une erreur</string>
+    <string name="image_missing">Veuillez ajouter une image</string>
+    <string name="invalid_credentials">Vos identifiants ne sont pas reconnus</string>
+
+
+    <!--Sucess messages-->
+    <string name="edit_success">Votre annonce à été modifiée</string>
+    <string name="create_success">Votre annonce à été modifiée</string>
+    <string name="delete_success">Votre annonce à été supprimée</string>
+    <string name="generic_sucess">Opération réussie</string>
+
+    <!--Form labels-->
     <string name="search_label">Que cherchez vous ?</string>
     <string name="date_label">Date</string>
     <string name="categorie_label">Catégorie</string>
@@ -9,25 +39,19 @@
     <string name="name_label">Nom du vendeur</string>
     <string name="mail_label">E-mail</string>
     <string name="titre_label">Titre</string>
-
     <string name="password_label">Mot de passe</string>
     <string name="password_confirm_label">Confirmation du mot de passe</string>
     <string name="price_label">Prix</string>
-    <string name="find_image_action">Séléctionner une image</string>
-    <string name="add_fav_btn">Ajouter aux favoris</string>
-    <string name="filter_label">Filtrer </string>
+    <string name="price_placeholder">%1$d €</string>
+
+    <!--Navigation-->
     <string name="action_home">Acceuil </string>
     <string name="action_fav">Favoris </string>
-    <string name="action_add">Ajouter une annonce </string>
-    <string name="action_edit">Modifier une annonce </string>
-    <string name="action_contact">Contacter le vendeur  </string>
-    <string name="empty_error">Ce champ est obligatoire</string>
-    <string name="price_placeholder">%1$d €</string>
-    <string name="login">Se connecter</string>
+
+    <!--Lists-->
     <string-array name="type_select">
         <item>Tous</item>
         <item>Voitures</item>
         <item>Vêtements</item>
     </string-array>
-    <string name="edit_annoucement">Modifier vos annonces</string>
 </resources>

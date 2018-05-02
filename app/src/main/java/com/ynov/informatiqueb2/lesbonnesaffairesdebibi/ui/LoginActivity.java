@@ -58,10 +58,10 @@ public class LoginActivity extends BaseActivity {
         boolean error = false;
         //Check if fields are not empty
         if(TextUtils.isEmpty(passwordIpt.getText())){
-            passwordIpt.setError("Ce champ est obligatoire");
+            passwordIpt.setError(getString(R.string.empty_error));
             error = true;
         }if(TextUtils.isEmpty(usernameIpt.getText())){
-            usernameIpt.setError("Ce champ est obligatoire");
+            usernameIpt.setError(getString(R.string.empty_error));
             error = true;
         }
         if(!error) {
@@ -77,13 +77,13 @@ public class LoginActivity extends BaseActivity {
         @Override
         public void onResponse(@NonNull Call<List<Announcement>> call, Response<List<Announcement>> response) {
             if(response.body() != null && response.body().size() <= 0) {
-                AlertUtils.alertFailure(LoginActivity.this, "Les identifiants ne sont pas reconnus").show();
+                AlertUtils.alertFailure(LoginActivity.this, getString(R.string.invalid_credentials)).show();
             }else {
                 Intent intent = new Intent(LoginActivity.this, OwnedAnnoucementListActivity.class);
                 intent.putExtra("annoucements",(Serializable) response.body());
                 intent.putExtra("credentials",(Serializable)params);
                 startActivity(intent);
-            }
+        }
         }
 
         @Override

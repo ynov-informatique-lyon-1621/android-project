@@ -39,6 +39,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         getLayoutInflater().inflate(getLayoutResource(), contentLayout, true);
 
         toolbar = findViewById(R.id.toolbar);
+        navDrawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+
         if (toolbar != null) {
             setSupportActionBar(toolbar);
             ActionBar actionbar = getSupportActionBar();
@@ -46,8 +49,6 @@ public abstract class BaseActivity extends AppCompatActivity {
             actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
         }
 
-        navDrawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this.navigationItemSelectedListener);
 
     }
@@ -93,19 +94,4 @@ public abstract class BaseActivity extends AppCompatActivity {
             return true;
         }
     };
-
-
-    protected void initFileAccess(int requestId) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                    requestId);
-    }
-
-//
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//    }
-
-
 }

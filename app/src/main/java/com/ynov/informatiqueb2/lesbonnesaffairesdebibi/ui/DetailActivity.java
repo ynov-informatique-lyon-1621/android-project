@@ -15,28 +15,21 @@ public class DetailActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         Intent intent = getIntent();
         announcement = (Announcement)intent.getSerializableExtra("annoucement");
 
         TextView description = findViewById(R.id.descDsp);
-        description.setText(announcement.getDescription());
-
         TextView title = findViewById(R.id.titleDsp);
-        title.setText(announcement.getTitre());
-
         TextView categorie = findViewById(R.id.categorieDsp);
-        categorie.setText(announcement.getCategorie());
-
         ImageView image = findViewById(R.id.image);
-        Glide.with(this).load(announcement.getImage()).into(image);
-
         TextView vendorName = findViewById(R.id.vendorNameDsp);
+
+        description.setText(announcement.getDescription());
+        title.setText(announcement.getTitre());
+        categorie.setText(announcement.getCategorie());
+        Glide.with(this).load(announcement.getImage()).into(image);
         vendorName.setText(announcement.getNomVendeur());
-
-
-        //        setContentView(R.layout.activity_detail);
-//        Toolbar myToolbar = findViewById(R.id.toolbar);
-//        this.setSupportActionBar(myToolbar);
     }
 
     @Override

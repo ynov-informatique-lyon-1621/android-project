@@ -24,9 +24,9 @@ public class SplashActivity extends AppCompatActivity {
         ProgressBar progressBar = findViewById(R.id.progressBar);
         progressBar.getIndeterminateDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
 
+        //Navigate after 3 seconds.
         Timer timer = new Timer();
         timer.schedule(navigate,3000);
-
     }
 
     private TimerTask navigate = new TimerTask() {

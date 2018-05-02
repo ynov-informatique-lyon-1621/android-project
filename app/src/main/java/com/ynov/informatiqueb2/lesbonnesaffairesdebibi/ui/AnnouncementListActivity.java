@@ -1,41 +1,28 @@
 package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui;
 
-import android.app.ActionBar;
-import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
 import com.github.chuross.library.ExpandableLayout;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.adapter.AnnouncementAdapter;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model.Announcement;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.service.ApiInterface;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.service.ApiService;
-import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.utils.Constant;
-
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -51,40 +38,26 @@ public class AnnouncementListActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //Init fields
+        EditText search = findViewById(R.id.search);
+        this.list = findViewById(R.id.list);
+        Spinner typeSpinner = findViewById(R.id.type);
+        TextView filterToogle = findViewById(R.id.filterToogle);
+        EditText locationIpt = findViewById(R.id.locationIpt);
+        this.expandableLayout = findViewById(R.id.expandable);
+        emptyAlert = findViewById(R.id.empty);
+
         Intent intent = getIntent();
         this.mode =  intent.getIntExtra("mode",AnnouncementAdapter.DEFAULT_MODE);
 
-        EditText locationIpt = findViewById(R.id.locationIpt);
-        locationIpt.addTextChangedListener(this.locationWatcher);
-
-        this.list = findViewById(R.id.list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         this.list.setLayoutManager(layoutManager);
 
-        EditText search = findViewById(R.id.search);
+        //Add listeners
+        locationIpt.addTextChangedListener(this.locationWatcher);
         search.addTextChangedListener(this.searchWatcher);
-
-        Spinner typeSpinner = findViewById(R.id.type);
         typeSpinner.setOnItemSelectedListener(typeChangeListener);
-
-        TextView filterToogle = findViewById(R.id.filterToogle);
-        this.expandableLayout = findViewById(R.id.expandable);
-
-        emptyAlert = findViewById(R.id.empty);
-
-        filterToogle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(expandableLayout.isExpanded()) {
-                    list.requestFocus();
-                    expandableLayout.collapse();
-                    Log.i("click","collpse");
-                } else if(expandableLayout.isCollapsed()) {
-                    expandableLayout.expand();
-                    Log.i("click","exp");
-                }
-            }
-        });
+        filterToogle.setOnClickListener(collapseListener);
     }
 
     @Override
@@ -99,34 +72,31 @@ public class AnnouncementListActivity extends BaseActivity {
 
     private Callback<List<Announcement>> callback = new Callback<List<Announcement>>() {
         @Override
-
         public void onResponse(@NonNull Call<List<Announcement>> call, Response<List<Announcement>> response) {
-            AnnouncementAdapter adapter = new AnnouncementAdapter(response.body(),AnnouncementListActivity.this, AnnouncementListActivity.this.mode);
-            list.setAdapter(adapter);
-            if(adapter.getItemCount() == 0) {
-                emptyAlert.setVisibility(View.VISIBLE);
-            } else {
-                emptyAlert.setVisibility(View.INVISIBLE);
+            if(response.body() != null && response.code() == 200) {
+                if(response.body().size() > 0) {
+                    AnnouncementAdapter adapter = new AnnouncementAdapter(response.body(), AnnouncementListActivity.this, AnnouncementListActivity.this.mode);
+                    list.setAdapter(adapter);
+                    emptyAlert.setVisibility(View.INVISIBLE);
+                }else {
+                    emptyAlert.setVisibility(View.VISIBLE);
+                }
             }
         }
 
         @Override
         public void onFailure(@NonNull Call<List<Announcement>> call, Throwable t) {
-           t.printStackTrace();
+           Log.e("HTTP FAILURE",t.getMessage());
         }
     };
 
 
     TextWatcher locationWatcher = new TextWatcher() {
         @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
         @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-        }
+        public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
         @Override
         public void afterTextChanged(Editable s) {
@@ -141,14 +111,10 @@ public class AnnouncementListActivity extends BaseActivity {
 
     TextWatcher searchWatcher = new TextWatcher() {
         @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
         @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-        }
+        public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
         @Override
         public void afterTextChanged(Editable s) {
@@ -173,8 +139,20 @@ public class AnnouncementListActivity extends BaseActivity {
         }
 
         @Override
-        public void onNothingSelected(AdapterView<?> parent) {
+        public void onNothingSelected(AdapterView<?> parent) {}
+    };
 
+    private View.OnClickListener collapseListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if(expandableLayout.isExpanded()) {
+                list.requestFocus();
+                expandableLayout.collapse();
+                Log.i("click","collpse");
+            } else if(expandableLayout.isCollapsed()) {
+                expandableLayout.expand();
+                Log.i("click","exp");
+            }
         }
     };
 }

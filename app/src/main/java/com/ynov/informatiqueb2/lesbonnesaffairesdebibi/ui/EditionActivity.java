@@ -1,6 +1,5 @@
 package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -21,10 +20,10 @@ import com.myhexaville.smartimagepicker.OnImagePickedListener;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model.Announcement;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.service.ApiService;
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.utils.AlertUtils;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.utils.PathUtils;
 
 import java.io.File;
-import java.net.URI;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -136,7 +135,7 @@ public class EditionActivity extends BaseActivity {
 
             if(this.mode == NEW_MODE) {
                 try {
-                    File file = new File(PathUtils.getPath(this, this.newImageUri));
+                    File file = new File(this.newImageUri.getPath());
                     RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), file);
 
                     MultipartBody.Part body =
@@ -191,23 +190,21 @@ public class EditionActivity extends BaseActivity {
 
     private Callback<Announcement> callback = new Callback<Announcement>() {
         @Override
-        public void onResponse(Call<Announcement> call, Response<Announcement> response) {
-            Log.d("RESPONSE1",response.toString());
+        public void onResponse(@NonNull Call<Announcement> call, Response<Announcement> response) {
            if(response.code() == 200 && response.body() != null) {
                announcement = response.body();
-               new AlertDialog.Builder(EditionActivity.this)
-                       .setMessage(mode == NEW_MODE ? "Votre annonce à été crée" : "Votre annonce à été modifiée")
-                       .setTitle("Opération réussie")
-                       .setOnDismissListener(navToDetail)
-                       .create()
-                       .show();
+               AlertDialog alertDialog =  AlertUtils.alertSucess(EditionActivity.this ,
+                       mode == NEW_MODE ? getString(R.string.create_success) : getString(R.string.edit_success));
+                       alertDialog.setOnDismissListener(navToDetail);
+                       alertDialog.show();
+           } else {
+               AlertUtils.alertFailure(EditionActivity.this).show();
            }
         }
 
         @Override
-        public void onFailure(Call<Announcement> call, Throwable t) {
-            Log.i("ERROR",t.getMessage());
-
+        public void onFailure (@NonNull Call<Announcement> call, Throwable t) {
+            Log.i("HTTP FAILURE",t.getMessage());
         }
     };
 

@@ -12,6 +12,7 @@ public class FavoritesAnnoucementsManager {
 
     private SharedPreferences sharedPreferences;
     private WeakReference<Activity> activityWeakReference;
+
     public FavoritesAnnoucementsManager(Activity activity) {
         this(new WeakReference<Activity>(activity));
     }

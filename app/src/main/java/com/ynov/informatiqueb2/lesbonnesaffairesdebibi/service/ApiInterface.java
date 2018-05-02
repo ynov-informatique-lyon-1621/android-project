@@ -20,7 +20,7 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface ApiInterface {
-    public static final String ENDPOINT =  "http://affaires-bibi-api.projects.juleslaurent.tk";
+    String ENDPOINT =  "http://affaires-bibi-api.projects.juleslaurent.tk";
 
     @GET("announcements")
     Call<List<Announcement>> getAnnonces(

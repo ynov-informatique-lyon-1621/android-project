@@ -1,7 +1,6 @@
 package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.adapter;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
@@ -152,11 +151,7 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
                     deleteAnnouncement(announcement);
                 }
             });
-
-            //TODO : DELETE BUTTON;
         }
-
-
     }
 
     @Override
@@ -182,7 +177,7 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
 
     private Callback<Object> deleteCallback = new Callback<Object>() {
         @Override
-        public void onResponse(Call call, Response response) {
+        public void onResponse(@NonNull Call call, Response response) {
             if(response.code() == 204) {
                 new AlertDialog.Builder(activityWeakReference.get())
                         .setMessage("L'annonce à été supprimée")
@@ -200,5 +195,4 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
 
         }
     };
-
 }
