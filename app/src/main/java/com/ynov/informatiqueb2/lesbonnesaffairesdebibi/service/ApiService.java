@@ -10,19 +10,17 @@ import java.util.Date;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public abstract class ApiService implements ApiInterface  {
-    private static  ApiInterface ourInstance;
+public abstract class ApiService implements ApiInterface {
+    private static ApiInterface ourInstance;
 
     public static ApiInterface getInstance() {
-        if(ourInstance != null)
-        {
+        if (ourInstance != null) {
             return ourInstance;
         } else {
             GsonBuilder gsonBuilder = new GsonBuilder()
-                    .registerTypeHierarchyAdapter(Date.class,new TimestampDateAdapter())
-                    .registerTypeAdapter(Date.class,new TimestampDateAdapter());
+                    .registerTypeHierarchyAdapter(Date.class, new TimestampDateAdapter())
+                    .registerTypeAdapter(Date.class, new TimestampDateAdapter());
             Gson gson = gsonBuilder.create();
-
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(ApiInterface.ENDPOINT)
                     .addConverterFactory(GsonConverterFactory.create(gson))
@@ -32,6 +30,5 @@ public abstract class ApiService implements ApiInterface  {
         }
     }
 
-    private ApiService() {
-    }
+    private ApiService() {}
 }

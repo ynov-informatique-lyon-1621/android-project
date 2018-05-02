@@ -16,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.bumptech.glide.Glide;
+import com.myhexaville.smartimagepicker.ImagePicker;
+import com.myhexaville.smartimagepicker.OnImagePickedListener;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model.Announcement;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.service.ApiService;
@@ -47,10 +49,9 @@ public class EditionActivity extends BaseActivity {
     Button sendButton;
     ImageView imagePreview;
     Uri newImageUri;
+    ImagePicker imagePicker;
     private static final int EDITION_MODE = 1;
     private static final int NEW_MODE = 0;
-    private static final int IMAGE_REQUEST_CODE = 201;
-    private static final int IMAGE_FILE_ACCESS_REQUEST_CODE = 302;
     int mode;
 
     @Override
@@ -70,6 +71,10 @@ public class EditionActivity extends BaseActivity {
         this.localisationIpt = findViewById(R.id.localisationIpt);
         this.sendButton = findViewById(R.id.confirmBtn);
         this.sendButton.setOnClickListener(this.listener);
+
+        this.imagePicker = new ImagePicker(this,null,imagePickedListener)
+                .setWithImageCrop(1,1 );
+
         Intent intent = getIntent();
         Announcement announcement = (Announcement)intent.getSerializableExtra("annoucement");
         if(announcement != null) {
@@ -85,7 +90,7 @@ public class EditionActivity extends BaseActivity {
         this.selectImageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                initFileAccess(IMAGE_FILE_ACCESS_REQUEST_CODE);
+               imagePicker.choosePicture(true);
             }
         });
     }
@@ -106,7 +111,15 @@ public class EditionActivity extends BaseActivity {
     };
 
     private void fillFields() {
+        this.nameIpt.setText(this.announcement.getNomVendeur());
         this.mailIpt.setText(this.announcement.getEmail());
+        this.descIpt.setText(this.announcement.getDescription());
+        this.passwdIpt.setText(this.announcement.getMdp());
+        this.passwdConfirmIpt.setText(this.announcement.getMdp());
+        this.priceIpt.setText(String.valueOf(this.announcement.getPrix()));
+        this.titreIpt.setText(this.announcement.getTitre());
+        this.localisationIpt.setText(this.announcement.getLocalisation());
+        Glide.with(this).load(this.announcement.getImage()).into(this.imagePreview);
     }
 
     protected void onSendClicked() {
@@ -121,17 +134,20 @@ public class EditionActivity extends BaseActivity {
             this.announcement.setTitre(this.titreIpt.getText().toString());
             this.announcement.setLocalisation(this.localisationIpt.getText().toString());
 
+            if(this.mode == NEW_MODE) {
+                try {
+                    File file = new File(PathUtils.getPath(this, this.newImageUri));
+                    RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), file);
 
-            try {
-                File file = new File(PathUtils.getPath(this,this.newImageUri));
-                RequestBody requestFile =  RequestBody.create(MediaType.parse("image/*"), file);
+                    MultipartBody.Part body =
+                            MultipartBody.Part.createFormData("image", file.getName(), requestFile);
 
-                MultipartBody.Part body =
-                        MultipartBody.Part.createFormData("image", file.getName(), requestFile);
-
-                ApiService.getInstance().addAnnonce(this.announcement, body).enqueue(this.callback);
-            }catch (Exception e) {
-                e.printStackTrace();
+                    ApiService.getInstance().addAnnonce(this.announcement, body).enqueue(this.callback);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }else {
+                ApiService.getInstance().updateAnnonce(announcement.getId(),this.announcement).enqueue(this.callback);
             }
 
         }
@@ -177,15 +193,15 @@ public class EditionActivity extends BaseActivity {
     private Callback<Announcement> callback = new Callback<Announcement>() {
         @Override
         public void onResponse(Call<Announcement> call, Response<Announcement> response) {
+            Log.d("RESPONSE1",response.toString());
            if(response.code() == 200 && response.body() != null) {
                announcement = response.body();
                new AlertDialog.Builder(EditionActivity.this)
-                       .setMessage("Votre annonce à été crée")
+                       .setMessage(mode == NEW_MODE ? "Votre annonce à été crée" : "Votre annonce à été modifiée")
                        .setTitle("Opération réussie")
                        .setOnDismissListener(navToDetail)
                        .create()
                        .show();
-
            }
         }
 
@@ -197,40 +213,31 @@ public class EditionActivity extends BaseActivity {
     };
 
 
-    public void performFileSearch() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("image/*");
-        startActivityForResult(intent, IMAGE_REQUEST_CODE);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == IMAGE_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            if (data != null) {
-                this.newImageUri  =  data.getData();
-                Log.i("URI", "Uri: " + this.newImageUri.toString());
-
-                Glide.with(this).load(this.newImageUri).into(this.imagePreview);
-            }
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode == IMAGE_FILE_ACCESS_REQUEST_CODE) {
-            performFileSearch();
-        }
-    }
-
     private DialogInterface.OnDismissListener navToDetail = new DialogInterface.OnDismissListener() {
         @Override
         public void onDismiss(DialogInterface dialog) {
             Intent intent = new Intent(EditionActivity.this,DetailActivity.class);
             intent.putExtra("annoucement",announcement);
             startActivity(intent);
+        }
+    };
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        imagePicker.handleActivityResult(resultCode,requestCode, data);
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        imagePicker.handlePermission(requestCode, grantResults);
+    }
+
+    public OnImagePickedListener imagePickedListener = new OnImagePickedListener() {
+        @Override
+        public void onImagePicked(Uri imageUri) {
+                EditionActivity.this.newImageUri = imageUri;
+                Glide.with(EditionActivity.this).load(EditionActivity.this.newImageUri).into(EditionActivity.this.imagePreview);
         }
     };
 }
