@@ -23,6 +23,7 @@ import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.service.FavoritesAnnoucem
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui.DetailActivity;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui.EditionActivity;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui.OwnedAnnoucementListActivity;
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.utils.AlertUtils;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.utils.DateFormater;
 
 import java.lang.ref.WeakReference;
@@ -115,15 +116,7 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
         holder.price.setText(this.activityWeakReference.get().getString(R.string.price_placeholder,announcement.getPrix()));
         holder.date.setText(DateFormater.format(announcement.getDateCreation()));
         this.glide.load(announcement.getImage()).into(holder.imageView);
-        holder.favButton.setChecked(this.favoritesAnnoucementsManager.isFav(announcement.getId()));
 
-        //Add listener to fav button to toggle fav.
-        holder.favButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                favoritesAnnoucementsManager.toggleFav(announcement.getId());
-            }
-        });
 
         //Add listener to full view to navigate to detail.
         holder.fullView.setOnClickListener(new View.OnClickListener() {
@@ -149,6 +142,17 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
                 @Override
                 public void onClick(View v) {
                     deleteAnnouncement(announcement);
+                }
+            });
+        } else {
+
+            holder.favButton.setChecked(this.favoritesAnnoucementsManager.isFav(announcement.getId()));
+
+            //Add listener to fav button to toggle fav.
+            holder.favButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    favoritesAnnoucementsManager.toggleFav(announcement.getId());
                 }
             });
         }
@@ -179,20 +183,16 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
         @Override
         public void onResponse(@NonNull Call call, Response response) {
             if(response.code() == 204) {
-                new AlertDialog.Builder(activityWeakReference.get())
-                        .setMessage("L'annonce à été supprimée")
-                        .setTitle("Opération réussie")
-                        .create()
-                        .show();
+                AlertUtils.alertSucess(activityWeakReference.get(),activityWeakReference.get().getString(R.string.delete_success));
                 if(activityWeakReference.get().getClass().equals(OwnedAnnoucementListActivity.class)){
                     ((OwnedAnnoucementListActivity)activityWeakReference.get()).fetchAnnouncements();
                 }
+            } else {
+                AlertUtils.alertFailure(activityWeakReference.get()).show();
             }
         }
 
         @Override
-        public void onFailure(Call call, Throwable t) {
-
-        }
+        public void onFailure(@NonNull Call call, Throwable t) {}
     };
 }

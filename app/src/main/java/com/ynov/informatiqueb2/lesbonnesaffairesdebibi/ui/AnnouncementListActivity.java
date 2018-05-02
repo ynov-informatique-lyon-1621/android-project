@@ -14,15 +14,18 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+
 import com.github.chuross.library.ExpandableLayout;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.adapter.AnnouncementAdapter;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model.Announcement;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.service.ApiInterface;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.service.ApiService;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -30,10 +33,11 @@ import retrofit2.Response;
 public class AnnouncementListActivity extends BaseActivity {
 
     RecyclerView list;
-    Map<String,String> filters = new HashMap<>();
+    Map<String, String> filters = new HashMap<>();
     ExpandableLayout expandableLayout;
     TextView emptyAlert;
     int mode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +52,7 @@ public class AnnouncementListActivity extends BaseActivity {
         emptyAlert = findViewById(R.id.empty);
 
         Intent intent = getIntent();
-        this.mode =  intent.getIntExtra("mode",AnnouncementAdapter.DEFAULT_MODE);
+        this.mode = intent.getIntExtra("mode", AnnouncementAdapter.DEFAULT_MODE);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         this.list.setLayoutManager(layoutManager);
@@ -73,12 +77,12 @@ public class AnnouncementListActivity extends BaseActivity {
     private Callback<List<Announcement>> callback = new Callback<List<Announcement>>() {
         @Override
         public void onResponse(@NonNull Call<List<Announcement>> call, Response<List<Announcement>> response) {
-            if(response.body() != null && response.code() == 200) {
-                if(response.body().size() > 0) {
-                    AnnouncementAdapter adapter = new AnnouncementAdapter(response.body(), AnnouncementListActivity.this, AnnouncementListActivity.this.mode);
-                    list.setAdapter(adapter);
+            if (response.body() != null && response.code() == 200) {
+                AnnouncementAdapter adapter = new AnnouncementAdapter(response.body(), AnnouncementListActivity.this, AnnouncementListActivity.this.mode);
+                list.setAdapter(adapter);
+                if (adapter.getItemCount() > 0) {
                     emptyAlert.setVisibility(View.INVISIBLE);
-                }else {
+                } else {
                     emptyAlert.setVisibility(View.VISIBLE);
                 }
             }
@@ -86,21 +90,23 @@ public class AnnouncementListActivity extends BaseActivity {
 
         @Override
         public void onFailure(@NonNull Call<List<Announcement>> call, Throwable t) {
-           Log.e("HTTP FAILURE",t.getMessage());
+            Log.e("HTTP FAILURE", t.getMessage());
         }
     };
 
 
     TextWatcher locationWatcher = new TextWatcher() {
         @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
 
         @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {}
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+        }
 
         @Override
         public void afterTextChanged(Editable s) {
-            if(TextUtils.isEmpty(s)) {
+            if (TextUtils.isEmpty(s)) {
                 filters.remove("localisation");
             } else {
                 filters.put("localisation", s.toString());
@@ -111,47 +117,50 @@ public class AnnouncementListActivity extends BaseActivity {
 
     TextWatcher searchWatcher = new TextWatcher() {
         @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
 
         @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {}
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+        }
 
         @Override
         public void afterTextChanged(Editable s) {
-            if(TextUtils.isEmpty(s)) {
+            if (TextUtils.isEmpty(s)) {
                 filters.remove("motCle");
             } else {
                 filters.put("motCle", s.toString());
             }
-           fetchAnnouncements();
+            fetchAnnouncements();
         }
     };
 
     protected AdapterView.OnItemSelectedListener typeChangeListener = new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            if(position == 0) {
+            if (position == 0) {
                 filters.remove("categorie");
             } else {
-                filters.put("categorie",(String)parent.getItemAtPosition(position));
+                filters.put("categorie", (String) parent.getItemAtPosition(position));
             }
             fetchAnnouncements();
         }
 
         @Override
-        public void onNothingSelected(AdapterView<?> parent) {}
+        public void onNothingSelected(AdapterView<?> parent) {
+        }
     };
 
     private View.OnClickListener collapseListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if(expandableLayout.isExpanded()) {
+            if (expandableLayout.isExpanded()) {
                 list.requestFocus();
                 expandableLayout.collapse();
-                Log.i("click","collpse");
-            } else if(expandableLayout.isCollapsed()) {
+                Log.i("click", "collpse");
+            } else if (expandableLayout.isCollapsed()) {
                 expandableLayout.expand();
-                Log.i("click","exp");
+                Log.i("click", "exp");
             }
         }
     };
