@@ -51,7 +51,7 @@ public class AdvertViewAdapter extends ArrayAdapter<AdvertList> {
         Categorie.setText(String.format("Catégorie: %s", listItem.getCategorie()));
         Prix.setText(String.format("Prix: %s €", listItem.getPrix()));
         Glide.with(getContext())
-                .load(listItem.getPicture())
+                .load("http://139.99.98.119:8080/" + listItem.getPicture().substring(25))
                 .into(Picture);
 
         convertView.setOnClickListener(new View.OnClickListener() {
