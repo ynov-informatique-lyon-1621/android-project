@@ -1,8 +1,10 @@
 package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.adapter;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,14 +19,20 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model.Announcement;
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.service.ApiService;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.service.FavoritesAnnoucementsManager;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui.DetailActivity;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui.EditionActivity;
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui.OwnedAnnoucementListActivity;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.utils.DateFormater;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapter.ViewHolder> {
 
@@ -138,6 +146,13 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
                 }
             });
 
+            holder.deleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    deleteAnnouncement(announcement);
+                }
+            });
+
             //TODO : DELETE BUTTON;
         }
 
@@ -160,4 +175,30 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
         intent.putExtra("annoucement",announcement);
         activityWeakReference.get().startActivity(intent);
     }
+
+    private void deleteAnnouncement(Announcement announcement) {
+        ApiService.getInstance().deleteAnnonce(announcement.getId()).enqueue(deleteCallback);
+    }
+
+    private Callback<Object> deleteCallback = new Callback<Object>() {
+        @Override
+        public void onResponse(Call call, Response response) {
+            if(response.code() == 204) {
+                new AlertDialog.Builder(activityWeakReference.get())
+                        .setMessage("L'annonce à été supprimée")
+                        .setTitle("Opération réussie")
+                        .create()
+                        .show();
+                if(activityWeakReference.get().getClass().equals(OwnedAnnoucementListActivity.class)){
+                    ((OwnedAnnoucementListActivity)activityWeakReference.get()).fetchAnnouncements();
+                }
+            }
+        }
+
+        @Override
+        public void onFailure(Call call, Throwable t) {
+
+        }
+    };
+
 }

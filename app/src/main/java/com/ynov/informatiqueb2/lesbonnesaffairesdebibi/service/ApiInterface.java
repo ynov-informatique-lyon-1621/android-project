@@ -9,6 +9,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
@@ -38,4 +39,7 @@ public interface ApiInterface {
 
     @PUT("announcements/{id}")
     Call<Announcement> updateAnnonce(@Path("id") String id, @Body Announcement announcement);
+
+    @DELETE("announcements/{id}")
+    Call<Object> deleteAnnonce(@Path("id") String id);
 }

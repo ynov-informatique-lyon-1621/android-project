@@ -149,7 +149,6 @@ public class EditionActivity extends BaseActivity {
             }else {
                 ApiService.getInstance().updateAnnonce(announcement.getId(),this.announcement).enqueue(this.callback);
             }
-
         }
     }
 
@@ -222,6 +221,8 @@ public class EditionActivity extends BaseActivity {
         }
     };
 
+
+    //Image picker stuff.
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
