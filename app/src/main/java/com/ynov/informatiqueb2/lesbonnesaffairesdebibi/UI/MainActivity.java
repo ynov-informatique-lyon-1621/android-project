@@ -1,21 +1,16 @@
 package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.UI;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.Adapter.AdapterListAnnonce;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.Model.ListAnnonceModel;
@@ -31,7 +26,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -157,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
                     for (int i = 0; i<jsonArray.length(); i++){
                         JSONObject o = (JSONObject) jsonArray.getJSONObject(i);
                         ListAnnonceModel list = new ListAnnonceModel();
-
+                        list.setId(o.getString("id"));
                         list.setTitle(o.getString("titre"));
                         list.setCategorie(o.getString("categorie"));
                         //list.setDate(o.getString("date"));

@@ -3,6 +3,8 @@ package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.UI;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,6 +21,7 @@ public class DetailAnnonceActivity extends AppCompatActivity {
     //TextView dateDetail;
     TextView vendeurDetail;
     TextView descriptionDetail;
+    Button contacter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,14 +29,14 @@ public class DetailAnnonceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail_annonce);
 
         Intent intentDetails = getIntent();
-
-        String title = intentDetails.getStringExtra("titre");
-        String categorie = intentDetails.getStringExtra("categorie");
-        String prix = intentDetails.getStringExtra("prix");
+        final String id = intentDetails.getStringExtra("id");
+        final String title = intentDetails.getStringExtra("titre");
+        final String categorie = intentDetails.getStringExtra("categorie");
+        final String prix = intentDetails.getStringExtra("prix");
         //String date = intentDetails.getStringExtra("date");
-        String vendeur = intentDetails.getStringExtra("vendeur");
+        final String vendeur = intentDetails.getStringExtra("vendeur");
         String description = intentDetails.getStringExtra("description");
-        String image = intentDetails.getStringExtra("image");
+        final String image = intentDetails.getStringExtra("image");
 
         titleDetail = findViewById(R.id.titleDetail);
         categorieDetail = findViewById(R.id.categorieDetail);
@@ -53,5 +56,23 @@ public class DetailAnnonceActivity extends AppCompatActivity {
 
         new DownloadImage((ImageView) imageDetail)
                 .execute("http://139.99.98.119:8080/images/lesbonsplansdebibi/" + image);
+
+        contacter = (Button) findViewById(R.id.contacterDetail);
+        contacter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentContact = new Intent(DetailAnnonceActivity.this,ContacterVendeurActivity.class);
+
+                intentContact.putExtra("id",id);
+                intentContact.putExtra("titre",title);
+                intentContact.putExtra("image",image);
+                intentContact.putExtra("prix",prix);
+                //intentContact.putExtra("date",date);
+                intentContact.putExtra("vendeur",vendeur);
+                intentContact.putExtra("categorie",categorie);
+                startActivity(intentContact);
+
+            }
+        });
     }
 }

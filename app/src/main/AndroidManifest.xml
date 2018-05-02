@@ -23,7 +23,9 @@
         <activity android:name=".UI.ChoiceActivity" />
         <activity android:name=".UI.IdentificationActivity" />
         <activity android:name=".UI.DeposerAnnonceActivity" />
-        <activity android:name=".UI.ConfirmationDeposerAnnonce"></activity>
+        <activity android:name=".UI.ConfirmationDeposerAnnonce" />
+        <activity android:name=".UI.ContacterVendeurActivity" />
+        <activity android:name=".UI.ConfirmationMessageActivity"></activity>
     </application>
 
 </manifest>
