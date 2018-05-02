@@ -12,7 +12,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
-
+        // Splash Screen
 public class ActivitySplashScreen extends AppCompatActivity {
 
     @Override
@@ -20,6 +20,7 @@ public class ActivitySplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
+        // Affiche la page du Splash Screen pendant 3 secondes puis passe au Dashboard
         int SPLASH_TIME_OUT = 3000;
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -30,8 +31,9 @@ public class ActivitySplashScreen extends AppCompatActivity {
             }
         }, SPLASH_TIME_OUT);
 
+        // Va chercher l'image de l'écran de chargement
         ImageView gif = findViewById(R.id.gifId);
-
+        // Va chercher le gif de l'écran de chargement
         Glide.with(ActivitySplashScreen.this).load(R.drawable.giphy).into(gif);
 
     }

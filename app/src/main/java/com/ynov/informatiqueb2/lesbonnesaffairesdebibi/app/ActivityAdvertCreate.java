@@ -33,6 +33,8 @@ public class ActivityAdvertCreate extends AppCompatActivity {
         final EditText DescriptionCreation = findViewById(R.id.descriptionCreation);
         final EditText CategorieCreation = findViewById(R.id.categorieCreation);
 
+
+        // Button Valider qui vérifie si les champs nom, mail, categorie, prix ainsi que la description soit rempli et si le mot de passe rentré et sa confirmation de mot de passe correspondent
         validerCreation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
