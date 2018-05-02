@@ -10,26 +10,25 @@ import android.view.MenuItem;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.controller.GetViewController;
 
-
+    // Liste des annonces
 public class ActivityDashboard extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-        setTitle("Dashboard");
 
         // Execution du 'GetViewController' sur le ActivityDashboard
         new GetViewController(ActivityDashboard.this).execute();
     }
-
+        // Mise en place du menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_activity_dashboard, menu);
         return true;
     }
-
+        // Menu hamburger où l'on accède à l'accueil ou à la partie déposer une annonce
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
