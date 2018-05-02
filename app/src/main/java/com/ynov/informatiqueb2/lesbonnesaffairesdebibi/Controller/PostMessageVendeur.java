@@ -75,7 +75,10 @@ public class PostMessageVendeur extends AsyncTask<String,String,String> {
                 Intent intentConfirmMsg = new Intent(weakActivity.get().getBaseContext(), ConfirmationMessageActivity.class);
                 intentConfirmMsg.putExtra("nomVendeur",nomVendeur);
                 intentConfirmMsg.putExtra("image", ((ContacterVendeurActivity)weakActivity.get()).image);
+                intentConfirmMsg.putExtra("titre", ((ContacterVendeurActivity)weakActivity.get()).titre);
+                intentConfirmMsg.putExtra("date", ((ContacterVendeurActivity)weakActivity.get()).date);
                 intentConfirmMsg.putExtra("prix", ((ContacterVendeurActivity)weakActivity.get()).prix );
+                intentConfirmMsg.putExtra("categorie", ((ContacterVendeurActivity)weakActivity.get()).categorie );
                 weakActivity.get().startActivity(intentConfirmMsg);
             }
             else {

@@ -46,7 +46,7 @@ public class DeposerAnnonceActivity extends AppCompatActivity {
         titre = (EditText) findViewById(R.id.titreDepAn);
         prix = (EditText) findViewById(R.id.prixDepAn);
         description = (EditText) findViewById(R.id.descDepAn);
-        String[] itemsCat = new String[]{"Categorie", "Vêtement", "Voiture"};
+        String[] itemsCat = new String[]{"Categories", "Vêtements", "Voitures"};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(DeposerAnnonceActivity.this, R.layout.support_simple_spinner_dropdown_item, itemsCat) {
 

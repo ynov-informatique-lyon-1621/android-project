@@ -20,8 +20,8 @@
 
     <TextView
         android:id="@+id/titreConfirm"
-        android:layout_width="134dp"
-        android:layout_height="17dp"
+        android:layout_width="182dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="98dp"
@@ -59,8 +59,9 @@
         android:id="@+id/catConfirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/prixConfirm"
-        android:layout_alignBottom="@+id/imageContact"
+        android:layout_alignEnd="@+id/messageDeConfirm"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="97dp"
         android:text="TextView"
         android:textColor="@android:color/black"
         tools:layout_editor_absoluteX="132dp"
@@ -82,9 +83,7 @@
         android:id="@+id/messageDeConfirm"
         android:layout_width="221dp"
         android:layout_height="167dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="176dp"
+        android:layout_centerInParent="true"
         android:text="TextView"
         android:textColor="@android:color/black" />
 
