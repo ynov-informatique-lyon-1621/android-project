@@ -25,7 +25,6 @@ public class ActivityContact extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
 
-        setTitle("Formulaire de contact");
 
         Button resetContact = findViewById(R.id.resetcontact);
         Button submitContact = findViewById(R.id.submitcontact);
@@ -40,6 +39,8 @@ public class ActivityContact extends AppCompatActivity {
         ImageView imagecontact = findViewById(R.id.imagecontact);
         Glide.with(ActivityContact.this).load(R.drawable.logo).into(imagecontact);
 
+
+        //Button qui appel le Webservice d'envoi de message pour le poster si les champs obligatoires (nom, mail et message) sonr renseignés
         submitContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,7 +74,7 @@ public class ActivityContact extends AppCompatActivity {
             }
         });
 
-        // Button reset qui permet d'annuler toute les saisies
+        // Button reinitialiser qu ivident tous les champs du formulaire
         resetContact.setOnClickListener(new View.OnClickListener()
 
         {
@@ -86,7 +87,7 @@ public class ActivityContact extends AppCompatActivity {
             }
         });
 
-        // Button retour qui permet de retourner aux detail de l'annonce
+        // Button retour qui permet d'être rediriger sur le détail de l'annonce
         retourContact.setOnClickListener(new View.OnClickListener()
 
         {
@@ -97,6 +98,9 @@ public class ActivityContact extends AppCompatActivity {
             }
         });
     }
+
+
+    // Menu Hamburger où l'on accède à l'accueil ou à la partie déposer une annonce
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
