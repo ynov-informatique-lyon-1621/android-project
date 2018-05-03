@@ -13,6 +13,7 @@ import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 
 
 public class ConfirmationDeposerAnnonce extends AppCompatActivity {
+    //Acitivty confirmant le dépot de l'annonce.
     TextView message;
     Button retourAcceuil;
 
@@ -29,19 +30,18 @@ public class ConfirmationDeposerAnnonce extends AppCompatActivity {
                 "vous sera envoyé dans les meilleurs délais.\n\n" +
                 "Bonne journée.\n\n" +
                 "L'équipe de lesbonneaffairesdebibi.fr");
-
+        //Lorsque l'on clique sur le boutton, on fini l'activité ConfirmationDéposerAnnonce ainsi que DeposerAnnonceActivity.
         retourAcceuil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentAccConfAn = new Intent(ConfirmationDeposerAnnonce.this, MainActivity.class);
-                startActivity(intentAccConfAn);
+               ConfirmationDeposerAnnonce.this.finish();
+               DeposerAnnonceActivity.actiDepAnn.finish();
             }
         });
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //ajoute les entrées de menu_test à l'ActionBar
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }

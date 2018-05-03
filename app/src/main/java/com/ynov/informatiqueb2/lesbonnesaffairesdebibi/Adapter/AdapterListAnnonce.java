@@ -85,7 +85,7 @@ public AdapterListAnnonce(@NonNull Context context, int resource, @NonNull List<
             public void onClick(View v) {
                 //On recupère la position de l'objet sur le quel on clique.
                 ListAnnonceModel details = getItem(position);
-                //On crée un nouvel intent entre notre context (ici ListPersoActivity) et le DetailPersoActivity.
+                //On crée un nouvel intent entre notre context (ici MainActivity) et le DetailAnnonceActivity.
                 Intent intentDetailAnnonce = new Intent(getContext(), DetailAnnonceActivity.class);
                 //On fait passer toutes les valeurs de l'objet sur lequel on a cliqué dans notre Intent.
                 intentDetailAnnonce.putExtra("id", details.getId());

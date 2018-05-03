@@ -70,17 +70,20 @@ public class Authentification extends AsyncTask<String, String , String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
 
-        //Traitement de la string reçu, si la réponse du serveur est "true", on crée notre intent entre le la MainActivity et ChoiceActivity.
+        //Traitement de la string reçu, si la réponse du serveur est "true", on crée notre intent entre le la MainActivity et IdentificationActivity.
         if (s.equals("true")) {
             Intent intentIdOk = new Intent(weakActivity.get().getBaseContext(),
                     MainActivity.class);
 
-            Log.i("START ACTIVITY", "Lancement de l'activité ChoiceActivity");
+            Log.i("Auth OK", "Auth OK");
             Toast.makeText(weakActivity.get().getBaseContext(), "Bienvenue " + login, Toast.LENGTH_SHORT).show();
             weakActivity.get().startActivity(intentIdOk);
+            //On termine l'activity d'identification
+            weakActivity.get().finish();
+
 
         } else {
-            //Si l'authentification est mauvaise, on lève un Toast.
+            //Si l'authentification est mauvaise, on lève un Toast pour notifier l'utilisateur.
             Toast.makeText(weakActivity.get().getBaseContext(), "Login ou Mot de passe incorrecte", Toast.LENGTH_SHORT).show();
         }
     }

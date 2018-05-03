@@ -24,6 +24,7 @@ public class PostDeposerAnnonce extends AsyncTask<String,String,String> {
 
     @Override
     protected String doInBackground(String... strings) {
+        //On récupère nos valeurs
         nom = strings[0];
         email = strings[1];
         pwd = strings[2];

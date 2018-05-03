@@ -42,7 +42,7 @@ public class SplashScreenActivity extends AppCompatActivity{
             public void onFinish() {
                 Intent SplashIntent = new Intent(SplashScreenActivity.this, MainActivity.class);
                 startActivity(SplashIntent);
-
+                SplashScreenActivity.this.finish();
             }
 
 

@@ -1,5 +1,6 @@
 package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.UI;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,7 +16,7 @@ import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 
 
 public class DetailAnnonceActivity extends AppCompatActivity {
-
+//Cette Activity nous sert à donner des details une fois que l'on clique sur l'annonce
     ImageView imageDetail;
     TextView titleDetail;
     TextView categorieDetail;
@@ -24,14 +25,19 @@ public class DetailAnnonceActivity extends AppCompatActivity {
     TextView vendeurDetail;
     TextView descriptionDetail;
     Button contacter;
+    //Déclaration pour pouvoir terminer une activity depuis une autre
+    public static Activity actiDetail;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_annonce);
+        //Pour pouvoir terminer une activity depuis une autre.
+        actiDetail = this;
 
+        //On récup nos info dans notre intent.
         Intent intentDetails = getIntent();
-
         final String id = intentDetails.getStringExtra("id");
         final String title = intentDetails.getStringExtra("titre");
         final String categorie = intentDetails.getStringExtra("categorie");
@@ -41,6 +47,7 @@ public class DetailAnnonceActivity extends AppCompatActivity {
         final String description = intentDetails.getStringExtra("description");
         final String image = intentDetails.getStringExtra("image");
 
+        //On recup nos champs
         titleDetail = findViewById(R.id.titleDetail);
         categorieDetail = findViewById(R.id.categorieDetail);
         prixDetail = findViewById(R.id.prixDetail);
@@ -49,7 +56,7 @@ public class DetailAnnonceActivity extends AppCompatActivity {
         descriptionDetail = findViewById(R.id.descriptionDetail);
         imageDetail = (ImageView) findViewById(R.id.imageDetail);
 
-
+        //On set nos champs
         titleDetail.setText(title);
         categorieDetail.setText("Catégorie : " + categorie);
         prixDetail.setText("Prix : " + prix + " €");
@@ -59,11 +66,12 @@ public class DetailAnnonceActivity extends AppCompatActivity {
 
         new DownloadImage((ImageView) imageDetail)
                 .execute("http://139.99.98.119:8080/images/lesbonsplansdebibi/" + image);
-
+        //Clique sur le boutons contracter vendeur
         contacter = (Button) findViewById(R.id.contacterDetail);
         contacter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //On set notre intent, on fait passer les infos dont on a besoin, on lance notre intent.
                 Intent intentContact = new Intent(DetailAnnonceActivity.this,ContacterVendeurActivity.class);
 
                 intentContact.putExtra("id",id);

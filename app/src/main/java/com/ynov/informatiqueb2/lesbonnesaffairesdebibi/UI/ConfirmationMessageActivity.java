@@ -16,7 +16,7 @@ import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 
 
 public class ConfirmationMessageActivity extends AppCompatActivity {
-
+// Cette activité sert à confirmer à l'utilisateur l'envoi de son message.
     ImageView imageConfirm;
     TextView titreConfirm;
     TextView prixConfirm;
@@ -39,7 +39,7 @@ public class ConfirmationMessageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmation_message);
-
+        //On récupère notre intent provenant du formulaire de message pour pouvoir implémenter l'image, la date etc...
         Intent intentConfirm = getIntent();
         image = intentConfirm.getStringExtra("image");
         vendeur = intentConfirm.getStringExtra("nomVendeur");
@@ -48,7 +48,7 @@ public class ConfirmationMessageActivity extends AppCompatActivity {
         date = intentConfirm.getStringExtra("date");
         prix = intentConfirm.getStringExtra("prix");
 
-
+        //On récupère les objets de notre layout
          imageConfirm = (ImageView) findViewById(R.id.imageContact);
          titreConfirm = (TextView) findViewById(R.id.titreConfirm);
          prixConfirm = (TextView) findViewById(R.id.prixConfirm);
@@ -57,22 +57,24 @@ public class ConfirmationMessageActivity extends AppCompatActivity {
          dateConfirm = (TextView) findViewById(R.id.dateConfirm);
          messageConfirm = (TextView) findViewById(R.id.messageDeConfirm);
 
+         //On set nos layout avec notre methode pour l'image et les info recupérée de l'intent
          new DownloadImage((ImageView) imageConfirm).execute("http://139.99.98.119:8080/images/lesbonsplansdebibi/" + image);
          titreConfirm.setText(titre);
-         prixConfirm.setText(prix);
-         vendeurConfirm.setText(vendeur);
-         catConfirm.setText(categorie);
-         dateConfirm.setText(date);
+         prixConfirm.setText("Prix: " +prix + " €");
+         vendeurConfirm.setText("Vendeur: " + vendeur);
+         catConfirm.setText("Caétegorie: " + categorie);
+         dateConfirm.setText("date: "+ date);
 
          messageConfirm.setText("Votre message a bien été envoyé\n"+ vendeur + " reviendra vers vous rapidement\n\n" +
                  "Bonne journée.\n\n" +
                  "L'équipe de lesbonnesaffairesdebibi.fr");
 
-
-
+        //Appel methode bouttons
+        initbutton();
     }
 
     private void  initbutton(){
+        //methode pour nos boutons
         retourAcceuil = (Button) findViewById(R.id.retourConfirm);
         retourAnnonce = (Button) findViewById(R.id.retourAnnonceConfirm);
 
@@ -83,16 +85,18 @@ public class ConfirmationMessageActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-                //Clique sur le bouton visualiser bouton
+                //Clique sur le bouton Retour Acceuil
                 case R.id.retourConfirm:
-                    //on crée notre intent et on le start
-                    Intent idIntent = new Intent(ConfirmationMessageActivity.this, MainActivity.class);
-                    startActivity(idIntent);
+                    //On ferme les activités ConfirmationMessage, ContacterVendeur ainsi que Detail annonce pour retourner au MainActivity (acceul)
+                    ConfirmationMessageActivity.this.finish();
+                    ContacterVendeurActivity.actiContacter.finish();
+                    DetailAnnonceActivity.actiDetail.finish();
                     break;
-                //Clique sur le bouton Ajouter un personnage
+                //Clique sur le bouton Retour annonce
                 case R.id.retourAnnonceConfirm:
-                    Intent intentDepAn = new Intent(ConfirmationMessageActivity.this,DetailAnnonceActivity.class);
-                    startActivity(intentDepAn);
+                    //On ferme les activités ConfirmationMessage et ContacterVendeur pour retrouver le detail de l'annonce
+                    ConfirmationMessageActivity.this.finish();
+                    ContacterVendeurActivity.actiContacter.finish();
                     break;
             }
         }

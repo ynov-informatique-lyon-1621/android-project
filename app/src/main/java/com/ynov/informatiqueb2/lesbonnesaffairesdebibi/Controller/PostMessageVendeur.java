@@ -26,7 +26,7 @@ public class PostMessageVendeur extends AsyncTask<String,String,String> {
     String idAnnonce;
     WeakReference<Activity> weakActivity;
 
-    //On déclare une weakActivity pour pouvoir déclare dans quel contexte on utilise la méthode Authentification.
+    //On déclare une weakActivity pour pouvoir déclarer dans quel contexte est utilisé la méthode lors de son appel.
     public PostMessageVendeur(Activity activity) {
         weakActivity = new WeakReference<Activity>(activity);
     }
@@ -69,7 +69,7 @@ public class PostMessageVendeur extends AsyncTask<String,String,String> {
 
             //On recupère le code reponse du serveur
             int responseCode=httpURLConnection.getResponseCode();
-            //Si le serveur retourne le code 200, on fais un log OK, sinon, un log FAIL.
+            //Si le serveur retourne le code 201, on envoi LOG, on crée un intent et on met nos informations dedans pour la confirmation.
             if (responseCode == 201) {
                 Log.e("POST CONFIRM", "Envoi OK");
                 Intent intentConfirmMsg = new Intent(weakActivity.get().getBaseContext(), ConfirmationMessageActivity.class);
@@ -79,9 +79,11 @@ public class PostMessageVendeur extends AsyncTask<String,String,String> {
                 intentConfirmMsg.putExtra("date", ((ContacterVendeurActivity)weakActivity.get()).date);
                 intentConfirmMsg.putExtra("prix", ((ContacterVendeurActivity)weakActivity.get()).prix );
                 intentConfirmMsg.putExtra("categorie", ((ContacterVendeurActivity)weakActivity.get()).categorie );
+                //On start notre intent
                 weakActivity.get().startActivity(intentConfirmMsg);
             }
             else {
+                //Si la réponse du serveur est différente de 201, on lève un tost pour notifier l'utilisateur
                 Log.e("POST CONFIRM", "Envoi FAIL");
                 Toast.makeText(weakActivity.get().getBaseContext(), "Une erreur est survenue, veuilliez réessayer plus tard", Toast.LENGTH_SHORT).show();
             }

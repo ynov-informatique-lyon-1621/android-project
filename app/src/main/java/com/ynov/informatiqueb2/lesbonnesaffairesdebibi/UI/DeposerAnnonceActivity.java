@@ -1,5 +1,6 @@
 package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.UI;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -21,7 +22,7 @@ import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 
 import java.util.regex.Pattern;
 
-
+//Cette Activity nous sert à déposer une annonce.
 public class DeposerAnnonceActivity extends AppCompatActivity {
     Spinner categorie;
     EditText nom;
@@ -33,12 +34,18 @@ public class DeposerAnnonceActivity extends AppCompatActivity {
     EditText description;
     Button valider;
     Button annuler;
+    //Déclaration pour pouvoir fermer notre activity depuis une autre.
+    public static Activity actiDepAnn;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deposer_annonce);
+
+        //Pour pouvoir fermer notre activity depuis une autre
+        actiDepAnn = this;
 
         categorie = (Spinner) findViewById(R.id.spinnerDepAn);
         nom = (EditText) findViewById(R.id.nomDepAn);
@@ -49,15 +56,15 @@ public class DeposerAnnonceActivity extends AppCompatActivity {
         prix = (EditText) findViewById(R.id.prixDepAn);
         description = (EditText) findViewById(R.id.descDepAn);
 
+        //On set les items de notre spinner
         String[] itemsCat = new String[]{"Categorie", "Vêtements", "Voitures"};
-
+        //
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(DeposerAnnonceActivity.this, R.layout.support_simple_spinner_dropdown_item, itemsCat) {
 
             @Override
             public boolean isEnabled(int position) {
                 if (position == 0) {
-                   // Disable the first item from Spinner
-                    // First item will be use for hint
+                   // On Disable le 1er item de notre spinner, il sert de hint.
                    return false;
                } else {
                    return true;
@@ -70,15 +77,16 @@ public class DeposerAnnonceActivity extends AppCompatActivity {
                View view = super.getDropDownView(position, convertView, parent);
                TextView tv = (TextView) view;
                if (position == 0) {
-                  // Set the hint text color gray
+                  // Pour passer notre premier item en gris
                     tv.setTextColor(Color.GRAY);
                 } else {
                     tv.setTextColor(Color.BLACK);
                 }
                 return view; }
         };
+        //On set notre spinner
         categorie.setAdapter(adapter);
-
+        //Appel fonction bouton
         initbutton();
     }
 
@@ -110,6 +118,7 @@ public class DeposerAnnonceActivity extends AppCompatActivity {
         }
     }
 
+    //Fonction boutton
     private void initbutton(){
         valider = (Button) findViewById(R.id.validerDepAn);
         annuler = (Button) findViewById(R.id.annulerDepAn);
@@ -123,7 +132,7 @@ public class DeposerAnnonceActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-                //Clique sur le bouton visualiser bouton
+                //Clique sur le bouton Valider
                 case R.id.validerDepAn:
                     //Champs mandatory
                     if (TextUtils.isEmpty(nom.getText().toString())){
@@ -149,13 +158,16 @@ public class DeposerAnnonceActivity extends AppCompatActivity {
                     else if (TextUtils.isEmpty(description.getText().toString())){
                         description.setError("Veuillez renseigner le nom du personnage");
                     }
+                    //On check si les deux password sont pareil
                     else if(!password.getText().toString().equals(password2.getText().toString())){
                         Toast.makeText(DeposerAnnonceActivity.this, "Les password ne correspondent pas", Toast.LENGTH_SHORT).show();
                     }
+                    //On check si l'email renseigné correspond aux standards
                     else if (Pattern.matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$",email.getText().toString()) == false){
                         Toast.makeText(DeposerAnnonceActivity.this, "Veuillez renseigner un email valide", Toast.LENGTH_SHORT).show();
                     }
                     else
+                        //Appel de notre methode si toutes les conditions sont respectées
                     //new PostDeposerAnnonce().execute(
                         // nom.getText().toString(),
                         // email.getText().toString(),
@@ -165,15 +177,15 @@ public class DeposerAnnonceActivity extends AppCompatActivity {
                         // titre.getText().toString(),
                         // description.getText().toString());
                         Toast.makeText(DeposerAnnonceActivity.this, "Valider ", Toast.LENGTH_SHORT).show();
+                    //On passe sur notre écran de confirmation
                     Intent intentConfirmationAn = new Intent(DeposerAnnonceActivity.this,ConfirmationDeposerAnnonce.class);
                     startActivity(intentConfirmationAn);
 
                     break;
-                //Clique sur le bouton Ajouter un personnage
+                //Clique sur le bouton Annuler
                 case R.id.annulerDepAn:
-                    //on crée notre intent et on le start
-                    Intent AddIntent = new Intent(DeposerAnnonceActivity.this, MainActivity.class);
-                    startActivity(AddIntent);
+                    //On termine notre activity pour revenir à la précedente.
+                    DeposerAnnonceActivity.this.finish();
                     break;
             }
         }

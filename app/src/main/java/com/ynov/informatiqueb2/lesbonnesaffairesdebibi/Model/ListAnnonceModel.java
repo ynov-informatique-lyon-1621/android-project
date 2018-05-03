@@ -1,6 +1,7 @@
 package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.Model;
 
 public class ListAnnonceModel {
+    //Class permettant d'utiliser notre list Json dans le main activity.
     private String id;
     private String title;
     private String prix;
