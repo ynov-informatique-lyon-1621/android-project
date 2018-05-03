@@ -26,6 +26,7 @@ import com.ynov.lesbonnesaffairesdebibi.service.HttpService;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -130,6 +131,7 @@ public class ListActivity extends BaseActivity {
 
                 btnFilters.setText("Filtres (" + annonces.size() + " résultats)");
 
+                Collections.sort(annonces, new ListComparator());
                 AnnonceAdapter adapter = new AnnonceAdapter(ListActivity.this, annonces);
                 listAnnonces.setAdapter(adapter);
 

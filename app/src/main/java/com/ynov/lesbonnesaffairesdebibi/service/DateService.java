@@ -17,8 +17,12 @@ public class DateService {
     }
 
     public String show() {
-        outputDate = new Date(Long.valueOf(inputDate));
-        return p.format(outputDate);
+        if(inputDate != null) {
+            outputDate = new Date(Long.valueOf(inputDate));
+            return p.format(outputDate);
+        }
+
+        return "Aucune date";
     }
 
 }

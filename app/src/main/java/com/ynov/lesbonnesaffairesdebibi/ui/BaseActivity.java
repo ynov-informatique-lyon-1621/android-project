@@ -16,6 +16,9 @@ import android.widget.Toast;
 
 import com.ynov.lesbonnesaffairesdebibi.R;
 import com.ynov.lesbonnesaffairesdebibi.component.EndDrawerToggle;
+import com.ynov.lesbonnesaffairesdebibi.model.Annonce;
+
+import java.util.Comparator;
 
 public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -75,7 +78,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    private void switchToActivity(final Class activity, boolean authNeeded) {
+    public void switchToActivity(final Class activity, boolean authNeeded) {
         if(activity != null) {
             if(!authNeeded || checkAuthenticated()) {
                 new Handler().postDelayed(new Runnable() {
@@ -89,6 +92,13 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
             }
 
             drawer.closeDrawers();
+        }
+    }
+
+    public class ListComparator implements Comparator<Annonce> {
+        @Override
+        public int compare(Annonce obj1, Annonce obj2) {
+            return obj2.getDateCreation().compareTo(obj1.getDateCreation());
         }
     }
 

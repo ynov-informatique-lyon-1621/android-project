@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -19,6 +20,8 @@ import com.ynov.lesbonnesaffairesdebibi.adapter.AnnonceAdapter;
 import com.ynov.lesbonnesaffairesdebibi.model.Annonce;
 import com.ynov.lesbonnesaffairesdebibi.service.HttpService;
 
+import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -59,6 +62,15 @@ public class MyListActivity extends BaseActivity {
 
         listEmail.setText(email);
 
+        listAnnonces.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(MyListActivity.this, DetailActivity.class);
+                intent.putExtra("data", (Serializable) parent.getItemAtPosition(position));
+                startActivity(intent);
+            }
+        });
+
         listLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,6 +107,7 @@ public class MyListActivity extends BaseActivity {
                 else
                     listTextNotFound.setVisibility(View.GONE);
 
+                Collections.sort(annonces, new ListComparator());
                 AnnonceAdapter adapter = new AnnonceAdapter(MyListActivity.this, annonces);
                 listAnnonces.setAdapter(adapter);
 

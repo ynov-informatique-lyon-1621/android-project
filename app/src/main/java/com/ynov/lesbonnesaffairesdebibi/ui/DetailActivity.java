@@ -2,7 +2,6 @@ package com.ynov.lesbonnesaffairesdebibi.ui;
 
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +14,8 @@ import com.ynov.lesbonnesaffairesdebibi.R;
 import com.ynov.lesbonnesaffairesdebibi.model.Annonce;
 import com.ynov.lesbonnesaffairesdebibi.service.DateService;
 import com.ynov.lesbonnesaffairesdebibi.service.FavoriteService;
+
+import java.io.Serializable;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -29,9 +30,10 @@ public class DetailActivity extends AppCompatActivity {
         final FavoriteService favoriteService = new FavoriteService(DetailActivity.this);
 
         ImageView annImage = findViewById(R.id.annImage);
-        TextView annTitre = findViewById(R.id.annTitre);
+        TextView annTitre = findViewById(R.id.annTitle);
         TextView annPrix = findViewById(R.id.annPrix);
         TextView annDate = findViewById(R.id.annDate);
+        TextView annVendeur = findViewById(R.id.annVendeur);
         TextView annDescription = findViewById(R.id.annDescription);
         ImageButton annFavorite = findViewById(R.id.annFavorite);
         FloatingActionButton annContact = findViewById(R.id.annContact);
@@ -48,7 +50,9 @@ public class DetailActivity extends AppCompatActivity {
         annContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(v, "Formulaire contact vendeur", 3000).show();
+                Intent intent = new Intent(DetailActivity.this, ContactActivity.class);
+                intent.putExtra("data", (Serializable) annonce);
+                startActivity(intent);
             }
         });
 
@@ -56,6 +60,7 @@ public class DetailActivity extends AppCompatActivity {
         annTitre.setText(annonce.getTitre());
         annPrix.setText(annonce.getPrix());
         annDate.setText(new DateService(annonce.getDateCreation()).show());
+        annVendeur.setText(annonce.getNomVendeur());
         annDescription.setText(annonce.getDescription());
 
     }

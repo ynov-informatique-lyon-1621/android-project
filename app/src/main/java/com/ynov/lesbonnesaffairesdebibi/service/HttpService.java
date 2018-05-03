@@ -1,11 +1,13 @@
 package com.ynov.lesbonnesaffairesdebibi.service;
 
 import com.ynov.lesbonnesaffairesdebibi.model.Annonce;
+import com.ynov.lesbonnesaffairesdebibi.model.Message;
 
 import org.json.JSONObject;
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -26,18 +28,18 @@ public interface HttpService {
 
     @Multipart
     @POST("saveAnnonce")
-    Call<Annonce> saveAnnonce(@Body Annonce annonce, @Part("image") RequestBody image);
+    Call<Void> saveAnnonce(@Part("annonce") Annonce annonce, @Part MultipartBody.Part image);
 
     @DELETE("deleteAnnonce")
     Call<Annonce> deleteAnnonce(@Query("id") Integer id);
 
     @PUT("updateAnnonce")
-    Call<Annonce> updateAnnonce(@Body Annonce annonce);
+    Call<Void> updateAnnonce(@Body Annonce annonce);
 
     @GET("findAnnoncesByEmail")
     Call<List<Annonce>> findAnnoncesByEmail(@Query("email") String email, @Query("mpd") String mdp);
 
     @POST("sendMessage")
-    Call sendMessage(@Body JSONObject message);
+    Call<Void> sendMessage(@Body Message message);
 
 }
