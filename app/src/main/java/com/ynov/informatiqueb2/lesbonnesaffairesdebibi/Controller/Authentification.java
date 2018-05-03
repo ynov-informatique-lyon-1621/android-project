@@ -75,6 +75,7 @@ public class Authentification extends AsyncTask<String, String , String> {
             Intent intentIdOk = new Intent(weakActivity.get().getBaseContext(),
                     MainActivity.class);
 
+
             Log.i("Auth OK", "Auth OK");
             Toast.makeText(weakActivity.get().getBaseContext(), "Bienvenue " + login, Toast.LENGTH_SHORT).show();
             weakActivity.get().startActivity(intentIdOk);

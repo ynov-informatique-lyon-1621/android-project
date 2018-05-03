@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.Controller.Authentification;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 
-public class IdentificationActivity extends AppCompatActivity {
+public class IdentificationActivity extends com.ynov.informatiqueb2.lesbonnesaffairesdebibi.UI.Menu {
 
     EditText loginBox;
     EditText pwdBox;
@@ -45,33 +45,6 @@ public class IdentificationActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //ajoute les entrées de menu_test à l'ActionBar
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    //gère le click sur une action de l'ActionBar
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.action_menu_un:
-                Intent mainActivityIntent = new Intent(getBaseContext(), MainActivity.class);
-                startActivity(mainActivityIntent);
-                return true;
-            case R.id.action_menu_deux:
-                Intent deposerAnnonceIntent = new Intent(getBaseContext(), DeposerAnnonceActivity.class);
-                startActivity(deposerAnnonceIntent);
-                return true;
-            case R.id.action_menu_trois:
-                Intent favorisIntent = new Intent(getBaseContext(), IdentificationActivity.class);
-                startActivity(favorisIntent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 
     private void initbutton(){
         valider = (Button) findViewById(R.id.valider);
@@ -98,8 +71,6 @@ public class IdentificationActivity extends AppCompatActivity {
                         //Appel du web-service
                         new Authentification(IdentificationActivity.this).execute(loginBox.getText().toString(),pwdBox.getText().toString());
 
-                        //Intent ActivityChoice = new Intent(MainActivity.this, ChoiceActivity.class);
-                        //startActivity(ActivityChoice);
                         //Si la case remember me est cochée, on met en cache les donnée dans notre sharedPreferences
                         if(remerberMe.isChecked()){
                             sharedPreferences.edit()

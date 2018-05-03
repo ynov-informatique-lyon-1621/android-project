@@ -11,12 +11,11 @@ import android.widget.TextView;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.Controller.DownloadImage;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 
-
-
-
-
-public class ConfirmationMessageActivity extends AppCompatActivity {
 // Cette activité sert à confirmer à l'utilisateur l'envoi de son message.
+
+public class ConfirmationMessageActivity extends com.ynov.informatiqueb2.lesbonnesaffairesdebibi.UI.Menu {
+
+
     ImageView imageConfirm;
     TextView titreConfirm;
     TextView prixConfirm;

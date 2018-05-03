@@ -22,8 +22,11 @@ import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 
 import java.util.regex.Pattern;
 
+
 //Cette Activity nous sert à déposer une annonce.
-public class DeposerAnnonceActivity extends AppCompatActivity {
+
+
+public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaffairesdebibi.UI.Menu {
     Spinner categorie;
     EditText nom;
     EditText email;
@@ -88,34 +91,6 @@ public class DeposerAnnonceActivity extends AppCompatActivity {
         categorie.setAdapter(adapter);
         //Appel fonction bouton
         initbutton();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //ajoute les entrées de menu_test à l'ActionBar
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    //gère le click sur une action de l'ActionBar
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.action_menu_un:
-                Intent mainActivityIntent = new Intent(getBaseContext(), MainActivity.class);
-                startActivity(mainActivityIntent);
-                return true;
-            case R.id.action_menu_deux:
-                Intent deposerAnnonceIntent = new Intent(getBaseContext(), DeposerAnnonceActivity.class);
-                startActivity(deposerAnnonceIntent);
-                return true;
-            case R.id.action_menu_trois:
-                Intent favorisIntent = new Intent(getBaseContext(), IdentificationActivity.class);
-                startActivity(favorisIntent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
     //Fonction boutton

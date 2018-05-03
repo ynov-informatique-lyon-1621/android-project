@@ -19,8 +19,11 @@ import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 import java.util.regex.Pattern;
 
 
-public class ContacterVendeurActivity extends AppCompatActivity {
+
 //Cette class va nous servir à contacter le vendeur de l'annonce.
+
+public class ContacterVendeurActivity extends com.ynov.informatiqueb2.lesbonnesaffairesdebibi.UI.Menu {
+
     ImageView imageContact;
     TextView titreContact;
     TextView prixContact;
