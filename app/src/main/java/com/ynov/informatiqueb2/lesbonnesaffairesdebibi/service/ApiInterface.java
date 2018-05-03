@@ -42,4 +42,5 @@ public interface ApiInterface {
 
     @DELETE("announcements/{id}")
     Call<Object> deleteAnnonce(@Path("id") String id);
+
 }

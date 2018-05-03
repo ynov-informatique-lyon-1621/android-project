@@ -4,40 +4,40 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model.Announcement;
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.utils.DateFormater;
+
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link DetailFragment.OnFragmentInteractionListener} interface
+ * {@link DetailSmallFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link DetailFragment#newInstance} factory method to
+ * Use the {@link DetailSmallFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DetailFragment extends Fragment {
-
-    private static final String ARG_ANNOUNCEMENT = "param1";
+public class DetailSmallFragment extends Fragment {
+    private static final String ARG_ANNOUNCEMENT = "ann";
     private Announcement announcement;
-
     private OnFragmentInteractionListener mListener;
 
-    public DetailFragment() {
+    public DetailSmallFragment() {
         // Required empty public constructor
     }
 
 
-    public static DetailFragment newInstance(Announcement announcement) {
-        DetailFragment fragment = new DetailFragment();
+    public static DetailSmallFragment newInstance(Announcement announcement) {
+        DetailSmallFragment fragment = new DetailSmallFragment();
         Bundle args = new Bundle();
         args.putSerializable(ARG_ANNOUNCEMENT, announcement);
         fragment.setArguments(args);
@@ -48,7 +48,7 @@ public class DetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            announcement = (Announcement)getArguments().getSerializable(ARG_ANNOUNCEMENT);
+            announcement =(Announcement)getArguments().getSerializable(ARG_ANNOUNCEMENT);
         }
     }
 
@@ -56,29 +56,18 @@ public class DetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_detail, container, false);
-        TextView description = v.findViewById(R.id.descDsp);
-        TextView title = v.findViewById(R.id.titleDsp);
-        TextView categorie = v.findViewById(R.id.categorieDsp);
-        ImageView image = v.findViewById(R.id.image);
-        TextView vendorName = v.findViewById(R.id.vendorNameDsp);
-        Button contactBtn = v.findViewById(R.id.contactBtn);
+        View v =  inflater.inflate(R.layout.fragment_detail_small, container, false);
+        TextView titleDsp = v.findViewById(R.id.titleDsp);
+        TextView priceDsp = v.findViewById(R.id.priceDsp);
+        TextView cateDsp = v.findViewById(R.id.categorieDsp);
+        TextView dateDsp = v.findViewById(R.id.dateDsp);
+        ImageView imageView = v.findViewById(R.id.imageDsp);
 
-        description.setText(announcement.getDescription());
-        title.setText(announcement.getTitre());
-        categorie.setText(announcement.getCategorie());
-        Glide.with(this).load(announcement.getImage()).into(image);
-        vendorName.setText(announcement.getNomVendeur());
-
-
-        contactBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment fragment = MessageFragment.newInstance(announcement);
-                ((BaseActivity)getActivity()).navigate(fragment);
-            }
-        });
-
+        titleDsp.setText(this.announcement.getTitre());
+        priceDsp.setText(getActivity().getString(R.string.price_placeholder,this.announcement.getPrix()));
+        cateDsp.setText(getActivity().getString(R.string.cate_placeholder,this.announcement.getCategorie()));
+        dateDsp.setText(DateFormater.format(this.announcement.getDateCreation()));
+        Glide.with(getActivity()).load(this.announcement.getImage()).into(imageView);
         return v;
     }
 

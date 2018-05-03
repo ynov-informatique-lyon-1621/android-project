@@ -13,6 +13,9 @@
     <string name="action_edit">Modifier une annonce </string>
     <string name="action_contact">Contacter le vendeur  </string>
     <string name="edit_annoucement">Modifier vos annonces</string>
+    <string name="action_send">Envoyer</string>
+    <string name="back_to_announcement">Retour à l\'annonce</string>
+    <string name="reset">RESET</string>
 
     <!--Error messages-->
     <string name="empty">Aucune annonces trouvée</string>
@@ -43,6 +46,9 @@
     <string name="password_confirm_label">Confirmation du mot de passe</string>
     <string name="price_label">Prix</string>
     <string name="price_placeholder">%1$d €</string>
+    <string name="cate_placeholder">Catégorie : %1$s</string>
+    <string name="phone_label">Numéro de téléphone</string>
+    <string name="message_label">Numéro de téléphone</string>
 
     <!--Navigation-->
     <string name="action_home">Acceuil </string>

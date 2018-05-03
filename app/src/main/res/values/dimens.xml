@@ -2,4 +2,5 @@
 <resources>
     <dimen name="vertical_card_spacing">5dp</dimen>
     <dimen name="card_padding">10dp</dimen>
+    <dimen name="horiz_standard_padding">5dp</dimen>
 </resources>

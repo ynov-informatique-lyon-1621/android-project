@@ -34,7 +34,9 @@ public class BaseActivity extends AppCompatActivity  implements
         AnnouncementListFragment.OnFragmentInteractionListener,
         EditionFragment.OnFragmentInteractionListener,
         LoginFragment.OnFragmentInteractionListener,
-        OwnedAnnouncementFragment.OnFragmentInteractionListener{
+        OwnedAnnouncementFragment.OnFragmentInteractionListener,
+        DetailSmallFragment.OnFragmentInteractionListener,
+        MessageFragment.OnFragmentInteractionListener{
 
     Toolbar toolbar;
     DrawerLayout navDrawer;
