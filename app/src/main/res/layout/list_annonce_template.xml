@@ -61,4 +61,14 @@
         tools:layout_editor_absoluteX="108dp"
         tools:layout_editor_absoluteY="78dp" />
 
+    <ImageView
+        android:id="@+id/favorisID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/prixMenu"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="70dp"
+        android:src="@drawable/ic_favorite_border_black_24dp"
+        android:text="Favoris" />
+
 </RelativeLayout>

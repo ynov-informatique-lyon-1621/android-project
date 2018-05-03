@@ -47,13 +47,18 @@ public class MainActivity extends com.ynov.informatiqueb2.lesbonnesaffairesdebib
         setContentView(R.layout.activity_main);
         new GetAnnonces().execute();
 
+        //récupérer les éléments du layout.
         spinner = findViewById(R.id.spinner);
         rechercheButton = findViewById(R.id.boutonRechercher);
         rechercheMenu = findViewById(R.id.rechercheMenu);
         rechercheCPVille = findViewById(R.id.villecpMenu);
+
+        //définition des différentes catégories
         String[] itemsCat = new String[]{"Tous", "Vêtements", "Voitures"};
 
+        //mise en place de la dropdown liste
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, R.layout.support_simple_spinner_dropdown_item, itemsCat) {
+
         };
         spinner.setAdapter(adapter);
 
@@ -61,10 +66,12 @@ public class MainActivity extends com.ynov.informatiqueb2.lesbonnesaffairesdebib
             @Override
             public void onClick(View v) {
 
+                //récupération des filtres sur le clique du bouton recherche
                 String filtre1 = rechercheMenu.getText().toString();
                 String filtre2 = spinner.getSelectedItem().toString();
                 String filtre3 = rechercheCPVille.getText().toString();
 
+                //rafraichissement de la liste des annonces en appelant la classe GetAnnonces avec les filtres en paramètre.
                 new GetAnnonces().execute(filtre1, filtre2, filtre3);
             }
         });
@@ -135,6 +142,7 @@ public class MainActivity extends com.ynov.informatiqueb2.lesbonnesaffairesdebib
                     myDate = new Date(new Long(o.getString("dateCreation")));
                     list.setDate(prettyTime.format(myDate));
                     listAnnonce.add(list);
+                    //Log.d("Temps", prettyTime.format(new Date(System.currentTimeMillis())));
                 }
                 //On instancie notre Adapter et lui passe en argument notre liste d'objets
                 AdapterListAnnonce adapter = new AdapterListAnnonce(MainActivity.this,0,listAnnonce);
@@ -150,15 +158,24 @@ public class MainActivity extends com.ynov.informatiqueb2.lesbonnesaffairesdebib
         }
     }
 
+    //méthode pour récupérer la partie nécessaire à la formation de l'url à partir du lien de l'image
     public String GetImageName(String fullPath){
-        String imageName;
+        String imageName = null;
 
+        //découpe du lien selon le caractère "/"
         String[] parts = fullPath.split("/");
-        imageName = parts[6];
 
+        for(int i=0; i<parts.length; i++){
+            //si la partie contient l'extension jpg ou jpeg ou png alors on récupère la string correspondante.
+            if(parts[i].indexOf("jpg") >= 0 || parts[i].indexOf("jpeg") >= 0 || parts[i].indexOf("png") >= 0)
+            {
+                imageName = parts[i];
+            }
+        }
         return imageName;
     }
 
+    //méthode de génération d'url selon les filtres choisis par l'utilisateur.
     public String GenerateFilteredURL(String[] strings)
     {
         String url;
@@ -167,13 +184,25 @@ public class MainActivity extends com.ynov.informatiqueb2.lesbonnesaffairesdebib
         url = "http://139.99.98.119:8080/findAnnonces";
 
         if(strings.length>0) {
+            //définition du tableau contenant les clés des filtres.
             keysFilter = new String[]{"motCle", "categorie", "localisation"};
 
+            //pour chaque élément de filtre passé en paramètre...
             for (int i = 0; i < strings.length; i++) {
+                //... on stock la clé et la valeur correspondante dans les deux variables ci-dessous...
                 String currentFilterContent = strings[i];
                 String currentFilterKey = keysFilter[i];
 
+                //si l'utilisateur choisi "Tous" pour voir toutes les annonces, on passe le élimine le paramètre
+                //pour qu'il ne passe pas dans l'url.
+                if(currentFilterContent == "Tous" && currentFilterKey == "categorie"){
+                    currentFilterContent = null;
+                }
+
+                //... si l'utilisateur a bien entré une valeur...
                 if(currentFilterContent != null){
+                    //... on vérifie si l'url contient déjà un élément de filtre en paramètre ou non via la présence du "?"
+                    //puis on l'ajoute de la bonne manière.
                     if(url.indexOf("?") < 0){
                         url = url + "?" + currentFilterKey + "=" + currentFilterContent;
                     }

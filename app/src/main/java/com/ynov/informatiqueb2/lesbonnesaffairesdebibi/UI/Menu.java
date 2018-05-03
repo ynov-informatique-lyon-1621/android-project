@@ -38,7 +38,7 @@ public class Menu extends AppCompatActivity {
                 startActivity(modifierIntent);
                 return true;*/
             case R.id.action_menu_quatre:
-                Intent favorisIntent = new Intent(getBaseContext(), IdentificationActivity.class);
+                Intent favorisIntent = new Intent(getBaseContext(), FavorisActivity.class);
                 startActivity(favorisIntent);
                 return true;
             case R.id.action_menu_cinq:

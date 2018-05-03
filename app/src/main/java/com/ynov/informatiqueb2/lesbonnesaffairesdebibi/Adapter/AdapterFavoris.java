@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,14 +24,16 @@ import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.Model.ListAnnonceModel;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.UI.DetailAnnonceActivity;
 
-
 import java.util.List;
 
-import static java.security.AccessController.getContext;
+public class AdapterFavoris extends ArrayAdapter<ListAnnonceModel> {
+    public AdapterFavoris(@NonNull Context context, int resource) {
+        super(context, resource);
+    }
 
-public class AdapterListAnnonce extends ArrayAdapter<ListAnnonceModel>{
 
-    //definir un sharedPref custom pour les favoris.
+
+/*
     SharedPreferences favPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
     SharedPreferences.Editor prefEditor = favPreferences.edit();
 
@@ -40,18 +43,34 @@ public class AdapterListAnnonce extends ArrayAdapter<ListAnnonceModel>{
         TextView date;
         TextView categorie;
         ImageView imageArticle;
-        ImageView favArticle;
+        CheckBox favArticle;
     }
 
-    public AdapterListAnnonce(@NonNull Context context, int resource, @NonNull List<ListAnnonceModel> objects) {
-        super(context, resource, objects);
-        favPreferences.edit().putString("nbrFav", "1").commit();
+    public AdapterFavoris(@NonNull Context context, int resource) {
+            super(context, resource);
     }
 
     @NonNull
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
+
+        String nbrFav = favPreferences.getString("nbrFav","");
+
+        Gson gson = new Gson();
+        String json = favPreferences.getString("Annonce1", "");
+        *//*
+        int nbrFavAsInt = Integer.parseInt(nbrFav)-1;
+        nbrFav = String.valueOf(nbrFavAsInt);
+
+        favPreferences.edit().putString("nbrFav", nbrFav);*//*
+
+        final ListAnnonceModel annonce = gson.fromJson(json, ListAnnonceModel.class);
+
+        Log.e("cat", annonce.getCategorie());
+        Log.e("titre",annonce.getTitle());
+        Log.e("desc", annonce.getDescription());
+        Log.e("id", annonce.getId());
         //Nous prenons l'item de la classe
         ListAnnonceModel listAnnonceModel = getItem(position);
         //On check si il existe deja une view, si elle n'existe pas, on crée un nouveau ViewHolder, on defini sur quel layout on va travailler et on recupère nos champs sur le layout.
@@ -66,7 +85,7 @@ public class AdapterListAnnonce extends ArrayAdapter<ListAnnonceModel>{
             v.categorie = (TextView) convertView.findViewById(R.id.categorieMenu);
             v.date = (TextView) convertView.findViewById(R.id.dateMenu);
             v.imageArticle = (ImageView) convertView.findViewById(R.id.imageArticle);
-            v.favArticle = (ImageView) convertView.findViewById(R.id.favorisID);
+            v.favArticle = (CheckBox) convertView.findViewById(R.id.favorisID);
 
             //On met notre viewHolder en cache
             convertView.setTag(v);
@@ -74,36 +93,40 @@ public class AdapterListAnnonce extends ArrayAdapter<ListAnnonceModel>{
         else{
             //Si convertView n'est pas null, on retrouve notre viewHolder avec le tag
             v = (ViewHolder) convertView.getTag();
-
         }
 
+
         //On set les données dans le template en utilisant les objets
-        v.title.setText(listAnnonceModel.getTitle());
-        v.categorie.setText(listAnnonceModel.getCategorie());
-        v.date.setText(listAnnonceModel.getDate());
-        v.prix.setText(listAnnonceModel.getPrix() + " €");
+
+        v.title.setText(annonce.getTitle());
+        v.categorie.setText(annonce.getCategorie());
+        v.date.setText(annonce.getDate());
+        v.prix.setText(annonce.getPrix() + " €");
+
 
         //Pour les images, on utilise notre methode DownloadImage, avec notre champ d'image présent dans le template en parametres.
         new DownloadImage((ImageView) v.imageArticle)
-                .execute("http://139.99.98.119:8080/images/lesbonsplansdebibi/" + listAnnonceModel.getImage());
+                .execute("http://139.99.98.119:8080/images/lesbonsplansdebibi/" + annonce.getImage());
+
 
         //Pour pouvoir cliquer sur un objet et voir les details, on set un clickListener sur notre convertView.
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //On recupère la position de l'objet sur le quel on clique.
-                ListAnnonceModel details = getItem(position);
+                //ListAnnonceModel details = getItem(position);
                 //On crée un nouvel intent entre notre context (ici MainActivity) et le DetailAnnonceActivity.
                 Intent intentDetailAnnonce = new Intent(getContext(), DetailAnnonceActivity.class);
                 //On fait passer toutes les valeurs de l'objet sur lequel on a cliqué dans notre Intent.
-                intentDetailAnnonce.putExtra("id", details.getId());
-                intentDetailAnnonce.putExtra("titre", details.getTitle());
-                intentDetailAnnonce.putExtra("categorie", details.getCategorie());
-                intentDetailAnnonce.putExtra("prix", details.getPrix());
-                intentDetailAnnonce.putExtra("description", details.getDescription());
-                intentDetailAnnonce.putExtra("date", details.getDate());
-                intentDetailAnnonce.putExtra("vendeur", details.getVendeur());
-                intentDetailAnnonce.putExtra("image", details.getImage());
+                intentDetailAnnonce.putExtra("id", annonce.getId());
+                intentDetailAnnonce.putExtra("titre", annonce.getTitle());
+                intentDetailAnnonce.putExtra("categorie", annonce.getCategorie());
+                intentDetailAnnonce.putExtra("prix", annonce.getPrix());
+                intentDetailAnnonce.putExtra("description", annonce.getDescription());
+                intentDetailAnnonce.putExtra("date", annonce.getDate());
+                intentDetailAnnonce.putExtra("vendeur", annonce.getVendeur());
+                intentDetailAnnonce.putExtra("image", annonce.getImage());
+
 
                 //On démarre notre activity qui va nous montrer les details du perso sur lequel on a cliqué.
                 getContext().startActivity(intentDetailAnnonce);
@@ -111,41 +134,15 @@ public class AdapterListAnnonce extends ArrayAdapter<ListAnnonceModel>{
             }
         });
 
-        v.favArticle.setOnClickListener(new View.OnClickListener()  {
+        v.favArticle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
             ListAnnonceModel selectedAnnonce = getItem(position);
-            Gson gson = new Gson();
-            String annonceJson = gson.toJson(selectedAnnonce);
 
             @Override
-            public void onClick(View v) {
-                String numCurrentFav = favPreferences.getString("nbrFav", "");
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if ( !isChecked ){
 
-                /*if (){
-                    prefEditor.putString("Annonce1", annonceJson).commit();
-
-                    int nbrFavAsInt = Integer.parseInt(numCurrentFav)+1;
-
-                    numCurrentFav = String.valueOf(nbrFavAsInt);
-
-                    favPreferences.edit().putString("nbrFav", numCurrentFav).commit();
-Log.e("apres", numCurrentFav);
-
-                    favPreferences.edit().putString("id", selectedAnnonce.getId())
-                            .putString("titre", selectedAnnonce.getTitle())
-                            .putString("categorie", selectedAnnonce.getCategorie())
-                            .putString("prix", selectedAnnonce.getPrix())
-                            .putString("description", selectedAnnonce.getDescription())
-                            .putString("date", selectedAnnonce.getDate())
-                            .putString("vendeur", selectedAnnonce.getVendeur())
-                            .putString("image", selectedAnnonce.getImage()).commit();
-
-                   Toast.makeText(getContext(), favPreferences.getString("nbrFav", ""), Toast.LENGTH_SHORT).show();
                 }
-                else if(!isChecked){
-
-                    int nbrFavAsInt = Integer.parseInt(numCurrentFav)-1;
-                }*/
             }
         });
 
@@ -153,5 +150,5 @@ Log.e("apres", numCurrentFav);
         //On retourne le vue precedemment complétée pour notre List de personnages
         return convertView;
 
-    }
+    }*/
 }
