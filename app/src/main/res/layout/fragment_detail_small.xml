@@ -15,8 +15,8 @@
 
         <ImageView
             android:id="@+id/imageDsp"
-            android:layout_width="200dp"
-            android:layout_height="100dp"
+            android:layout_width="220dp"
+            android:layout_height="110dp"
             android:layout_weight="1"
             android:src="@mipmap/ic_launcher" />
 
@@ -48,10 +48,16 @@
                 android:text="TextView" />
 
             <TextView
+                android:id="@+id/vendorDsp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
+            <TextView
                 android:id="@+id/priceDsp"
                 style="@style/h2"
                 android:layout_width="match_parent"
-                android:layout_height="32dp"
+                android:layout_height="wrap_content"
                 android:gravity="bottom|right"
                 android:text="TextView" />
 

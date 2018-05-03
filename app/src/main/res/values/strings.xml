@@ -60,6 +60,7 @@
     <string name="cate_placeholder">Catégorie : %1$s</string>
     <string name="phone_label">Numéro de téléphone</string>
     <string name="message_label">Numéro de téléphone</string>
+    <string name="vendor_placeholder">Vendu par %1$s</string>
 
     <!--Navigation-->
     <string name="action_home">Acceuil </string>

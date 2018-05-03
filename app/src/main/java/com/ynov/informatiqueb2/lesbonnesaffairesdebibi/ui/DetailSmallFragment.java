@@ -61,12 +61,14 @@ public class DetailSmallFragment extends Fragment {
         TextView priceDsp = v.findViewById(R.id.priceDsp);
         TextView cateDsp = v.findViewById(R.id.categorieDsp);
         TextView dateDsp = v.findViewById(R.id.dateDsp);
+        TextView vendorDsp = v.findViewById(R.id.vendorDsp);
         ImageView imageView = v.findViewById(R.id.imageDsp);
 
         titleDsp.setText(this.announcement.getTitre());
         priceDsp.setText(getActivity().getString(R.string.price_placeholder,this.announcement.getPrix()));
         cateDsp.setText(getActivity().getString(R.string.cate_placeholder,this.announcement.getCategorie()));
         dateDsp.setText(DateFormater.format(this.announcement.getDateCreation()));
+        vendorDsp.setText(getString(R.string.vendor_placeholder,this.announcement.getNomVendeur()));
         Glide.with(getActivity()).load(this.announcement.getImage()).into(imageView);
         return v;
     }
