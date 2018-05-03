@@ -15,6 +15,7 @@
     <string name="edit_annoucement">Modifier vos annonces</string>
     <string name="action_send">Envoyer</string>
     <string name="back_to_announcement">Retour à l\'annonce</string>
+    <string name="back_to_search">Retour à la recherche</string>
     <string name="reset">RESET</string>
 
     <!--Error messages-->
@@ -25,6 +26,7 @@
     <string name="error_generic_form">Le formulaire contient une erreur</string>
     <string name="image_missing">Veuillez ajouter une image</string>
     <string name="invalid_credentials">Vos identifiants ne sont pas reconnus</string>
+    <string name="message_not_send">Votre message n\'a pas été envoyé</string>
 
 
     <!--Sucess messages-->
@@ -32,6 +34,15 @@
     <string name="create_success">Votre annonce à été modifiée</string>
     <string name="delete_success">Votre annonce à été supprimée</string>
     <string name="generic_sucess">Opération réussie</string>
+    <string name="message_sent_sucess">
+        Votre message à bien été envoyé au serveur.\n
+        Le vendeur reviendra vers vous rapidement.\n\n
+
+        Merci pour votre confiance,\n
+        Bonne journéee,\n\n
+
+        Les bonnes affaires de bibi\n
+    </string>
 
     <!--Form labels-->
     <string name="search_label">Que cherchez vous ?</string>

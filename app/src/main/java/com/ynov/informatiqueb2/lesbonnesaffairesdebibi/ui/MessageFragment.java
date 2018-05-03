@@ -3,8 +3,10 @@ package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,13 @@ import android.widget.TextView;
 
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model.Announcement;
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model.Message;
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.service.ApiService;
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.utils.AlertUtils;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -64,18 +73,10 @@ public class MessageFragment extends Fragment {
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.smallDetailDsp,DetailSmallFragment.newInstance(this.announcement))
                 .commit();
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.formOrConfirm,MessageFormFragment.newInstance(Integer.valueOf(this.announcement.getId()),this.announcement.getNomVendeur()))
+                .commit();
 
-        this.nameIpt = v.findViewById(R.id.nameIpt);
-        this.mailIpt = v.findViewById(R.id.mailIpt);
-        this.phoneIpt = v.findViewById(R.id.phoneIpt);
-        this.messageIpt = v.findViewById(R.id.messageIpt);
-        Button sendBtn = v.findViewById(R.id.sendBtn);
-        Button backBtn = v.findViewById(R.id.backButton);
-        Button resetBtn = v.findViewById(R.id.resetBtn);
-
-        sendBtn.setOnClickListener(this.listener);
-        backBtn.setOnClickListener(this.listener);
-        resetBtn.setOnClickListener(this.listener);
         return v;
     }
 
@@ -118,51 +119,9 @@ public class MessageFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    protected boolean checkForm() {
-        boolean hasError = false;
-        EditText[] toChek = {this.nameIpt, this.mailIpt, this.phoneIpt,
-                this.messageIpt};
-        for (EditText input : toChek) {
-            if (TextUtils.isEmpty(input.getText())) {
-                input.setError(getString(R.string.empty_error));
-                hasError = true;
-            }
-        }
-        return !hasError;
+    public void showConfirmation() {
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.formOrConfirm,MessageConfirmationFragment.newInstance())
+                .commit();
     }
-
-    private void onSendClicked(){
-        if(this.checkForm()){
-
-        }
-    }
-
-    private void OnResetClicked(){
-        EditText[] toChek = {this.nameIpt, this.mailIpt, this.phoneIpt,
-                this.messageIpt};
-        for (EditText input : toChek) {
-            input.setText("");
-        }
-    }
-
-    private void onBackClicked(){
-        ((BaseActivity)getActivity()).onBackPressed();
-    }
-
-    // Generic listener
-    private View.OnClickListener listener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()){
-                case R.id.sendBtn:
-                    onSendClicked();
-                    break;
-                case R.id.backButton:
-                    onBackClicked();
-                    break;
-                case R.id.resetBtn:
-                    OnResetClicked();
-            }
-        }
-    };
 }

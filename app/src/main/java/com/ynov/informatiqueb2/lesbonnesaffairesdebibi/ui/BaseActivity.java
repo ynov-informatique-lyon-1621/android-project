@@ -36,7 +36,9 @@ public class BaseActivity extends AppCompatActivity  implements
         LoginFragment.OnFragmentInteractionListener,
         OwnedAnnouncementFragment.OnFragmentInteractionListener,
         DetailSmallFragment.OnFragmentInteractionListener,
-        MessageFragment.OnFragmentInteractionListener{
+        MessageFragment.OnFragmentInteractionListener,
+        MessageFormFragment.OnFragmentInteractionListener
+{
 
     Toolbar toolbar;
     DrawerLayout navDrawer;
@@ -139,4 +141,9 @@ public class BaseActivity extends AppCompatActivity  implements
             }
         }
     }
+
+    public void onMessageSent() {
+        ((MessageFragment)getSupportFragmentManager().findFragmentById(R.id.content_frame)).showConfirmation();
+    }
+
 }

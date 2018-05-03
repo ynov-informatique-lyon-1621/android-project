@@ -1,6 +1,7 @@
 package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.service;
 
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model.Announcement;
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model.Message;
 
 import java.util.List;
 import java.util.Map;
@@ -43,4 +44,6 @@ public interface ApiInterface {
     @DELETE("announcements/{id}")
     Call<Object> deleteAnnonce(@Path("id") String id);
 
+    @POST("messages")
+    Call<Message> sendMessage(@Body Message message);
 }
