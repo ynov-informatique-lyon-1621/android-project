@@ -15,7 +15,7 @@ import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 
 
 
-public class ConfirmationMessageActivity extends AppCompatActivity {
+public class ConfirmationMessageActivity extends com.ynov.informatiqueb2.lesbonnesaffairesdebibi.UI.Menu {
 
     ImageView imageConfirm;
     TextView titreConfirm;

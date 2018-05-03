@@ -14,7 +14,7 @@ import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.Controller.DownloadImage;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 
 
-public class DetailAnnonceActivity extends AppCompatActivity {
+public class DetailAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaffairesdebibi.UI.Menu {
 
     ImageView imageDetail;
     TextView titleDetail;
@@ -77,33 +77,5 @@ public class DetailAnnonceActivity extends AppCompatActivity {
 
             }
         });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //ajoute les entrées de menu_test à l'ActionBar
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    //gère le click sur une action de l'ActionBar
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.action_menu_un:
-                Intent mainActivityIntent = new Intent(getBaseContext(), MainActivity.class);
-                startActivity(mainActivityIntent);
-                return true;
-            case R.id.action_menu_deux:
-                Intent deposerAnnonceIntent = new Intent(getBaseContext(), DeposerAnnonceActivity.class);
-                startActivity(deposerAnnonceIntent);
-                return true;
-            case R.id.action_menu_trois:
-                Intent favorisIntent = new Intent(getBaseContext(), IdentificationActivity.class);
-                startActivity(favorisIntent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 }

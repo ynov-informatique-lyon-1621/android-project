@@ -34,28 +34,18 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends com.ynov.informatiqueb2.lesbonnesaffairesdebibi.UI.Menu {
 
     Spinner spinner;
     Button rechercheButton;
     EditText rechercheMenu;
     EditText rechercheCPVille;
-    Button menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         new GetAnnonces().execute();
-        menu = (Button) findViewById(R.id.menu);
-
-        menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent ChoiceActivityIntent = new Intent(MainActivity.this, ChoiceActivity.class);
-                startActivity(ChoiceActivityIntent);
-            }
-        });
 
         spinner = findViewById(R.id.spinner);
         rechercheButton = findViewById(R.id.boutonRechercher);
@@ -78,34 +68,6 @@ public class MainActivity extends AppCompatActivity {
                 new GetAnnonces().execute(filtre1, filtre2, filtre3);
             }
         });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //ajoute les entrées de menu_test à l'ActionBar
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    //gère le click sur une action de l'ActionBar
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.action_menu_un:
-                Intent mainActivityIntent = new Intent(getBaseContext(), MainActivity.class);
-                startActivity(mainActivityIntent);
-                return true;
-            case R.id.action_menu_deux:
-                Intent deposerAnnonceIntent = new Intent(getBaseContext(), DeposerAnnonceActivity.class);
-                startActivity(deposerAnnonceIntent);
-                return true;
-            case R.id.action_menu_trois:
-                Intent favorisIntent = new Intent(getBaseContext(), IdentificationActivity.class);
-                startActivity(favorisIntent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
     public class GetAnnonces extends AsyncTask<String,String,String>

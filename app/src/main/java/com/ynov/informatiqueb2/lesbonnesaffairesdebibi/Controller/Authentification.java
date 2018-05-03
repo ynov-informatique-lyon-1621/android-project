@@ -70,12 +70,12 @@ public class Authentification extends AsyncTask<String, String , String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
 
-        //Traitement de la string reçu, si la réponse du serveur est "true", on crée notre intent entre le la MainActivity et ChoiceActivity.
+        //Traitement de la string reçu
         if (s.equals("true")) {
             Intent intentIdOk = new Intent(weakActivity.get().getBaseContext(),
                     MainActivity.class);
 
-            Log.i("START ACTIVITY", "Lancement de l'activité ChoiceActivity");
+            Log.i("START ACTIVITY", "Lancement de l'activité main");
             Toast.makeText(weakActivity.get().getBaseContext(), "Bienvenue " + login, Toast.LENGTH_SHORT).show();
             weakActivity.get().startActivity(intentIdOk);
 

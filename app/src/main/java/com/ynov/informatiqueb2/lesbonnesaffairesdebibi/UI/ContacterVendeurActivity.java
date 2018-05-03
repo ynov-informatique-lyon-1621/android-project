@@ -18,7 +18,7 @@ import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 import java.util.regex.Pattern;
 
 
-public class ContacterVendeurActivity extends AppCompatActivity {
+public class ContacterVendeurActivity extends com.ynov.informatiqueb2.lesbonnesaffairesdebibi.UI.Menu {
 
     ImageView imageContact;
     TextView titreContact;

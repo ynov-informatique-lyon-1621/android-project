@@ -9,8 +9,16 @@
         android:id="@+id/action_menu_deux"
         android:title="@string/action_menu_deux"
         app:showAsAction="never" />
-    <item
+    <!--<item
         android:id="@+id/action_menu_trois"
         android:title="@string/action_menu_trois"
+        app:showAsAction="never" />-->
+    <item
+    android:id="@+id/action_menu_quatre"
+    android:title="@string/action_menu_quatre"
+    app:showAsAction="never" />
+    <item
+        android:id="@+id/action_menu_cinq"
+        android:title="@string/action_menu_cinq"
         app:showAsAction="never" />
 </menu>
