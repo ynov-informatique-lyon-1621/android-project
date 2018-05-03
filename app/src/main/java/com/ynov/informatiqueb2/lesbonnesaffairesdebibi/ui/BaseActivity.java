@@ -32,7 +32,9 @@ import java.util.List;
 public class BaseActivity extends AppCompatActivity  implements
         DetailFragment.OnFragmentInteractionListener,
         AnnouncementListFragment.OnFragmentInteractionListener,
-        EditionFragment.OnFragmentInteractionListener {
+        EditionFragment.OnFragmentInteractionListener,
+        LoginFragment.OnFragmentInteractionListener,
+        OwnedAnnouncementFragment.OnFragmentInteractionListener{
 
     Toolbar toolbar;
     DrawerLayout navDrawer;
@@ -91,11 +93,10 @@ public class BaseActivity extends AppCompatActivity  implements
                 break;
                 case R.id.action_add:
                     fragment = EditionFragment.newInstance();
-//                    intent = new Intent(BaseActivity.this, EditionActivity.class);
                     break;
-//                case R.id.action_edit:
-////                    intent = new Intent(BaseActivity.this,LoginActivity.class);
-//                    break;
+                case R.id.action_edit:
+                    fragment = LoginFragment.newInstance();
+                    break;
                 case R.id.action_home:
                 default:
                     fragment = AnnouncementListFragment.newInstance();

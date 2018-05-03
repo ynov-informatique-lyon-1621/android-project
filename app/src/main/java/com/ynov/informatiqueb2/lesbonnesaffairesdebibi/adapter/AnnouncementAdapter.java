@@ -1,10 +1,8 @@
 package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.adapter;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,10 +20,8 @@ import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model.Announcement;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.service.ApiService;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.service.FavoritesAnnoucementsManager;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui.BaseActivity;
-import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui.DetailActivity;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui.DetailFragment;
-import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui.EditionActivity;
-import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui.OwnedAnnoucementListActivity;
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui.EditionFragment;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.utils.AlertUtils;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.utils.DateFormater;
 
@@ -167,15 +163,13 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
     }
 
     private void navToDetailView(Announcement announcement) {
-
         Fragment fragment = (Fragment)DetailFragment.newInstance(announcement);
         ((BaseActivity)activityWeakReference.get()).navigate(fragment);
     }
 
     private void navToEditionView(Announcement announcement) {
-        Intent intent = new Intent(activityWeakReference.get(), EditionActivity.class);
-        intent.putExtra("annoucement",announcement);
-        activityWeakReference.get().startActivity(intent);
+        Fragment fragment = EditionFragment.newInstance(announcement);
+        ((BaseActivity)activityWeakReference.get()).navigate(fragment);
     }
 
     private void deleteAnnouncement(Announcement announcement) {
@@ -186,10 +180,8 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
         @Override
         public void onResponse(@NonNull Call call, Response response) {
             if(response.code() == 204) {
-                AlertUtils.alertSucess(activityWeakReference.get(),activityWeakReference.get().getString(R.string.delete_success));
-                if(activityWeakReference.get().getClass().equals(OwnedAnnoucementListActivity.class)){
-                    ((OwnedAnnoucementListActivity)activityWeakReference.get()).fetchAnnouncements();
-                }
+                AlertUtils.alertSucess(activityWeakReference.get(),activityWeakReference.get().getString(R.string.delete_success)).show();
+                //TODO : Find how to refresh
             } else {
                 AlertUtils.alertFailure(activityWeakReference.get()).show();
             }

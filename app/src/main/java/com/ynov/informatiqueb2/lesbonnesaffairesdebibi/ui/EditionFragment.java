@@ -88,7 +88,7 @@ public class EditionFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            Announcement announcement = (Announcement) getArguments().getSerializable(ARG_ANNOUNCEMENT);
+            this.announcement = (Announcement) getArguments().getSerializable(ARG_ANNOUNCEMENT);
             if(announcement != null) {
                 this.mode = EDITION_MODE;
             }else
@@ -124,6 +124,7 @@ public class EditionFragment extends Fragment {
 
         if(this.mode == EDITION_MODE){
             this.fillFields();
+            this.selectImageBtn.setVisibility(View.GONE);
         }
 
         this.selectImageBtn.setOnClickListener(new View.OnClickListener() {
