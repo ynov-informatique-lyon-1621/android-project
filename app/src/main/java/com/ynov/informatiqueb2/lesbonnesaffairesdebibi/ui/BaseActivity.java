@@ -4,9 +4,11 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
+import android.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -24,19 +26,21 @@ import android.widget.FrameLayout;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.adapter.AnnouncementAdapter;
 
-public abstract class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends AppCompatActivity implements AnnouncementListFragment.OnFragmentInteractionListener {
 
     Toolbar toolbar;
     DrawerLayout navDrawer;
-    protected abstract int getLayoutResource();
+    protected int getLayoutResource(){
+        return 0;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
 
-        FrameLayout contentLayout =  findViewById(R.id.content_frame);
-        getLayoutInflater().inflate(getLayoutResource(), contentLayout, true);
+//        FrameLayout contentLayout =  findViewById(R.id.content_frame);
+//        getLayoutInflater().inflate(getLayoutResource(), contentLayout, true);
 
         toolbar = findViewById(R.id.toolbar);
         navDrawer = findViewById(R.id.drawer_layout);
@@ -50,6 +54,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
 
         navigationView.setNavigationItemSelectedListener(this.navigationItemSelectedListener);
+
+        navigate( AnnouncementListFragment.newInstance());
 
     }
 
@@ -76,8 +82,9 @@ public abstract class BaseActivity extends AppCompatActivity {
             item.setChecked(true);
             switch (item.getItemId()) {
                 case R.id.action_fav:
-                intent = new Intent(BaseActivity.this, AnnouncementListActivity.class);
-                intent.putExtra("mode", AnnouncementAdapter.FAV_ONLY_MODE);
+                    Fragment fragment = AnnouncementListFragment.newInstance(AnnouncementAdapter.FAV_ONLY_MODE);
+                    navigate(fragment);
+
                 break;
                 case R.id.action_add:
                     intent = new Intent(BaseActivity.this, EditionActivity.class);
@@ -90,8 +97,20 @@ public abstract class BaseActivity extends AppCompatActivity {
                     intent = new Intent(BaseActivity.this, AnnouncementListActivity.class);
                     break;
             }
-            startActivity(intent);
+//            startActivity(intent);
+            navDrawer.closeDrawer(Gravity.START);
             return true;
         }
     };
+
+    public void navigate(android.app.Fragment fragment) {
+        getFragmentManager().beginTransaction()
+                .replace(R.id.content_frame, fragment)
+                .commit();
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
 }

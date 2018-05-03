@@ -32,7 +32,7 @@ public class SplashActivity extends AppCompatActivity {
     private TimerTask navigate = new TimerTask() {
         @Override
         public void run() {
-            Intent intent = new Intent(SplashActivity.this, AnnouncementListActivity.class);
+            Intent intent = new Intent(SplashActivity.this, BaseActivity.class);
             startActivity(intent);
         }
     };
