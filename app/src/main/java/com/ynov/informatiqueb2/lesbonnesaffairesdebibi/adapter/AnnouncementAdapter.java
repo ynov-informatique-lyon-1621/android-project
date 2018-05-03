@@ -1,6 +1,7 @@
 package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.adapter;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
@@ -20,7 +21,9 @@ import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model.Announcement;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.service.ApiService;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.service.FavoritesAnnoucementsManager;
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui.BaseActivity;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui.DetailActivity;
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui.DetailFragment;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui.EditionActivity;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui.OwnedAnnoucementListActivity;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.utils.AlertUtils;
@@ -164,9 +167,9 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
     }
 
     private void navToDetailView(Announcement announcement) {
-        Intent intent = new Intent(activityWeakReference.get(), DetailActivity.class);
-        intent.putExtra("annoucement",announcement);
-        activityWeakReference.get().startActivity(intent);
+
+        Fragment fragment = (Fragment)DetailFragment.newInstance(announcement);
+        ((BaseActivity)activityWeakReference.get()).navigate(fragment);
     }
 
     private void navToEditionView(Announcement announcement) {

@@ -26,7 +26,7 @@ import android.widget.FrameLayout;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.adapter.AnnouncementAdapter;
 
-public class BaseActivity extends AppCompatActivity implements AnnouncementListFragment.OnFragmentInteractionListener {
+public class BaseActivity extends AppCompatActivity implements DetailFragment.OnFragmentInteractionListener, AnnouncementListFragment.OnFragmentInteractionListener {
 
     Toolbar toolbar;
     DrawerLayout navDrawer;
@@ -78,26 +78,24 @@ public class BaseActivity extends AppCompatActivity implements AnnouncementListF
     private NavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener = new NavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Intent intent;
-            item.setChecked(true);
+            Fragment fragment;
             switch (item.getItemId()) {
                 case R.id.action_fav:
-                    Fragment fragment = AnnouncementListFragment.newInstance(AnnouncementAdapter.FAV_ONLY_MODE);
+                    fragment= AnnouncementListFragment.newInstance(AnnouncementAdapter.FAV_ONLY_MODE);
                     navigate(fragment);
-
                 break;
                 case R.id.action_add:
-                    intent = new Intent(BaseActivity.this, EditionActivity.class);
+//                    intent = new Intent(BaseActivity.this, EditionActivity.class);
                     break;
                 case R.id.action_edit:
-                    intent = new Intent(BaseActivity.this,LoginActivity.class);
+//                    intent = new Intent(BaseActivity.this,LoginActivity.class);
                     break;
                 case R.id.action_home:
                 default:
-                    intent = new Intent(BaseActivity.this, AnnouncementListActivity.class);
+                    fragment = AnnouncementListFragment.newInstance(AnnouncementAdapter.FAV_ONLY_MODE);
+                    navigate(fragment);
                     break;
             }
-//            startActivity(intent);
             navDrawer.closeDrawer(Gravity.START);
             return true;
         }
@@ -106,11 +104,17 @@ public class BaseActivity extends AppCompatActivity implements AnnouncementListF
     public void navigate(android.app.Fragment fragment) {
         getFragmentManager().beginTransaction()
                 .replace(R.id.content_frame, fragment)
+                .addToBackStack("PREVIOUS")
                 .commit();
     }
 
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        getFragmentManager().popBackStackImmediate();
     }
 }
