@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,11 +19,18 @@ import com.ynov.lesbonnesaffairesdebibi.R;
 import com.ynov.lesbonnesaffairesdebibi.model.Annonce;
 import com.ynov.lesbonnesaffairesdebibi.service.DateService;
 import com.ynov.lesbonnesaffairesdebibi.service.FavoriteService;
+import com.ynov.lesbonnesaffairesdebibi.service.HttpService;
 import com.ynov.lesbonnesaffairesdebibi.ui.AddActivity;
 import com.ynov.lesbonnesaffairesdebibi.ui.MyListActivity;
 
 import java.io.Serializable;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AnnonceAdapter extends BaseAdapter {
 
@@ -135,8 +143,28 @@ public class AnnonceAdapter extends BaseAdapter {
                         .setPositiveButton("Supprimer", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(mContext, "Annonce supprimée", Toast.LENGTH_SHORT).show();
-                                // Suppression de l'annonce...
+
+                                HttpService httpService = new Retrofit.Builder().baseUrl(HttpService.ENDPOINT)
+                                        .addConverterFactory(GsonConverterFactory.create()).build()
+                                        .create(HttpService.class);
+
+                                httpService.deleteAnnonce(annonce.getId()).enqueue(new Callback<Void>() {
+                                    @Override
+                                    public void onResponse(Call<Void> call, Response<Void> response) {
+                                        if(response.code() == 200) {
+                                            Toast.makeText(mContext, "Annonce supprimée avec succès.", Toast.LENGTH_SHORT).show();
+                                        } else if(response.code() == 400) {
+                                            Toast.makeText(mContext, "Erreur lors de la suppression de l'annonce. Veuillez rééssayer ultérieurement.", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<Void> call, Throwable t) {
+                                        Toast.makeText(mContext, "Une erreur est survenue lors de l'envoi. Vérifiez votre connexion internet puis rééssayez.", Toast.LENGTH_SHORT).show();
+                                        Log.d("WebRequest", "Error : " + t.getMessage());
+                                    }
+                                });
+
                             }
                         })
                         .setNegativeButton("Annuler", null)
@@ -147,6 +175,5 @@ public class AnnonceAdapter extends BaseAdapter {
 
         return vi;
     }
-
 
 }

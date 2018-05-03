@@ -3,7 +3,6 @@ package com.ynov.lesbonnesaffairesdebibi.ui;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -21,13 +20,12 @@ import com.myhexaville.smartimagepicker.ImagePicker;
 import com.squareup.picasso.Picasso;
 import com.ynov.lesbonnesaffairesdebibi.R;
 import com.ynov.lesbonnesaffairesdebibi.model.Annonce;
-import com.ynov.lesbonnesaffairesdebibi.model.Message;
 import com.ynov.lesbonnesaffairesdebibi.service.HttpService;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Locale;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -87,11 +85,6 @@ public class AddActivity extends BaseActivity {
 
             Annonce annonce = (Annonce) getIntent().getSerializableExtra("data");
             Picasso.get().load(annonce.getImage()).into(imageView);
-
-            /*addName.setText(annonce.getNomVendeur());
-            addEmail.setText(annonce.getEmail());
-            addPassword.setText(annonce.getMdp());
-            addPasswordConf.setText(annonce.getMdp());*/
 
             addTitle.setText(annonce.getTitre());
             addLocation.setText(annonce.getLocalisation());
@@ -158,16 +151,16 @@ public class AddActivity extends BaseActivity {
                 {
                     addButton.setEnabled(false);
 
-                    Annonce annonceObject = new Annonce();
-                    annonceObject.setTitre(title);
-                    annonceObject.setLocalisation(location);
-                    annonceObject.setCategorie(category);
-                    annonceObject.setPrix(Float.parseFloat(price));
-                    annonceObject.setDescription(description);
-                    annonceObject.setDateCreation(Long.valueOf(System.currentTimeMillis()).toString());
-
                     if(editMode) {
+                        Annonce annonceObject = new Annonce();
                         Annonce annonce = (Annonce) getIntent().getSerializableExtra("data");
+
+                        annonceObject.setTitre(title);
+                        annonceObject.setLocalisation(location);
+                        annonceObject.setCategorie(category);
+                        annonceObject.setPrix(Float.parseFloat(price));
+                        annonceObject.setDescription(description);
+                        annonceObject.setDateCreation(Long.valueOf(System.currentTimeMillis()).toString());
 
                         annonceObject.setNomVendeur(annonce.getNomVendeur());
                         annonceObject.setEmail(annonce.getEmail());
@@ -177,11 +170,23 @@ public class AddActivity extends BaseActivity {
 
                         updateAnnonce(annonceObject);
                     } else {
-                        annonceObject.setNomVendeur(name);
-                        annonceObject.setEmail(email);
-                        annonceObject.setMdp(password);
+                        JSONObject jsonObject = new JSONObject();
 
-                        saveAnnonce(annonceObject, imagePath);
+                        try {
+                            jsonObject.put("titre", title);
+                            jsonObject.put("localisation", location);
+                            jsonObject.put("categorie", category);
+                            jsonObject.put("prix", Float.parseFloat(price));
+                            jsonObject.put("description", description);
+                            jsonObject.put("dateCreation", Long.valueOf(System.currentTimeMillis()).toString());
+                            jsonObject.put("nomVendeur", name);
+                            jsonObject.put("email", email);
+                            jsonObject.put("mdp", password);
+                        } catch (JSONException e) {
+                            Toast.makeText(AddActivity.this, "Erreur lors de la création de l'annonce. Veuillez rééssayer ultérieurement.", Toast.LENGTH_SHORT).show();
+                        }
+
+                        saveAnnonce(jsonObject, imagePath);
                     }
                 }
             }
@@ -211,25 +216,38 @@ public class AddActivity extends BaseActivity {
                 .replace("€", "");
     }
 
-    public void saveAnnonce(final Annonce annonce, final Uri imageUri) {
+    public void saveAnnonce(final JSONObject annonce, final Uri imageUri) {
 
-        File image = new File(imageUri.getPath());
+        File file = new File(imageUri.getPath());
 
-        call = httpService.saveAnnonce(
-            annonce,
-            MultipartBody.Part.createFormData("image", image.getName(), RequestBody.create(MediaType.parse("image/*"), image))
-        );
+        RequestBody mFile = RequestBody.create(MediaType.parse("image/*"), file);
+        MultipartBody.Part bodyFile = MultipartBody.Part.createFormData("file", file.getName(), mFile);
+        RequestBody bodyText = RequestBody.create(MediaType.parse("text/plain"), annonce.toString());
+
+        call = httpService.saveAnnonce(bodyText, bodyFile);
 
         call.enqueue(new Callback<Void>() {
 
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 addButton.setEnabled(true);
+
                 if(response.code() == 201) {
-                    Toast.makeText(AddActivity.this, "Annonce envoyée", Toast.LENGTH_SHORT).show();
+                    new AlertDialog.Builder(AddActivity.this)
+                        .setIcon(R.drawable.ic_check_black_24dp)
+                        .setTitle("Annonce enregistrée")
+                        .setMessage("Votre annonce a bien été enregistrée.")
+                        .setPositiveButton("Retour à la liste", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                switchToActivity(ListActivity.class, false);
+                            }
+                        })
+                        .show();
                 } else if(response.code() == 400) {
                     Toast.makeText(AddActivity.this, "Votre annonce n'a pas pu être envoyée. Veuillez rééssayer ultérieurement.", Toast.LENGTH_SHORT).show();
                 }
+
             }
 
             @Override
@@ -250,6 +268,7 @@ public class AddActivity extends BaseActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 addButton.setEnabled(true);
+
                 if(response.code() == 200) {
                     new AlertDialog.Builder(AddActivity.this)
                         .setIcon(R.drawable.ic_check_black_24dp)
@@ -265,7 +284,6 @@ public class AddActivity extends BaseActivity {
                 } else if(response.code() == 400) {
                     Toast.makeText(AddActivity.this, "Une erreur est survenue lors de l'enregistrement de votre annonce. Veuillez rééssayer ultérieurement.", Toast.LENGTH_SHORT).show();
                 }
-
             }
 
             @Override
