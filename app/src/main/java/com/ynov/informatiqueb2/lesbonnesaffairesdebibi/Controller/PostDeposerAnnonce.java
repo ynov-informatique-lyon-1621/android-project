@@ -3,9 +3,22 @@ package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.Controller;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ssl.AllowAllHostnameVerifier;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.json.JSONObject;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -21,6 +34,7 @@ public class PostDeposerAnnonce extends AsyncTask<String,String,String> {
     String prix;
     String titre;
     String description;
+    String pathImage;
 
     @Override
     protected String doInBackground(String... strings) {
@@ -32,7 +46,44 @@ public class PostDeposerAnnonce extends AsyncTask<String,String,String> {
         prix = strings[4];
         titre = strings[5];
         description = strings[6];
+        pathImage = strings[7];
 
+
+            try {
+                File file = new File(pathImage);
+
+                CloseableHttpClient client = HttpClients.createDefault();
+                HttpPost post = new HttpPost("http://139.99.98.119:8080/saveAnnonce");
+                FileBody fileBody = new FileBody(file, ContentType.DEFAULT_BINARY);
+                StringBody stringBody = new StringBody("{\n" +
+                        "      \n" +
+                        "        \"nomVendeur\": \""+ nom + "\",\n" +
+                        "        \"email\": \"" +email+ "\",\n" +
+                        "        \"mdp\": \"" +pwd+ "\",\n" +
+                        "        \"titre\": \""+ titre+ "\",\n" +
+                        "        \"localisation\": \"Lyon\",\n" +
+                        "        \"categorie\": \""+categorie+"\",\n" +
+                        "        \"prix\": \""+prix+"\",\n" +
+                        "        \"description\": \""+description+"\"\n" +
+                        "        }", ContentType.MULTIPART_FORM_DATA);
+                //
+                MultipartEntityBuilder builder = MultipartEntityBuilder.create();
+                builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+                builder.addPart("file", fileBody);
+                builder.addPart("annonce", stringBody);
+
+                HttpEntity entity = builder.build();
+                //
+                post.setEntity(entity);
+                HttpResponse response = client.execute(post);
+
+
+            }catch(Exception e) {
+                e.printStackTrace();
+            }
+
+
+/*
         try {
             URL url = new URL("http://139.99.98.119:8080/saveAnnonce"); //On indique  l'URL du WebService pour notre POST.
             HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection(); //On ouvre une connexion.
@@ -76,5 +127,8 @@ public class PostDeposerAnnonce extends AsyncTask<String,String,String> {
         }
 
         return null;
-    }
+    }*/
+return null;
 }
+}
+
