@@ -8,7 +8,7 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -25,8 +25,14 @@ import android.widget.FrameLayout;
 
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.adapter.AnnouncementAdapter;
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model.Announcement;
 
-public class BaseActivity extends AppCompatActivity implements DetailFragment.OnFragmentInteractionListener, AnnouncementListFragment.OnFragmentInteractionListener {
+import java.util.List;
+
+public class BaseActivity extends AppCompatActivity  implements
+        DetailFragment.OnFragmentInteractionListener,
+        AnnouncementListFragment.OnFragmentInteractionListener,
+        EditionFragment.OnFragmentInteractionListener {
 
     Toolbar toolbar;
     DrawerLayout navDrawer;
@@ -82,27 +88,27 @@ public class BaseActivity extends AppCompatActivity implements DetailFragment.On
             switch (item.getItemId()) {
                 case R.id.action_fav:
                     fragment= AnnouncementListFragment.newInstance(AnnouncementAdapter.FAV_ONLY_MODE);
-                    navigate(fragment);
                 break;
                 case R.id.action_add:
+                    fragment = EditionFragment.newInstance();
 //                    intent = new Intent(BaseActivity.this, EditionActivity.class);
                     break;
-                case R.id.action_edit:
-//                    intent = new Intent(BaseActivity.this,LoginActivity.class);
-                    break;
+//                case R.id.action_edit:
+////                    intent = new Intent(BaseActivity.this,LoginActivity.class);
+//                    break;
                 case R.id.action_home:
                 default:
-                    fragment = AnnouncementListFragment.newInstance(AnnouncementAdapter.FAV_ONLY_MODE);
-                    navigate(fragment);
+                    fragment = AnnouncementListFragment.newInstance();
                     break;
             }
+            navigate(fragment);
             navDrawer.closeDrawer(Gravity.START);
             return true;
         }
     };
 
-    public void navigate(android.app.Fragment fragment) {
-        getFragmentManager().beginTransaction()
+    public void navigate(Fragment fragment) {
+        getSupportFragmentManager().beginTransaction()
                 .replace(R.id.content_frame, fragment)
                 .addToBackStack("PREVIOUS")
                 .commit();
@@ -115,6 +121,19 @@ public class BaseActivity extends AppCompatActivity implements DetailFragment.On
 
     @Override
     public void onBackPressed() {
-        getFragmentManager().popBackStackImmediate();
+        getSupportFragmentManager().popBackStackImmediate();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        List<Fragment> fragments = getSupportFragmentManager().getFragments();
+        if (fragments != null) {
+            for (Fragment f : fragments) {
+                if (f instanceof EditionFragment) {
+                    f.onActivityResult(requestCode, resultCode, data);
+                }
+            }
+        }
     }
 }
