@@ -2,7 +2,7 @@
     <!--App metadata-->
     <string name="app_name">Les Bonnes Affaires De Bibi</string>
     <!--Utils-->
-
+    <string name="all">Tous</string>
 
     <!--Call to actions-->
     <string name="login">Se connecter</string>

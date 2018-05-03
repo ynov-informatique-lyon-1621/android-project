@@ -60,6 +60,12 @@
                     android:layout_height="35dp"
                     android:layout_marginTop="16dp"
                     android:entries="@array/type_select" />
+
+                <Button
+                    android:id="@+id/filterBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filter_label" />
             </LinearLayout>
 
         </com.github.chuross.library.ExpandableLayout>

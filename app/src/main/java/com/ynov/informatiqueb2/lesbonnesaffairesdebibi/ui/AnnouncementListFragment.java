@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +18,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -57,6 +60,9 @@ public class AnnouncementListFragment extends Fragment {
     Map<String, String> filters = new HashMap<>();
     ExpandableLayout expandableLayout;
     TextView emptyAlert;
+    EditText locationIpt;
+    EditText search;
+    Spinner typeSpinner;
 
     private OnFragmentInteractionListener mListener;
 
@@ -64,7 +70,7 @@ public class AnnouncementListFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static AnnouncementListFragment newInstance(){
+    public static AnnouncementListFragment newInstance() {
         return newInstance(AnnouncementAdapter.DEFAULT_MODE);
     }
 
@@ -82,20 +88,20 @@ public class AnnouncementListFragment extends Fragment {
         if (getArguments() != null) {
             this.mode = getArguments().getInt(ARG_MODE);
         }
-
-           }
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_announcement_list, container, false);
+        View v = inflater.inflate(R.layout.fragment_announcement_list, container, false);
         //Init fields
-        EditText search = v.findViewById(R.id.search);
+        search = v.findViewById(R.id.search);
         this.list = v.findViewById(R.id.list);
-        Spinner typeSpinner = v.findViewById(R.id.type);
+        typeSpinner = v.findViewById(R.id.type);
         TextView filterToogle = v.findViewById(R.id.filterToogle);
-        EditText locationIpt = v.findViewById(R.id.locationIpt);
+        locationIpt = v.findViewById(R.id.locationIpt);
+        Button filterBtn = v.findViewById(R.id.filterBtn);
         this.expandableLayout = v.findViewById(R.id.expandable);
         emptyAlert = v.findViewById(R.id.empty);
 
@@ -103,13 +109,17 @@ public class AnnouncementListFragment extends Fragment {
         this.list.setLayoutManager(layoutManager);
 
         //Add listeners
-        locationIpt.addTextChangedListener(this.locationWatcher);
-        search.addTextChangedListener(this.searchWatcher);
-        typeSpinner.setOnItemSelectedListener(typeChangeListener);
         filterToogle.setOnClickListener(collapseListener);
+        filterBtn.setOnClickListener(onFilterClicked);
         return v;
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        getSavedFilters();
+        fetchAnnouncements();
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -145,6 +155,7 @@ public class AnnouncementListFragment extends Fragment {
     }
 
     private void fetchAnnouncements() {
+        Log.i("filters", filters.toString());
         ApiInterface apiInterface = ApiService.getInstance();
         apiInterface.getAnnonces(this.filters).enqueue(this.callback);
     }
@@ -153,7 +164,7 @@ public class AnnouncementListFragment extends Fragment {
         @Override
         public void onResponse(@NonNull Call<List<Announcement>> call, Response<List<Announcement>> response) {
             if (response.body() != null && response.code() == 200) {
-                AnnouncementAdapter adapter = new AnnouncementAdapter(response.body(), getActivity(),mode);
+                AnnouncementAdapter adapter = new AnnouncementAdapter(response.body(), getActivity(), mode);
                 list.setAdapter(adapter);
                 if (adapter.getItemCount() > 0) {
                     emptyAlert.setVisibility(View.INVISIBLE);
@@ -170,62 +181,6 @@ public class AnnouncementListFragment extends Fragment {
     };
 
 
-    TextWatcher locationWatcher = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-            if (TextUtils.isEmpty(s)) {
-                filters.remove("localisation");
-            } else {
-                filters.put("localisation", s.toString());
-            }
-            fetchAnnouncements();
-        }
-    };
-
-    TextWatcher searchWatcher = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-            if (TextUtils.isEmpty(s)) {
-                filters.remove("motCle");
-            } else {
-                filters.put("motCle", s.toString());
-            }
-            fetchAnnouncements();
-        }
-    };
-
-    protected AdapterView.OnItemSelectedListener typeChangeListener = new AdapterView.OnItemSelectedListener() {
-        @Override
-        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            if (position == 0) {
-                filters.remove("categorie");
-            } else {
-                filters.put("categorie", (String) parent.getItemAtPosition(position));
-            }
-            fetchAnnouncements();
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> parent) {
-        }
-    };
-
     private View.OnClickListener collapseListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -239,4 +194,48 @@ public class AnnouncementListFragment extends Fragment {
             }
         }
     };
+
+    private View.OnClickListener onFilterClicked = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (!TextUtils.isEmpty(locationIpt.getText())) {
+                filters.put("localisation", locationIpt.getText().toString());
+            } else {
+                filters.remove("localisation");
+            }
+            if (!TextUtils.isEmpty(search.getText())) {
+                filters.put("motCle", search.getText().toString());
+            } else {
+                filters.remove("motCle");
+            }
+            String typeSelected = typeSpinner.getSelectedItem().toString();
+            if (!typeSelected.equals(getString(R.string.all))) {
+                filters.put("categorie", typeSelected);
+            } else {
+                filters.remove("categorie");
+            }
+            fetchAnnouncements();
+            saveFilters();
+        }
+    };
+
+    private void saveFilters() {
+        PreferenceManager.getDefaultSharedPreferences(getActivity()).edit()
+                .putString("filters", new Gson().toJson(this.filters))
+                .apply();
+    }
+
+    private void getSavedFilters() {
+        String filterString = PreferenceManager.getDefaultSharedPreferences(getActivity()).getString("filters", "");
+        if (!TextUtils.isEmpty(filterString)) {
+            this.filters = new Gson().fromJson(filterString, new HashMap<String, String>().getClass());
+            this.locationIpt.setText(this.filters.get("localisation"));
+            this.search.setText(this.filters.get("motCle"));
+            ArrayAdapter<String> array_spinner = (ArrayAdapter<String>) this.typeSpinner.getAdapter();
+            String selectedString = this.filters.get("categorie");
+            if (!TextUtils.isEmpty(selectedString)) {
+                this.typeSpinner.setSelection(array_spinner.getPosition(selectedString));
+            }
+        }
+    }
 }

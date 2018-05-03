@@ -50,13 +50,15 @@ public class MessageConfirmationFragment extends Fragment {
                     getActivity().onBackPressed();
                     break;
                 case R.id.backToListBtn:
+                    onBackToListPressed();
 
             }
         }
     };
 
     private void onBackToListPressed() {
-
+        Fragment fragment = AnnouncementListFragment.newInstance();
+        ((BaseActivity)getActivity()).navigate(fragment);
     }
 
 }
