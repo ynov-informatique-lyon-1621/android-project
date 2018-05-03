@@ -17,14 +17,13 @@ import android.widget.Toast;
 
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.controller.AuthorizationController;
-
+        // Formulaire de connexion
 public class ActivityForm extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
-        setTitle("Formulaire de connexion");
 
         final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(ActivityForm.this);
 
@@ -35,12 +34,14 @@ public class ActivityForm extends AppCompatActivity {
         final EditText LogPass = findViewById(R.id.idPass);
         final CheckBox save = findViewById(R.id.IDcheck);
 
+        // Par defaut le boolean est faux, on lui dit de verifier si la checkbox est false il n'eenregistre pas les informations sinon il passe a la suite
         if (sharedPreferences.getBoolean("save", false)) {
             save.setChecked(true);
             LogUser.setText(sharedPreferences.getString("email", ""));
             LogPass.setText(sharedPreferences.getString("password", ""));
         }
 
+        // Button envoyer qui va verifier si les champs obligatoires sont remplis puis envoie sa requete au serveur
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +75,7 @@ public class ActivityForm extends AppCompatActivity {
                 }
             }
         });
-
+        // Button reset qui remplace les champs mdp et user par un champ vide
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,7 +85,7 @@ public class ActivityForm extends AppCompatActivity {
         });
 
     }
-
+    // toujours notre menu hamburger
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 
+        // Affiche le détail d'une annonce
 public class ActivityDetail extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
@@ -49,6 +50,7 @@ public class ActivityDetail extends AppCompatActivity {
                 .load("http://139.99.98.119:8080/" + Image.substring(25))
                 .into(PictureDetail);
 
+        // Button qui permet de contacter le vendeur
         Button idcontact = findViewById(R.id.IDContact);
         idcontact.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +65,7 @@ public class ActivityDetail extends AppCompatActivity {
         });
 
     }
-
+        // Toujours notre menu hamburger
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

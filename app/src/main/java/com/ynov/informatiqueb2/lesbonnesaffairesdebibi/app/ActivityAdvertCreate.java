@@ -73,7 +73,7 @@ public class ActivityAdvertCreate extends AppCompatActivity {
                     }
             }
         });
-
+        // Button qui redirige vers la liste des annonces
         cancelCreation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,7 +82,7 @@ public class ActivityAdvertCreate extends AppCompatActivity {
             }
         });
     }
-
+    // Menu Hamburger
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
