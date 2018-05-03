@@ -27,6 +27,8 @@ public class PostViewCreateController extends AsyncTask<String, String, String> 
     @Override
     protected String doInBackground(String... strings) {
 
+        // Declare les variables
+
         String nomVendeur = strings[0];
         String email = strings[1];
         String password = strings[2];

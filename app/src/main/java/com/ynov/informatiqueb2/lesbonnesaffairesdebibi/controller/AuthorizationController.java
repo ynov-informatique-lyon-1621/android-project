@@ -26,6 +26,8 @@ public class AuthorizationController extends AsyncTask<String, String, String> {
 
     private StringBuilder stringBuilder;
 
+
+    
     @Override
     protected String doInBackground(String... strings) {
         HttpURLConnection httpUrlConnection;
