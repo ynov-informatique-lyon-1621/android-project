@@ -80,7 +80,7 @@
         android:layout_marginTop="163dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Nom*"
+        android:text="@string/nom"
         android:textSize="8sp"
         tools:layout_editor_absoluteX="63dp"
         tools:layout_editor_absoluteY="128dp" />
@@ -93,8 +93,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="202dp"
         android:ems="10"
-        android:inputType="textEmailAddress|textPersonName"
-        android:text="Email*"
+        android:inputType="textWebEmailAddress"
+        android:text="@string/email"
         android:textSize="8sp"
         tools:layout_editor_absoluteX="62dp"
         tools:layout_editor_absoluteY="174dp" />
@@ -107,8 +107,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="176dp"
         android:ems="10"
-        android:inputType="textPersonName|phone"
-        android:text="Téléphone"
+        android:inputType="phone"
+        android:text="@string/phone"
         android:textSize="8sp"
         tools:layout_editor_absoluteX="62dp"
         tools:layout_editor_absoluteY="220dp" />
@@ -122,7 +122,7 @@
         android:layout_marginBottom="82dp"
         android:ems="10"
         android:inputType="textMultiLine"
-        android:text="Message*"
+        android:text="@string/desc"
         android:textSize="8sp"
         tools:layout_editor_absoluteX="30dp"
         tools:layout_editor_absoluteY="300dp" />

@@ -9,4 +9,9 @@
     <string name="date">Date</string>
     <string name="vetements">Vêtements</string>
     <string name="voiture">Voiture</string>
+    <string name="nom">Nom:*</string>
+    <string name="email">Email:*</string>
+    <string name="mdp">mdp:*</string>
+    <string name="desc">Description:*</string>
+    <string name="phone">Telephone:</string>
 </resources>
