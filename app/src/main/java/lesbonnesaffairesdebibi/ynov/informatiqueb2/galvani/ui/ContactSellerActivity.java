@@ -18,6 +18,9 @@ import lesbonnesaffairesdebibi.ynov.informatiqueb2.galvani.R;
 
 public class ContactSellerActivity extends AppCompatActivity {
 
+        // Class pour contacter le vendeur
+
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
