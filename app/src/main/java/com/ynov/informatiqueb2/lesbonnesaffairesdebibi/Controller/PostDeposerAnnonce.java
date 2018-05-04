@@ -3,19 +3,7 @@ package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.Controller;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.conn.ssl.AllowAllHostnameVerifier;
-import org.apache.http.entity.ContentType;
-import org.apache.http.entity.mime.HttpMultipartMode;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.entity.mime.content.StringBody;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.json.JSONObject;
+
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -67,7 +55,7 @@ public class PostDeposerAnnonce extends AsyncTask<String,String,String> {
             e.printStackTrace();
         }*/
 
-        try {
+       /* try {
 
                 File file = new File(pathImage);
 
@@ -100,7 +88,7 @@ public class PostDeposerAnnonce extends AsyncTask<String,String,String> {
             }catch(Exception e) {
                 e.printStackTrace();
             }
-
+*/
 
 /*
             try {
