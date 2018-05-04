@@ -31,7 +31,8 @@ public class AdapterFavoris extends ArrayAdapter<ListAnnonceModel> {
         super(context, resource);
     }
 
-
+//Cette classe était censer gerer les favoris. Malheureusement, nous n'y sommes pas arrivé.
+// Nous avons tout de même laissé le code.
 
 /*
     SharedPreferences favPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());

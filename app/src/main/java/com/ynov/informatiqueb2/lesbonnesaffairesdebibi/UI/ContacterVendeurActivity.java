@@ -115,11 +115,11 @@ public class ContacterVendeurActivity extends com.ynov.informatiqueb2.lesbonnesa
                     }
                     //Check des champs Mandatory
                     else if(TextUtils.isEmpty(emailContact.getText().toString())){
-                        nomContact.setError("Veuilliez renseigner votre email");
+                        emailContact.setError("Veuilliez renseigner votre email");
                     }
                     //Check des champs Mandatory
                     else if(TextUtils.isEmpty(msgContact.getText().toString())){
-                        nomContact.setError("Veuilliez écrire votre message");
+                        msgContact.setError("Veuilliez écrire votre message");
                     }
                     //Check si l'adresse email correspond aux standards
                     else if (Pattern.matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$",emailContact.getText().toString()) == false){

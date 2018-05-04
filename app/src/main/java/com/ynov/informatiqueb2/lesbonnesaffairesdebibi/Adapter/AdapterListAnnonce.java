@@ -110,7 +110,8 @@ public class AdapterListAnnonce extends ArrayAdapter<ListAnnonceModel>{
 
             }
         });
-
+//Cette classe était censer gerer les favoris. Malheureusement, nous n'y sommes pas arrivé.
+// Nous avons tout de même laissé le code.
         v.favArticle.setOnClickListener(new View.OnClickListener()  {
 
             ListAnnonceModel selectedAnnonce = getItem(position);
