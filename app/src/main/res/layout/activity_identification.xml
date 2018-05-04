@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.IdentificationActivity">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:text="@string/ModifAnnonce"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <EditText
+        android:id="@+id/emailLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="@string/EMAIL"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/passwordLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/emailLogin"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="@string/MDP"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/validerLogin"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/passwordLogin"
+        android:background="@color/colorPrimary"
+        android:text="@string/VALIDER"
+        android:textColor="@color/cardview_light_background" />
+
+    <Button
+        android:id="@+id/annulerLogin"
+        android:layout_width="186dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/passwordLogin"
+        android:background="@color/colorPrimary"
+        android:text="@string/ANNULER"
+        android:textColor="@color/cardview_light_background" />
+</RelativeLayout>

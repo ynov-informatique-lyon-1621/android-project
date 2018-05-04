@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.ReponseActivity">
+
+    <Button
+        android:id="@+id/btnReinitRep"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/btnEnvoyerRep"
+        android:background="@color/colorPrimary"
+        android:text="@string/reinit"
+        android:textColor="@color/cardview_light_background"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="465dp" />
+
+    <Button
+        android:id="@+id/returnAnnonceRep"
+        android:layout_width="match_parent"
+        android:layout_height="37dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/colorPrimary"
+        android:text="@string/RetourPageAnnonce"
+        android:textColor="@color/cardview_light_background"
+        tools:layout_editor_absoluteX="137dp"
+        tools:layout_editor_absoluteY="269dp" />
+
+    <Button
+        android:id="@+id/btnEnvoyerRep"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="40dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/ENVOYER"
+        android:textColor="@color/cardview_light_background"
+        tools:layout_editor_absoluteX="300dp"
+        tools:layout_editor_absoluteY="465dp" />
+
+    <ImageView
+        android:id="@+id/imageAnnonceRep"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@drawable/no_image" />
+
+    <TextView
+        android:id="@+id/titreAnnonceRep"
+        android:layout_width="254dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/imageAnnonceRep"
+        android:text="TextView"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/dateAnnonceRep"
+        android:layout_width="89dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/prixAnnonceRep"
+        android:gravity="right"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/prixAnnonceRep"
+        android:layout_width="89dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/titreAnnonceRep"
+        android:gravity="right"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/categorieAnnonceRep"
+        android:layout_width="161dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titreAnnonceRep"
+        android:layout_toEndOf="@+id/imageAnnonceRep"
+        android:text="TextView" />
+
+    <EditText
+        android:id="@+id/nomReponse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/imageAnnonceRep"
+        android:ems="10"
+        android:hint="@string/Nom"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/emailReponse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/nomReponse"
+        android:ems="10"
+        android:hint="@string/EMAIL"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/numReponse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/emailReponse"
+        android:ems="10"
+        android:hint="@string/NumTel"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/messageRep"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/numReponse"
+        android:ems="10"
+        android:hint="@string/Message"
+        android:inputType="textMultiLine" />
+
+    <TextView
+        android:id="@+id/vendeurAnnonceRep"
+        android:layout_width="176dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/dateAnnonceRep"
+        android:gravity="right"
+        android:text="TextView"
+        android:textSize="14sp" />
+</RelativeLayout>

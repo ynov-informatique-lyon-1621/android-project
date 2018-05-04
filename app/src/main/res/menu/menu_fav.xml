@@ -1,0 +1,40 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="fr.lesbonnesaffairesdebibi.prjandroid.Activity.ListAnnonceActivity">
+    <item
+        android:id="@+id/favorisIcon"
+        android:icon="@drawable/coeur_vide"
+        android:orderInCategory="100"
+        android:title="@string/app_name"
+        app:showAsAction="ifRoom"></item>
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@drawable/menu"
+        android:orderInCategory="100"
+        android:title="@string/app_name"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/accueilMenu"
+                android:orderInCategory="100"
+                android:title="@string/accueil"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/deposeAnnonceMenu"
+                android:orderInCategory="100"
+                android:title="@string/deposeAnnonce"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/modifierAnnonceMenu"
+                android:orderInCategory="100"
+                android:title="@string/modifierAnnonce"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/favorisMenu"
+                android:orderInCategory="100"
+                android:title="@string/favoris"
+                app:showAsAction="never" />
+        </menu>
+    </item>
+</menu>

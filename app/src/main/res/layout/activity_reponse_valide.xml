@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.ReponseActivity">
+
+    <Button
+        android:id="@+id/returnAnnonceRep"
+        android:layout_width="175dp"
+        android:layout_height="58dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/textView3"
+        android:background="@color/colorPrimary"
+        android:text="@string/RetourPageAnnonce"
+        android:textColor="@color/cardview_light_background"
+        tools:layout_editor_absoluteX="137dp"
+        tools:layout_editor_absoluteY="269dp" />
+
+    <ImageView
+        android:id="@+id/imageAnnonceRep"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@drawable/no_image" />
+
+    <TextView
+        android:id="@+id/titreAnnonceRep"
+        android:layout_width="254dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/imageAnnonceRep"
+        android:text="TextView"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/dateAnnonceRep"
+        android:layout_width="89dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/prixAnnonceRep"
+        android:gravity="right"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/prixAnnonceRep"
+        android:layout_width="89dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/titreAnnonceRep"
+        android:gravity="right"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/categorieAnnonceRep"
+        android:layout_width="161dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titreAnnonceRep"
+        android:layout_toEndOf="@+id/imageAnnonceRep"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/vendeurAnnonceRep"
+        android:layout_width="176dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/dateAnnonceRep"
+        android:gravity="right"
+        android:text="TextView"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/btnRetourListAnnonce"
+        android:layout_width="192dp"
+        android:layout_height="59dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/returnAnnonceRep"
+        android:background="@color/colorPrimary"
+        android:text="@string/RetourPageListAnnonce"
+        android:textColor="@color/cardview_light_background" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="166dp"
+        android:text="@string/reponseEnvoye" />
+</RelativeLayout>

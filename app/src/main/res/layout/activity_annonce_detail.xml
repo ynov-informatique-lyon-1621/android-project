@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.AnnonceDetailActivity">
+
+
+    <ImageView
+        android:id="@+id/ImageAnnonce"
+        android:layout_width="230dp"
+        android:layout_height="205dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/TitreAnnonce"
+        app:srcCompat="@drawable/no_image" />
+
+    <TextView
+        android:id="@+id/TitreAnnonce"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="3dp"
+        android:text="Titre"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:fontFamily="@font/roboto" />
+
+    <TextView
+        android:id="@+id/CategorieAnnonce"
+        android:layout_width="154dp"
+        android:layout_height="46dp"
+        android:layout_alignTop="@+id/ImageAnnonce"
+        android:layout_toEndOf="@+id/ImageAnnonce"
+        android:gravity="center"
+        android:text="Categorie" />
+
+    <TextView
+        android:id="@+id/PrixAnnonce"
+        android:layout_width="154dp"
+        android:layout_height="47dp"
+        android:layout_below="@+id/CategorieAnnonce"
+        android:layout_toEndOf="@+id/ImageAnnonce"
+        android:gravity="center"
+        android:text="Prix" />
+
+    <TextView
+        android:id="@+id/DateAnnonce"
+        android:layout_width="291dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_above="@+id/btnRepAnnonceList"
+        android:layout_alignStart="@+id/btnRepAnnonceList"
+        android:text="Date" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/ImageAnnonce"
+        android:layout_margin="3dp"
+        android:text="Description : "
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/DescriptionAnnonce"
+        android:layout_width="275dp"
+        android:layout_height="150dp"
+        android:layout_alignTop="@+id/textView6"
+        android:layout_marginStart="-3dp"
+        android:layout_toEndOf="@+id/textView6"
+        android:text="Description" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="75dp"
+        android:layout_height="96dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="3dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="3dp"
+        app:srcCompat="@drawable/seller" />
+
+    <TextView
+        android:id="@+id/VendeurAnnonce"
+        android:layout_width="291dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/DateAnnonce"
+        android:layout_alignStart="@+id/DateAnnonce"
+        android:gravity="center"
+        android:text="Vendeur" />
+
+    <Button
+        android:id="@+id/btnRepAnnonceList"
+        android:layout_width="297dp"
+        android:layout_height="38dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="-3dp"
+        android:layout_toEndOf="@+id/imageView4"
+        android:background="@color/colorPrimary"
+        android:text="@string/ContacterLeVendeur"
+        android:textColor="@android:color/white" />
+
+
+</RelativeLayout>

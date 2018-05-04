@@ -1,3 +1,43 @@
 <resources>
-    <string name="app_name">Les Bonnes Affaires De Bibi</string>
+    <string name="urlEndPoint">http://139.99.98.119:8080/</string>
+    <string name="app_name">LesBonnesAffairesDeBibi.fr</string>
+    <string name="title_activity_list_annonce">ListAnnonceActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="accueil">Accueil</string>
+    <string name="deposeAnnonce">Déposer une annonce</string>
+    <string name="modifierAnnonce">Modifier une annonce</string>
+    <string name="favoris">Favoris</string>
+    <string name="mesAnnonces">Mes Annonces : </string>
+    <string name="reponseEnvoye">
+        Votre message à été envoyé au vendeur.\n
+        Celui-ci reviendra vers vous rapidement.\n
+        \n
+        Bonne journée.\n
+        \n
+        L\'équipe de lesbonnesaffairesdebibi.fr\n
+    </string>
+    <string name="ENVOYER">ENVOYER</string>
+    <string name="ANNULER">ANNULER</string>
+    <string name="RECHERCHER">RECHERCHER</string>
+    <string name="ContacterLeVendeur">Contacter Le Vendeur</string>
+    <string name="RetourPageAnnonce">Retourner à L\'annonce</string>
+    <string name="RetourPageListAnnonce">Retourner à la Liste D\'annonce</string>
+
+    <string name="EMAIL">Email</string>
+    <string name="MDP">Mot De Passe</string>
+    <string name="Confirmer">Confirmer</string>
+    <string name="Nom">Nom</string>
+    <string name="Prix">Prix</string>
+    <string name="Categorie">Categorie</string>
+    <string name="Titre">Titre</string>
+    <string name="Ville">Ville</string>
+    <string name="Description">Description</string>
+    <string name="VALIDER">VALIDER</string>
+    <string name="ModifAnnonce">Modification de votre annonce</string>
+    <string name="RechercheProduit">Rechercher un produit</string>
+    <string name="Localisation">Localisation</string>
+    <string name="Message">Message</string>
+    <string name="NumTel">Numéro de Téléphone</string>
+    <string name="reinit">Réinitialiser</string>
 </resources>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.EditerAnnonceActivity">
+
+    <ImageView
+        android:id="@+id/ImageGetterEdition"
+        android:layout_width="150dp"
+        android:layout_height="138dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@drawable/no_image" />
+
+    <EditText
+        android:id="@+id/titreEdition"
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nomEdition"
+        android:layout_toEndOf="@+id/ImageGetterEdition"
+        android:ems="10"
+        android:hint="@string/Titre"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/nomEdition"
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/ImageGetterEdition"
+        android:ems="10"
+        android:hint="@string/Nom"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/villeEdition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/ImageGetterEdition"
+        android:ems="10"
+        android:hint="@string/Ville"
+        android:inputType="textPersonName" />
+
+    <Spinner
+        android:id="@+id/categorieEditionAnnonce"
+        android:layout_width="256dp"
+        android:layout_height="44dp"
+        android:layout_alignBottom="@+id/ImageGetterEdition"
+        android:layout_toEndOf="@+id/ImageGetterEdition"
+        android:ems="10"
+        android:hint="categorie"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/prixEdition"
+        android:layout_width="165dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/villeEdition"
+        android:ems="10"
+        android:hint="@string/Prix"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/descriptionEdition"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/villeEdition"
+        android:ems="10"
+        android:hint="@string/Description"
+        android:inputType="textMultiLine" />
+
+    <Button
+        android:id="@+id/btnEnvoyerEdition"
+        android:layout_width="192dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/colorPrimary"
+        android:text="Envoyer"
+        android:textAllCaps="false"
+        android:textColor="@color/cardview_light_background" />
+
+    <Button
+        android:id="@+id/btnAnnulerEdition"
+        android:layout_width="188dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="0dp"
+        android:background="@color/colorPrimary"
+        android:text="Annuler"
+        android:textColor="@color/cardview_light_background" />
+
+</RelativeLayout>
