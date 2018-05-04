@@ -1,14 +1,17 @@
 package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.UI;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,13 +24,21 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.Controller.ApiClass;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.Controller.PostDeposerAnnonce;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.Model.ListAnnonceModel;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.regex.Pattern;
 
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
@@ -50,8 +61,12 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
     Button annuler;
     Button selectFile;
     ImageView imageDepAn;
+    ListAnnonceModel nouvelleAnnonce;
     //Déclaration pour pouvoir fermer notre activity depuis une autre.
     public static Activity actiDepAnn;
+
+
+
 
 
     @Override
@@ -199,7 +214,46 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
                             description.getText().toString(),
                             pathFile.getText().toString());*/
 
-                        Toast.makeText(DeposerAnnonceActivity.this, "Valider ", Toast.LENGTH_SHORT).show();
+                   nouvelleAnnonce = new ListAnnonceModel();
+
+                   nouvelleAnnonce.setCategorie(categorie.getSelectedItem().toString());
+                   nouvelleAnnonce.setDescription(description.getText().toString());
+                   nouvelleAnnonce.setPrix(prix.getText().toString());
+                   nouvelleAnnonce.setTitle(titre.getText().toString());
+                   nouvelleAnnonce.setVendeur(nom.getText().toString());
+
+                        try {
+                            File file = new File(pathFile.getText().toString());
+                            RequestBody requestBody = RequestBody.create(MediaType.parse("/images/lesbonsplandebibi/"), file);
+
+                            MultipartBody.Part body = MultipartBody.Part.createFormData("image", file.getName(), requestBody);
+
+                            ApiClass.getInstance().addAnnonce(nouvelleAnnonce, body).enqueue(new retrofit2.Callback<ListAnnonceModel>() {
+                                @Override
+                                public void onResponse(Call<ListAnnonceModel> call, retrofit2.Response<ListAnnonceModel> response) {
+                                    if (response.isSuccessful()) {
+                                        Toast.makeText(DeposerAnnonceActivity.this, "Success post", Toast.LENGTH_SHORT).show();
+                                    }else {
+                                        //appelé en cas d'erreur API / HTTP
+                                        if(response.code() == 400) {
+                                            Toast.makeText(DeposerAnnonceActivity.this, "Echec post", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                }
+                                @Override
+                                public void onFailure(Call<ListAnnonceModel> call, Throwable t) {
+
+
+                                }
+                            });
+
+                            Log.d("HeyCbon","Hey c'est bon");
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+
+                        //Toast.makeText(DeposerAnnonceActivity.this, "Valider ", Toast.LENGTH_SHORT).show();
                     //On passe sur notre écran de confirmation
                     Intent intentConfirmationAn = new Intent(DeposerAnnonceActivity.this,ConfirmationDeposerAnnonce.class);
                     startActivity(intentConfirmationAn);
@@ -213,4 +267,5 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
             }
         }
     };
+
 }

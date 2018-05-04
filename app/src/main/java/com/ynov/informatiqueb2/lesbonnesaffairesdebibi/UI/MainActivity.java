@@ -177,7 +177,7 @@ public class MainActivity extends com.ynov.informatiqueb2.lesbonnesaffairesdebib
 
         for(int i=0; i<parts.length; i++){
             //si la partie contient l'extension jpg ou jpeg ou png alors on récupère la string correspondante.
-            if(parts[i].indexOf("jpg") >= 0 || parts[i].indexOf("jpeg") >= 0 || parts[i].indexOf("png") >= 0)
+            if(i == parts.length-1)
             {
                 imageName = parts[i];
             }

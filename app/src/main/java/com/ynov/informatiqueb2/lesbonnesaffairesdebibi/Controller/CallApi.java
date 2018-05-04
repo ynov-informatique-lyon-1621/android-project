@@ -20,11 +20,11 @@ public interface CallApi {
 
     String ENDPOINT = "http://139.99.98.119:8080/";
 
-    @GET("/findAnnonces")
+  /*  @GET("/findAnnonces")
     Call<List<ListAnnonceModel>> getAnnonces(
             @QueryMap Map<String,String> options
     );
-/*
+
     @GET("/findAnnonces")
     Call<List<ListAnnonceModel>> getOwnedAnnonces(
             @QueryMap Map<String,String> options
@@ -37,4 +37,6 @@ public interface CallApi {
 /*
     @POST("/sendMessage")
     Call<Message> sendMessage(@Body Message message);*/
+
+
 }
