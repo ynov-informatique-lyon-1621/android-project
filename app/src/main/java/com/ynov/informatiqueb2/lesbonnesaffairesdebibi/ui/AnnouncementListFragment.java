@@ -213,7 +213,7 @@ public class AnnouncementListFragment extends Fragment {
                 filters.remove("motCle");
             }
             String typeSelected = typeSpinner.getSelectedItem().toString();
-            if (!typeSelected.equals(getString(R.string.all))) {
+            if (!typeSelected.equals(getString(R.string.cate_all))) {
                 filters.put("categorie", typeSelected);
             } else {
                 filters.remove("categorie");

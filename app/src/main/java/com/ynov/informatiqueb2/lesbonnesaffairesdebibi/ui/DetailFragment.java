@@ -4,6 +4,8 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.format.DateFormat;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model.Announcement;
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.utils.DateFormater;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,6 +65,7 @@ public class DetailFragment extends Fragment {
         TextView categorie = v.findViewById(R.id.categorieDsp);
         ImageView image = v.findViewById(R.id.image);
         TextView vendorName = v.findViewById(R.id.vendorNameDsp);
+        TextView date = v.findViewById(R.id.dateDsp);
         Button contactBtn = v.findViewById(R.id.contactBtn);
 
         description.setText(announcement.getDescription());
@@ -69,6 +73,7 @@ public class DetailFragment extends Fragment {
         categorie.setText(getString(R.string.cate_placeholder,announcement.getCategorie()));
         Glide.with(this).load(announcement.getImage()).into(image);
         vendorName.setText(announcement.getNomVendeur());
+        date.setText(DateFormater.format(this.announcement.getDateCreation()));
 
 
         contactBtn.setOnClickListener(new View.OnClickListener() {

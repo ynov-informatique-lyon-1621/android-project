@@ -68,10 +68,14 @@
 
     <!--Lists-->
     <string-array name="type_select">
-        <item>Tous</item>
-        <item>Voitures</item>
-        <item>Vêtements</item>
+        <item>@string/cate_all</item>
+        <item>@string/cars</item>
+        <item>@string/clothes</item>
     </string-array>
+
+    <string name="cate_all">Selectionner une catégorie</string>
+    <string name="cars">Voitures</string>
+    <string name="clothes">Vêtements</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

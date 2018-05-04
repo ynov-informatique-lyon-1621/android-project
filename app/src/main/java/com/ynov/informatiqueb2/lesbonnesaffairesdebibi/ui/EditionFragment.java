@@ -240,13 +240,18 @@ public class EditionFragment extends Fragment {
 
     protected boolean checkForm() {
         boolean hasError = false;
-        EditText[] toChek = {this.nameIpt, this.mailIpt, this.descIpt,
+        EditText[] toChek = {this.titreIpt, this.localisationIpt, this.nameIpt, this.mailIpt, this.descIpt,
                 this.passwdConfirmIpt,this.passwdIpt, this.priceIpt};
         for(EditText input: toChek) {
             if(TextUtils.isEmpty(input.getText())){
                 input.setError(getString(R.string.empty_error));
                 hasError = true;
             }
+        }
+        //Spinner check
+        if(this.categorieSpinner.getSelectedItem().toString().equals(getString(R.string.cate_all))){
+            this.categorieSpinner.performClick();
+            hasError = true;
         }
         if(!this.passwdIpt.getText().toString().equals(this.passwdConfirmIpt.getText().toString())){
             this.passwdConfirmIpt.setError("Les mots de passes ne correspondent pas");
