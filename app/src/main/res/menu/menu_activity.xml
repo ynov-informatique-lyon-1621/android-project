@@ -1,0 +1,26 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui.HomepageActivity">
+    <item
+        android:id="@+id/action_settings_connect"
+        android:orderInCategory="102"
+        android:title="@string/action_home" />
+
+    <item
+        android:id="@+id/action_settings_add"
+        android:orderInCategory="103"
+        android:title="@string/action_add"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_settings_edit"
+        android:orderInCategory="103"
+        android:title="@string/action_edit"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_settings_favorites"
+        android:orderInCategory="103"
+        android:title="@string/action_favorites"
+        app:showAsAction="never" />
+</menu>

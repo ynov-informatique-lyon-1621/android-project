@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.DetailEntryActivity">
+
+
+    <TextView
+        android:id="@+id/TitleDetailView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/DescriptionDetailView"
+        android:text="Titre"
+        android:textAllCaps="false"
+        android:textColor="@android:color/background_dark"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/CatDetailView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="48dp"
+        android:layout_marginTop="123dp"
+        android:text="Categorie"
+        android:textColor="@android:color/background_dark"
+        android:textSize="18sp"
+        android:typeface="serif"
+        android:visibility="visible"
+        app:fontFamily="sans-serif" />
+
+    <TextView
+        android:id="@+id/PriceDetailView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/CatDetailView"
+        android:layout_marginTop="77dp"
+        android:text="Prix"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/DescriptionDetailView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/imageView"
+        android:layout_centerVertical="true"
+        android:text="Description"
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/NomVendeurDetailView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/CatDetailView"
+        android:layout_marginTop="161dp"
+        android:text="NomVendeur"
+        android:textColor="@android:color/background_dark"
+        android:textSize="18sp"
+        android:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="130dp"
+        android:layout_height="128dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="67dp"
+        app:srcCompat="@android:color/transparent" />
+
+    <Button
+        android:id="@+id/IDContact"
+        android:layout_width="208dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="13dp"
+        android:text="Contacter le vendeur" />
+
+</RelativeLayout>

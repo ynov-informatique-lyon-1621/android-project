@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Les Bonnes Affaires De Bibi</string>
+    <string name="connexion_l_application_message_manager">Connexion à l\'application Message Manager</string>
+    <string name="identifiant">Identifiant</string>
+    <string name="valider">Valider</string>
+    <string name="title_activity_dashboard">ActivityDashboard</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="todo">TODO</string>
+    <string name="loading">loading</string>
+    <string name="action_list">Listes des annonces</string>
+    <string name="envoyer">Envoyer</string>
+    <string name="se_souvenir_de_moi">Se souvenir de moi</string>
+    <string name="mot_de_passe">Mot de passe</string>
+    <string name="utilisateur">Nom d\'utilisateur</string>
+    <string name="vider">Vider</string>
+    <string name="search_hint" />
+    <string name="app_search" />
+    <string name="action_add">Déposer une annonce</string>
+    <string name="action_edit">Modifier une annonce</string>
+    <string name="action_favorites">Favoris</string>
+    <string name="action_home">Accueil</string>
+</resources>
