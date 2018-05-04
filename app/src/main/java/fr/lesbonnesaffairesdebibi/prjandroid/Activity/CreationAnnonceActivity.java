@@ -8,9 +8,11 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 import com.myhexaville.smartimagepicker.ImagePicker;
 
@@ -29,7 +31,8 @@ public class CreationAnnonceActivity extends AppCompatActivity {
     Button btnEnvoie;
     Button btnAnnuler;
 
-    EditText categorie;
+    Spinner categorie;
+    static final String[] categorieStr = { "Voitures", "Vêtements"};
 
     ImagePicker imagePicker;
 
@@ -65,6 +68,14 @@ public class CreationAnnonceActivity extends AppCompatActivity {
         getImage.setOnClickListener(genericOnClicListener);
         btnEnvoie.setOnClickListener(genericOnClicListener);
         btnAnnuler.setOnClickListener(genericOnClicListener);
+
+
+        //Configuration du Spinner
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, categorieStr);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        categorie.setAdapter(adapter);
     }
 
     private final View.OnClickListener genericOnClicListener = new View.OnClickListener() {
@@ -127,7 +138,7 @@ public class CreationAnnonceActivity extends AppCompatActivity {
                                                 annonce.setPrix(Double.valueOf(prix.getText().toString()));
                                                 annonce.setLocalisation(localisation.getText().toString());
                                                 annonce.setDescription(description.getText().toString());
-                                                annonce.setCategorie(categorie.getText().toString());
+                                                annonce.setCategorie(categorie.getSelectedItem().toString());
 
                                                 new PostAnnonce(this).execute(annonce);
                                             }
