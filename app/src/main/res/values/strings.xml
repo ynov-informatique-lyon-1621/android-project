@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">Les Bonnes Affaires De Bibi</string>
+    <string name="app_name">LesAffairesDeBibi.fr</string>
+    <string name="action_accueil">Acceuil</string>
+    <string name="action_depo_annonce">Déposer une annonce</string>
+    <string name="action_modi_annonce">Modifier une annonce</string>
+    <string name="action_favoris">Favoris</string>
+    <string name="titre">Titre</string>
+    <string name="prix">Prix(euros)</string>
+    <string name="date">Date</string>
+    <string name="vetements">Vêtements</string>
+    <string name="voiture">Voiture</string>
 </resources>
