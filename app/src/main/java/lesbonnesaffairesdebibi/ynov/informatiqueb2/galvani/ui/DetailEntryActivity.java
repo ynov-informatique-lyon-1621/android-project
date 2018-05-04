@@ -39,11 +39,17 @@ public class DetailEntryActivity extends AppCompatActivity {
         String NomVendeur = intentDetails.getStringExtra("NomVendeur");
         String Image = intentDetails.getStringExtra("Picture");
 
+                // Renvoi les données des objets
+
+        
         TitleDetail.setText(Titre);
         CategorieDetail.setText("Catégorie: " + Categorie);
         PriceDetail.setText(Prix + " €");
         DescriptionDetail.setText(Description);
         NomVendeurDetail.setText("Vendu par " + NomVendeur);
+        
+                // Utilisation de Glide pour l'image
+
         Glide.with(DetailEntryActivity.this)
                 .load(getString(R.string.API_URL) + Image.substring(25))
                 .into(PictureDetail);
