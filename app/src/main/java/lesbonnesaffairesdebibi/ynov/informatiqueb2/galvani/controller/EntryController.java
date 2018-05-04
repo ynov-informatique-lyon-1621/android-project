@@ -62,7 +62,9 @@ public class EntryController extends AsyncTask<String, String, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-
+        
+        // On récupère les données dans un tableau
+        
         JSONArray arr;
         List<EntryList> viewlists = new ArrayList<>();
         EntryList entry;
