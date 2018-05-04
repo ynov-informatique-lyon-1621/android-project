@@ -66,7 +66,7 @@ public class DetailFragment extends Fragment {
 
         description.setText(announcement.getDescription());
         title.setText(announcement.getTitre());
-        categorie.setText(announcement.getCategorie());
+        categorie.setText(getString(R.string.cate_placeholder,announcement.getCategorie()));
         Glide.with(this).load(announcement.getImage()).into(image);
         vendorName.setText(announcement.getNomVendeur());
 

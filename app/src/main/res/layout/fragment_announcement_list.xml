@@ -13,17 +13,12 @@
         android:gravity="start"
         android:orientation="vertical">
 
-        <TextView
+        <ToggleButton
             android:id="@+id/filterToogle"
-            style="@style/collapseHead"
+            style="@style/FilterToggleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/vertical_card_spacing"
-            android:background="@drawable/borders"
-            android:drawableBottom="@drawable/borders"
-            android:paddingLeft="@dimen/vertical_card_spacing"
-            android:paddingRight="@dimen/vertical_card_spacing"
-            android:text="@string/filter_label" />
+            android:text="ToggleButton" />
 
         <com.github.chuross.library.ExpandableLayout
             android:id="@+id/expandable"
@@ -63,6 +58,7 @@
 
                 <Button
                     android:id="@+id/filterBtn"
+                    style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/filter_label" />

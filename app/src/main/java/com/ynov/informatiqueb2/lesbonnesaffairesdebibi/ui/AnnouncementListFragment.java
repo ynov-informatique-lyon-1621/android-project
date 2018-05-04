@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import com.github.chuross.library.ExpandableLayout;
 import com.google.gson.Gson;
@@ -35,6 +36,7 @@ import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.service.ApiService;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -99,7 +101,7 @@ public class AnnouncementListFragment extends Fragment {
         search = v.findViewById(R.id.search);
         this.list = v.findViewById(R.id.list);
         typeSpinner = v.findViewById(R.id.type);
-        TextView filterToogle = v.findViewById(R.id.filterToogle);
+        ToggleButton filterToogle = v.findViewById(R.id.filterToogle);
         locationIpt = v.findViewById(R.id.locationIpt);
         Button filterBtn = v.findViewById(R.id.filterBtn);
         this.expandableLayout = v.findViewById(R.id.expandable);
@@ -107,6 +109,8 @@ public class AnnouncementListFragment extends Fragment {
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         this.list.setLayoutManager(layoutManager);
+        AnnouncementAdapter adapter = new AnnouncementAdapter(new ArrayList<Announcement>(), getActivity(), mode);
+        this.list.setAdapter(adapter);
 
         //Add listeners
         filterToogle.setOnClickListener(collapseListener);
