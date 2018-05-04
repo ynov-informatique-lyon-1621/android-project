@@ -18,7 +18,7 @@ import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.Controller.Authentificati
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 
 public class IdentificationActivity extends com.ynov.informatiqueb2.lesbonnesaffairesdebibi.UI.Menu {
-
+//Cette activity nous sert a nous identifier.
     EditText loginBox;
     EditText pwdBox;
     Button valider;
@@ -34,18 +34,20 @@ public class IdentificationActivity extends com.ynov.informatiqueb2.lesbonnesaff
         loginBox = (EditText) findViewById(R.id.loginBox);
         pwdBox = (EditText) findViewById(R.id.pwdBox);
 
+        //On set le sharedPreferences pour rememberMe
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(IdentificationActivity.this);
 
+        //Si il y'a des choses dans le SP, on les set, sinon, la default value est vide.
         String login = sharedPreferences.getString("login", "");
         String pwd = sharedPreferences.getString("pwd", "");
         loginBox.setText(login);
         pwdBox.setText(pwd);
-
+        //Call methode boutons
         initbutton();
 
     }
 
-
+    //Methode bouton
     private void initbutton(){
         valider = (Button) findViewById(R.id.valider);
         reset = (Button) findViewById(R.id.reset);

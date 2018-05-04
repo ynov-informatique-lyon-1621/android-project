@@ -2,7 +2,10 @@ package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.UI;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -13,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +25,7 @@ import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.Controller.PostDeposerAnn
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.Model.ListAnnonceModel;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 
+import java.io.FileNotFoundException;
 import java.util.regex.Pattern;
 
 import retrofit2.http.Field;
@@ -33,6 +38,7 @@ import retrofit2.http.POST;
 
 public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaffairesdebibi.UI.Menu {
     Spinner categorie;
+    TextView pathFile;
     EditText nom;
     EditText email;
     EditText password;
@@ -42,6 +48,8 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
     EditText description;
     Button valider;
     Button annuler;
+    Button selectFile;
+    ImageView imageDepAn;
     //Déclaration pour pouvoir fermer notre activity depuis une autre.
     public static Activity actiDepAnn;
 
@@ -62,6 +70,9 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
         titre = (EditText) findViewById(R.id.titreDepAn);
         prix = (EditText) findViewById(R.id.prixDepAn);
         description = (EditText) findViewById(R.id.descDepAn);
+        pathFile = (TextView) findViewById(R.id.filePathDepAn) ;
+        selectFile = (Button) findViewById(R.id.selectImageDepAn);
+        imageDepAn = (ImageView) findViewById(R.id.imageDepAn);
 
         //On set les items de notre spinner
         String[] itemsCat = new String[]{"Categorie", "Vêtements", "Voitures"};
@@ -95,6 +106,35 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
         categorie.setAdapter(adapter);
         //Appel fonction bouton
         initbutton();
+
+        selectFile.setOnClickListener(new Button.OnClickListener(){
+
+            @Override
+            public void onClick(View arg0) {
+                Intent intent = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, 0);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // TODO Auto-generated method stub
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK){
+            Uri targetUri = data.getData();
+            pathFile.setText(targetUri.toString());
+            Bitmap bitmap;
+            try {
+                bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(targetUri));
+                imageDepAn.setImageBitmap(bitmap);
+            } catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
     }
 
     //Fonction boutton
@@ -106,6 +146,8 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
         annuler.setOnClickListener(myButtonSwitch);
 
     }
+
+
 
     private final View.OnClickListener myButtonSwitch = new View.OnClickListener() {
         @Override
@@ -147,6 +189,7 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
                     }
                     else
                         //Appel de notre methode si toutes les conditions sont respectées
+<<<<<<< HEAD
                     /*new PostDeposerAnnonce().execute(
                         nom.getText().toString(),
                         email.getText().toString(),
@@ -163,6 +206,26 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
 
 
 
+=======
+                    //new PostDeposerAnnonce().execute(
+                        // nom.getText().toString(),
+                        // email.getText().toString(),
+                        // password.getText().toString(),
+                        // categorie.getSelectedItem().toString(),
+                        // prix.getText().toString(),
+                        // titre.getText().toString(),
+                        // description.getText().toString());
+
+                    new PostDeposerAnnonce().execute(nom.getText().toString(),
+                            email.getText().toString(),
+                            password.getText().toString(),
+                            categorie.getSelectedItem().toString(),
+                            prix.getText().toString(),
+                            titre.getText().toString(),
+                            description.getText().toString(),
+                            pathFile.getText().toString());
+                    ;
+>>>>>>> 04146cd86faec93cee8838f07334ec855a5c4af5
                         Toast.makeText(DeposerAnnonceActivity.this, "Valider ", Toast.LENGTH_SHORT).show();
                     //On passe sur notre écran de confirmation
                     Intent intentConfirmationAn = new Intent(DeposerAnnonceActivity.this,ConfirmationDeposerAnnonce.class);
