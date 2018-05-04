@@ -1,6 +1,8 @@
 package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.Model;
 
-public class ListAnnonceModel {
+import java.io.Serializable;
+
+public class ListAnnonceModel implements Serializable {
     //Class permettant d'utiliser notre list Json dans le main activity.
     private String id;
     private String title;

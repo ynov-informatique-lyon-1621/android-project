@@ -18,9 +18,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.Controller.PostDeposerAnnonce;
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.Model.ListAnnonceModel;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 
 import java.util.regex.Pattern;
+
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.POST;
 
 
 //Cette Activity nous sert à déposer une annonce.
@@ -39,7 +44,6 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
     Button annuler;
     //Déclaration pour pouvoir fermer notre activity depuis une autre.
     public static Activity actiDepAnn;
-
 
 
     @Override
@@ -133,7 +137,7 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
                     else if (TextUtils.isEmpty(description.getText().toString())){
                         description.setError("Veuillez renseigner le nom du personnage");
                     }
-                    //On check si les deux password sont pareil
+                    //On check si les deux password sont identiques
                     else if(!password.getText().toString().equals(password2.getText().toString())){
                         Toast.makeText(DeposerAnnonceActivity.this, "Les password ne correspondent pas", Toast.LENGTH_SHORT).show();
                     }
@@ -143,14 +147,22 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
                     }
                     else
                         //Appel de notre methode si toutes les conditions sont respectées
-                    //new PostDeposerAnnonce().execute(
-                        // nom.getText().toString(),
-                        // email.getText().toString(),
-                        // password.getText().toString(),
-                        // categorie.getSelectedItem().toString(),
-                        // prix.getText().toString(),
-                        // titre.getText().toString(),
-                        // description.getText().toString());
+                    /*new PostDeposerAnnonce().execute(
+                        nom.getText().toString(),
+                        email.getText().toString(),
+                        password.getText().toString(),
+                        categorie.getSelectedItem().toString(),
+                        prix.getText().toString(),
+                        titre.getText().toString(),
+                        description.getText().toString());*/
+
+
+
+
+
+
+
+
                         Toast.makeText(DeposerAnnonceActivity.this, "Valider ", Toast.LENGTH_SHORT).show();
                     //On passe sur notre écran de confirmation
                     Intent intentConfirmationAn = new Intent(DeposerAnnonceActivity.this,ConfirmationDeposerAnnonce.class);

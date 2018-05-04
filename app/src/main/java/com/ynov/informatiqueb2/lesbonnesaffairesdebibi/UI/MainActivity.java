@@ -139,8 +139,18 @@ public class MainActivity extends com.ynov.informatiqueb2.lesbonnesaffairesdebib
                     list.setVendeur(o.getString("nomVendeur"));
                     list.setImage(GetImageName(o.getString("image")));
 
-                    myDate = new Date(new Long(o.getString("dateCreation")));
-                    list.setDate(prettyTime.format(myDate));
+                    //Log.d("FMLJPP",o.getString("dateCreation"));
+
+                    if(o.getString("dateCreation") == null || o.getString("dateCreation") == "null"){
+                        list.setDate("Date inconnue");
+                    }
+                    else if(o.getString("dateCreation") != null){
+                        myDate = new Date(new Long(o.getString("dateCreation")));
+                        list.setDate(prettyTime.format(myDate));
+                    }
+
+                    //Log.d("FMLJPP2",list.getDate());
+
                     listAnnonce.add(list);
                     //Log.d("Temps", prettyTime.format(new Date(System.currentTimeMillis())));
                 }
