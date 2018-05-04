@@ -8,20 +8,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import lesbonnesaffairesdebibi.ynov.informatiqueb2.galvani.R;
-import lesbonnesaffairesdebibi.ynov.informatiqueb2.galvani.controller.EntryController;
 
-public class HomepageActivity extends AppCompatActivity {
+public class AddEntryActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_homepage );
+        setContentView( R.layout.activity_add_entry );
+        setTitle("LesBonnesAffairesDeBibi.fr");
 
-        new EntryController( HomepageActivity.this ).execute();
     }
-
-    // Menu
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -60,4 +56,3 @@ public class HomepageActivity extends AppCompatActivity {
         return super.onOptionsItemSelected( item );
     }
 }
-

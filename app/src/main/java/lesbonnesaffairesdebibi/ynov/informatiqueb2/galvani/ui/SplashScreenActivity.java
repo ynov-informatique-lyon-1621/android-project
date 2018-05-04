@@ -16,6 +16,8 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+        setTitle("LesBonnesAffairesDeBibi.fr");
+
 
         // SplashScreenActivity de 3sec
         int SPLASH_TIME_OUT = 3000;
@@ -30,6 +32,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
 
         // Utilisation de Glide pour les 2 gifs
+
         ImageView gif = findViewById(R.id.gifId);
         Glide.with(SplashScreenActivity.this).load(R.drawable.blue_loading).into(gif);
         ImageView travolta = findViewById(R.id.travoltaId);

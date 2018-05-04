@@ -3,23 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui.HomepageActivity">
     <item
-        android:id="@+id/action_settings_connect"
+        android:id="@+id/homeMenu"
         android:orderInCategory="102"
         android:title="@string/action_home" />
 
     <item
-        android:id="@+id/action_settings_add"
+        android:id="@+id/addMenu"
         android:orderInCategory="103"
         android:title="@string/action_add"
         app:showAsAction="never" />
     <item
-        android:id="@+id/action_settings_edit"
+        android:id="@+id/editMenu"
         android:orderInCategory="103"
         android:title="@string/action_edit"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_settings_favorites"
+        android:id="@+id/favoriteMenu"
         android:orderInCategory="103"
         android:title="@string/action_favorites"
         app:showAsAction="never" />

@@ -27,6 +27,10 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <activity android:name=".ui.AddEntryActivity" />
+        <activity android:name=".ui.EditEntryActivity" />
+        <activity android:name=".ui.FavoriteActivity"></activity>
     </application>
 
 </manifest>

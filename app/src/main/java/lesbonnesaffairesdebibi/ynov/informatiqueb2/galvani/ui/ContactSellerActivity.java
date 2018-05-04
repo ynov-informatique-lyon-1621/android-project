@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +19,7 @@ public class ContactSellerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
+        setTitle("LesBonnesAffairesDeBibi.fr");
 
 
         Button resetContact = findViewById(R.id.resetContact);
@@ -76,7 +78,38 @@ public class ContactSellerActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_activity, menu);
+        inflater.inflate( R.menu.menu_activity, menu );
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.addMenu) {
+            Intent intent = new Intent( this, AddEntryActivity.class );
+            this.startActivity( intent );
+            return true;
+        }
+
+        if (id == R.id.homeMenu) {
+            Intent intent = new Intent( this, HomepageActivity.class );
+            this.startActivity( intent );
+            return true;
+        }
+
+        if (id == R.id.editMenu) {
+            Intent intent = new Intent( this, EditEntryActivity.class );
+            this.startActivity( intent );
+            return true;
+        }
+
+        if (id == R.id.favoriteMenu) {
+            Intent intent = new Intent( this, FavoriteActivity.class );
+            this.startActivity( intent );
+            return true;
+        }
+
+        return super.onOptionsItemSelected( item );
     }
 }
