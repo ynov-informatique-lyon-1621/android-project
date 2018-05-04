@@ -9,11 +9,6 @@ import com.ynov.bibi.bibi.Interfaces.WebAPI;
 import com.ynov.bibi.bibi.Models.Ad;
 import com.ynov.bibi.bibi.UI.AdsListingActivity;
 
-import org.apache.http.entity.ContentType;
-import org.apache.http.entity.mime.HttpMultipartMode;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.entity.mime.content.FileBody;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;

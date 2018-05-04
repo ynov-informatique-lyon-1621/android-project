@@ -20,9 +20,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    packagingOptions {
-        exclude 'META-INF/DEPENDENCIES'
-    }
 }
 
 repositories {
@@ -50,6 +47,5 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'com.google.code.gson:gson:2.8.2'
     implementation 'com.ikimuhendis:ldrawer:0.1'
-    implementation "org.apache.httpcomponents:httpmime:4.3"
     implementation 'org.ocpsoft.prettytime:prettytime:4.0.1.Final'
 }

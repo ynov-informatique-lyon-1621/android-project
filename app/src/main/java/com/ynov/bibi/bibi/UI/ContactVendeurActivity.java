@@ -41,6 +41,7 @@ public class ContactVendeurActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_vendeur);
 
+        //Recuperation des infos de l'item en question
         Intent infos = getIntent();
         _currentPosition = infos.getIntExtra("postition", 0);
 
@@ -62,6 +63,7 @@ public class ContactVendeurActivity extends AppCompatActivity {
     {
         PrettyTime p = new PrettyTime(Locale.FRENCH);
 
+        //setup des informations dans les champs correspondants
         Glide.with(this).load("http://139.99.98.119:8080/" +  _currentAds.get(_currentPosition).getPicture().substring(25)).into(imageContact);
         titreContact.setText(_currentAds.get(_currentPosition).getName());
         categorieContact.setText(_currentAds.get(_currentPosition).getCategory());
