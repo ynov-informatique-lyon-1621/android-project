@@ -1,9 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.AddEntryActivity">
 
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.AddEntryActivity">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/imagenotfound" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView2"
+        android:layout_centerHorizontal="true"
+        android:text="Sélectionner une photo" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="302dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/imageView2"
+        android:layout_marginTop="261dp"
+        android:ems="10"
+        android:hint="Nom*"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="302dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="Adresse Email*"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="302dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/imageView2"
+        android:layout_marginBottom="266dp"
+        android:ems="10"
+        android:hint="Mot de passe "
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/editText4"
+        android:layout_width="302dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/imageView2"
+        android:layout_marginBottom="209dp"
+        android:ems="10"
+        android:hint="Confirmation du mot de passe "
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/editText5"
+        android:layout_width="302dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="139dp"
+        android:ems="10"
+        android:hint="Titre"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/editText7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/imageView2"
+        android:ems="10"
+        android:hint="Ville ou code postal"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/editText8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/imageView2"
+        android:ems="10"
+        android:hint="Catégories*"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/editText9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/imageView2"
+        android:ems="10"
+        android:hint="Prix*"
+        android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/editText10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/imageView2"
+            android:ems="10"
+            android:hint="Description"
+            android:inputType="textPersonName" />
 </RelativeLayout>
+</ScrollView>
