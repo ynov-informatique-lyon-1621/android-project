@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="API_URL">http://139.99.98.119:8080/</string>
+</resources>

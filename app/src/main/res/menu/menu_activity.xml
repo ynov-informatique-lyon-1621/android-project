@@ -5,22 +5,22 @@
     <item
         android:id="@+id/homeMenu"
         android:orderInCategory="102"
-        android:title="@string/action_home" />
+        android:title="@string/menu_home" />
 
     <item
         android:id="@+id/addMenu"
         android:orderInCategory="103"
-        android:title="@string/action_add"
+        android:title="@string/menu_add"
         app:showAsAction="never" />
     <item
         android:id="@+id/editMenu"
         android:orderInCategory="103"
-        android:title="@string/action_edit"
+        android:title="@string/menu_edit"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/favoriteMenu"
         android:orderInCategory="103"
-        android:title="@string/action_favorites"
+        android:title="@string/menu_favorite"
         app:showAsAction="never" />
 </menu>

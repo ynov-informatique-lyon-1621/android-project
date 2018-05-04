@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
 
 import lesbonnesaffairesdebibi.ynov.informatiqueb2.galvani.R;
 
@@ -15,7 +18,8 @@ public class AddEntryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_add_entry );
-        setTitle("LesBonnesAffairesDeBibi.fr");
+        ImageView imagenotfound = findViewById(R.id.imagenotfoundAdd);
+        Glide.with(AddEntryActivity.this).load(R.drawable.imagenotfound).into(imagenotfound);
 
     }
     @Override

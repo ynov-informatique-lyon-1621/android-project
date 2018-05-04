@@ -13,7 +13,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="78dp"
-        android:contentDescription="@string/loading"
         android:visibility="visible"
         app:srcCompat="@drawable/travolta"
         tools:layout_editor_absoluteX="0dp"

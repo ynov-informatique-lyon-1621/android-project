@@ -20,7 +20,6 @@ public class DetailEntryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        setTitle("LesBonnesAffairesDeBibi.fr");
 
         // Recupère tous les objets
 
@@ -46,7 +45,7 @@ public class DetailEntryActivity extends AppCompatActivity {
         DescriptionDetail.setText(Description);
         NomVendeurDetail.setText("Vendu par " + NomVendeur);
         Glide.with(DetailEntryActivity.this)
-                .load("http://139.99.98.119:8080/" + Image.substring(25))
+                .load(getString(R.string.API_URL) + Image.substring(25))
                 .into(PictureDetail);
 
         Button idcontact = findViewById(R.id.IDContact);
