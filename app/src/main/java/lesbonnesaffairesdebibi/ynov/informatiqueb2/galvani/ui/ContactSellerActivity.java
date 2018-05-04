@@ -34,10 +34,14 @@ public class ContactSellerActivity extends AppCompatActivity {
         final EditText TelContact = findViewById(R.id.telContact );
         final EditText MessageContact = findViewById(R.id.messageContact );
 
+        //Utilisation de Glide pour l'image
+
+        
         ImageView seller = findViewById(R.id.imagevendeurContact);
         Glide.with(ContactSellerActivity.this).load(R.drawable.seller).into(seller);
 
-        //Appel du Webservice pour envoyer le message
+        // Appel du ws pour envoyer le message
+        
         submitContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
