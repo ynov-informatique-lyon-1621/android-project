@@ -14,6 +14,9 @@ import lesbonnesaffairesdebibi.ynov.informatiqueb2.galvani.R;
 
 public class AddEntryActivity extends AppCompatActivity {
 
+    // Simple Class pour ajouter les entrées
+
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
