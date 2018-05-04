@@ -52,6 +52,7 @@
     <string name="desc_label">Description</string>
     <string name="location_label">Ville / CP </string>
     <string name="name_label">Nom du vendeur</string>
+    <string name="customer_name_label">Votre nom</string>
     <string name="mail_label">E-mail</string>
     <string name="titre_label">Titre</string>
     <string name="password_label">Mot de passe</string>
