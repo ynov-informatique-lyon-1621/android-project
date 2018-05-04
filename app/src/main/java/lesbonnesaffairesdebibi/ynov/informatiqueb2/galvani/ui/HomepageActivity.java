@@ -12,6 +12,9 @@ import lesbonnesaffairesdebibi.ynov.informatiqueb2.galvani.controller.EntryContr
 
 public class HomepageActivity extends AppCompatActivity {
 
+    
+        // Class Homepage qui affiche la liste des entrées
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -28,6 +31,8 @@ public class HomepageActivity extends AppCompatActivity {
         inflater.inflate( R.menu.menu_activity, menu );
         return true;
     }
+    
+    // Menu
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
