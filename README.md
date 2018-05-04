@@ -11,5 +11,5 @@ Android Studio : <https://developer.android.com/studio/>
 
 ## Librairies 
 
-> Glide : https://github.com/bumptech/glide
-> Retrofit2 : https://square.github.io/retrofit/
+* Glide : https://github.com/bumptech/glide
+* Retrofit2 : https://square.github.io/retrofit/
