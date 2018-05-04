@@ -1,6 +1,5 @@
 package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -8,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,14 +34,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link EditionFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link EditionFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class EditionFragment extends Fragment {
     private static final String ARG_ANNOUNCEMENT = "ANN";
     private static final int EDITION_MODE = 1;
@@ -161,7 +152,6 @@ public class EditionFragment extends Fragment {
     }
 
     protected void onSendClicked() {
-        Log.i("SEND","SEND");
         if(this.checkForm()){
             this.announcement.setNomVendeur(this.nameIpt.getText().toString());
             this.announcement.setDescription(this.descIpt.getText().toString());
@@ -248,7 +238,6 @@ public class EditionFragment extends Fragment {
     public OnImagePickedListener imagePickedListener = new OnImagePickedListener() {
         @Override
         public void onImagePicked(Uri imageUri) {
-            Log.d("IMAGE","image picked");
             EditionFragment.this.newImageUri = imageUri;
             Glide.with(getActivity()).load(EditionFragment.this.newImageUri).into(EditionFragment.this.imagePreview);
         }

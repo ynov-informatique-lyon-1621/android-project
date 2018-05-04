@@ -1,8 +1,5 @@
 package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui;
 
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -10,14 +7,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,9 +27,6 @@ import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model.Announcement;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.service.ApiInterface;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.service.ApiService;
 
-import org.json.JSONObject;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -44,19 +35,13 @@ import java.util.Map;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link AnnouncementListFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link AnnouncementListFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class AnnouncementListFragment extends Fragment {
-
     private static final String ARG_MODE = "mode";
+    private static final String FILTER_TYPE = "categorie";
+    private static final String FILTER_PLACE = "localisation";
+    private static final String FILTER_SEARCH = "motCle";
+    private static final String PREF_FILTERS = "filters";
     private int mode;
     RecyclerView list;
     Map<String, String> filters = new HashMap<>();
@@ -123,7 +108,6 @@ public class AnnouncementListFragment extends Fragment {
     }
 
     private void fetchAnnouncements() {
-        Log.i("filters", filters.toString());
         ApiInterface apiInterface = ApiService.getInstance();
         apiInterface.getAnnonces(this.filters).enqueue(this.callback);
     }
@@ -172,20 +156,20 @@ public class AnnouncementListFragment extends Fragment {
 
     private void filter() {
         if (!TextUtils.isEmpty(locationIpt.getText())) {
-            filters.put("localisation", locationIpt.getText().toString());
+            filters.put(FILTER_PLACE, locationIpt.getText().toString());
         } else {
-            filters.remove("localisation");
+            filters.remove(FILTER_PLACE);
         }
         if (!TextUtils.isEmpty(search.getText())) {
-            filters.put("motCle", search.getText().toString());
+            filters.put(FILTER_SEARCH, search.getText().toString());
         } else {
-            filters.remove("motCle");
+            filters.remove(FILTER_SEARCH);
         }
         String typeSelected = typeSpinner.getSelectedItem().toString();
         if (!typeSelected.equals(getString(R.string.cate_all))) {
-            filters.put("categorie", typeSelected);
+            filters.put(FILTER_TYPE, typeSelected);
         } else {
-            filters.remove("categorie");
+            filters.remove(FILTER_TYPE);
         }
         fetchAnnouncements();
         saveFilters();
@@ -194,18 +178,18 @@ public class AnnouncementListFragment extends Fragment {
 
     private void saveFilters() {
         PreferenceManager.getDefaultSharedPreferences(getActivity()).edit()
-                .putString("filters", new Gson().toJson(this.filters))
+                .putString(PREF_FILTERS, new Gson().toJson(this.filters))
                 .apply();
     }
 
     private void getSavedFilters() {
-        String filterString = PreferenceManager.getDefaultSharedPreferences(getActivity()).getString("filters", "");
+        String filterString = PreferenceManager.getDefaultSharedPreferences(getActivity()).getString(PREF_FILTERS, "");
         if (!TextUtils.isEmpty(filterString)) {
             this.filters = new Gson().fromJson(filterString, new HashMap<String, String>().getClass());
-            this.locationIpt.setText(this.filters.get("localisation"));
-            this.search.setText(this.filters.get("motCle"));
+            this.locationIpt.setText(this.filters.get(FILTER_PLACE));
+            this.search.setText(this.filters.get(FILTER_SEARCH));
             ArrayAdapter<String> array_spinner = (ArrayAdapter<String>) this.typeSpinner.getAdapter();
-            String selectedString = this.filters.get("categorie");
+            String selectedString = this.filters.get(FILTER_TYPE);
             if (!TextUtils.isEmpty(selectedString)) {
                 this.typeSpinner.setSelection(array_spinner.getPosition(selectedString));
             }

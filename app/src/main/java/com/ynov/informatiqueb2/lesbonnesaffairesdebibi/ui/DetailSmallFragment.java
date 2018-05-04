@@ -1,10 +1,7 @@
 package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,16 +13,6 @@ import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model.Announcement;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.utils.DateFormater;
 
-import java.util.Date;
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link DetailSmallFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link DetailSmallFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class DetailSmallFragment extends Fragment {
     private static final String ARG_ANNOUNCEMENT = "ann";
     private Announcement announcement;

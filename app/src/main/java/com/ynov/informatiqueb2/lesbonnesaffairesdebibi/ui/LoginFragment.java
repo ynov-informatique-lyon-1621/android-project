@@ -25,6 +25,8 @@ import retrofit2.Response;
 
 
 public class LoginFragment extends Fragment {
+    public final static String ARG_PASSWORD = "mdp";
+    public final static String ARG_ID = "email";
     private Button loginBtn;
     private Button resetBtn;
     private EditText usernameIpt;
@@ -92,11 +94,10 @@ public class LoginFragment extends Fragment {
         error = !FormUtils.validateEmail(getActivity(),this.usernameIpt) || error;
         if(!error) {
             //Prepare credentials
-            params.put("email",usernameIpt.getText().toString());
-            params.put("mdp",passwordIpt.getText().toString());
+            params.put(ARG_ID,usernameIpt.getText().toString());
+            params.put(ARG_PASSWORD,passwordIpt.getText().toString());
             //Launch request
             ApiService.getInstance().getOwnedAnnonces(params).enqueue(this.callback);
-            Log.i("AUTH","init login");
         }
     }
 
