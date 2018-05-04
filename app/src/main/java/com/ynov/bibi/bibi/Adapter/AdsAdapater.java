@@ -20,6 +20,10 @@ import com.ynov.bibi.bibi.UI.DetailsActivity;
 import java.util.ArrayList;
 import java.util.Date;
 
+/*
+* AdsAdapater :
+*   Classe adaptater pour la liste d'annonce principale.
+* */
 public class AdsAdapater extends ArrayAdapter<Ad> {
 
     private Context _currentCtx;
@@ -33,11 +37,13 @@ public class AdsAdapater extends ArrayAdapter<Ad> {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
 
+        //On récupère l'annonce actuelle
         Ad annonce = getItem(position);
 
         if (convertView == null)
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.ad_in_list, parent, false);
 
+        //On récupère tous les éléments qui compose un élément de la liste dans ad_in_list.xml
         RelativeLayout layout = convertView.findViewById(R.id.lineLayout);
         ImageView pictureAds = convertView.findViewById(R.id.pictureAds);
         TextView category = convertView.findViewById(R.id.category);
@@ -46,6 +52,7 @@ public class AdsAdapater extends ArrayAdapter<Ad> {
         TextView dateCreation = convertView.findViewById(R.id.dateView);
         Switch switchFavorit = convertView.findViewById(R.id.switchFavorit);
 
+        //On attribue chaque valeurs de l'annonce actuelle à chaque élément en vérifiant que nous ne recevons pas de données érronnée (ex. null)
         try {
             Glide.with(convertView).load("http://139.99.98.119:8080/" + annonce.getPicture().substring(25)).into(pictureAds);
         }
@@ -73,10 +80,9 @@ public class AdsAdapater extends ArrayAdapter<Ad> {
             Log.e("AdsAdapater : ", e.getMessage());
         }
 
+        // Le layout sera clickable et amènera à la page détail en envoyant la position de l'élément séléctionné
         layout.setClickable(true);
-
         layout.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 Intent goToDetails = new Intent(_currentCtx, DetailsActivity.class);

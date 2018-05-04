@@ -35,26 +35,34 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static com.ynov.bibi.bibi.StaticClass.SupplyDepot._currentAds;
 import static com.ynov.bibi.bibi.StaticClass.SupplyDepot.connected;
 
+
+/*
+* GetData:
+*   Classe regroupant tous les appels aux webservices
+*   Nos requêtes sont gérés par Retrofit2 de Square Open Source ==> https://square.github.io/retrofit/
+* */
 public class GetData
 {
-    public void get(final String type, Activity act)
+    //Permet d'allez chercher toute les annonces.
+    //Prend en paramètre l'activité appellante.
+    public void get(Activity act)
     {
+        //Nous récuprons une weak référence de l'activité appellante.
         final WeakReference<Activity> current = new WeakReference<>(act);
+
+        //Nous créeons un builder retrofit qui va récupérer les données JSON et les mettre dans notre Objet /Models/Ad.java
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://139.99.98.119:8080/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
+        //Nous créeons un objet rétrofit pour communiquer avec notre interface d'API
         WebAPI service = retrofit.create(WebAPI.class);
+
+        //Nous utilisons le call pour récupérer la liste des annonces.
         Call<ArrayList<Ad>> call = service.Ads();
 
-        switch (type)
-        {
-            case "all":
-                call = service.Ads();
-                break;
-        }
-
+        //
         call.enqueue(new Callback<ArrayList<Ad>>() {
             @Override
             public void onResponse(Call<ArrayList<Ad>> call, Response<ArrayList<Ad>> response) {
@@ -66,7 +74,7 @@ public class GetData
 
             @Override
             public void onFailure(Call<ArrayList<Ad>> call, Throwable t) {
-                Log.e("GetData on " + type + " : ", t.getMessage());
+                Log.e("GetData : ", t.getMessage());
             }
         });
     }

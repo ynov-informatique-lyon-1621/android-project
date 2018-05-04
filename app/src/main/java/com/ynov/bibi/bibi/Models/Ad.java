@@ -7,6 +7,11 @@ import org.json.JSONObject;
 
 import java.io.Serializable;
 
+
+/*
+* Ad :
+*   Classe représente une annonce.
+* */
 public class Ad implements Serializable{
     @SerializedName("id")
     private int id;
@@ -164,6 +169,7 @@ public class Ad implements Serializable{
 
     public Long getDateCreation () { return this.dateCreation; }
 
+    //Méthode permettant de transformer notre classe en objet JSON.
     public JSONObject toJson()
     {
         JSONObject res = new JSONObject();

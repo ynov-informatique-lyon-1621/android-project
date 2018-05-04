@@ -231,14 +231,6 @@ public class CreationAdsActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK){
             Uri targetUri = dataRes.getData();
             file = new File("/storage/emulated/0/Download/1481985771-gendarmedeuxsucres.png");
-            Log.d("FUCK1", file.getAbsolutePath());
-            Log.d("FUCK2", file.getPath());
-            try {
-                Log.d("FUCK3", file.getCanonicalPath());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Log.d("FUCK4", file.toString());
             Bitmap bitmap;
             try {
                 bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(targetUri));

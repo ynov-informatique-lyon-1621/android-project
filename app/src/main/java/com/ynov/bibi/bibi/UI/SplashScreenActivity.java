@@ -33,6 +33,6 @@ public class SplashScreenActivity extends AppCompatActivity {
         AVLoadingIndicatorView loader = findViewById(R.id.avi);
             loader.show();
 
-            new GetData().get("all", this);
+            new GetData().get(this);
     }
 }
