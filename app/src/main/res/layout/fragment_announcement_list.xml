@@ -17,7 +17,9 @@
             android:id="@+id/filterToogle"
             style="@style/FilterToggleButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="32dp"
+            android:background="@drawable/ic_dropdown_toggle_bg"
+            android:gravity="center_vertical"
             android:text="ToggleButton" />
 
         <com.github.chuross.library.ExpandableLayout

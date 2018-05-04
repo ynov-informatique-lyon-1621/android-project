@@ -29,7 +29,9 @@
     <style name="FilterToggleButton" parent="Base.Widget.AppCompat.Button.Borderless.Colored">
         <item name="android:textOn">@string/filter_label</item>
         <item name="android:textOff">@string/filter_label</item>
-        <item name="android:gravity">left</item>
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:paddingLeft">@dimen/horiz_standard_padding</item>
+        <item name="android:paddingRight">@dimen/horiz_standard_padding</item>
     </style>
 
 </resources>
