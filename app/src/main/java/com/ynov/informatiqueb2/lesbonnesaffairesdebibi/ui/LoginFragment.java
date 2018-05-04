@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model.Announcement;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.service.ApiService;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.utils.AlertUtils;
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.utils.FormUtils;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -99,25 +101,16 @@ public class LoginFragment extends Fragment {
 
     protected void onLoginClicked() {
         boolean error = false;
-        //Check if fields are not empty
-        if(TextUtils.isEmpty(passwordIpt.getText())){
-            passwordIpt.setError(getString(R.string.empty_error));
-            error = true;
-        }
-        if(TextUtils.isEmpty(usernameIpt.getText())){
-            usernameIpt.setError(getString(R.string.empty_error));
-            error = true;
-        }
-        if(!android.util.Patterns.EMAIL_ADDRESS.matcher(this.usernameIpt.getText()).matches()){
-            this.usernameIpt.setError(getString(R.string.mail_invalid_error));
-            error = true;
-        }
+        EditText[] toCheck = {this.passwordIpt,this.usernameIpt};
+        error = !FormUtils.validateNotEmpty(getActivity(),toCheck);
+        error = !FormUtils.validateEmail(getActivity(),this.usernameIpt) || error;
         if(!error) {
             //Prepare credentials
             params.put("email",usernameIpt.getText().toString());
             params.put("mdp",passwordIpt.getText().toString());
             //Launch request
             ApiService.getInstance().getOwnedAnnonces(params).enqueue(this.callback);
+            Log.i("AUTH","init login");
         }
     }
 
