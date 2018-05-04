@@ -17,6 +17,7 @@ import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model.Message;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.service.ApiService;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.utils.AlertUtils;
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.utils.FormUtils;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -127,12 +128,8 @@ public class MessageFormFragment extends Fragment {
         boolean hasError = false;
         EditText[] toChek = {this.nameIpt, this.mailIpt,
                 this.messageIpt};
-        for (EditText input : toChek) {
-            if (TextUtils.isEmpty(input.getText())) {
-                input.setError(getString(R.string.empty_error));
-                hasError = true;
-            }
-        }
+        hasError = !FormUtils.validateNotEmpty(getActivity(),toChek);
+        hasError = !FormUtils.validateEmail(getActivity(),this.mailIpt) || hasError;
         return !hasError;
     }
 
