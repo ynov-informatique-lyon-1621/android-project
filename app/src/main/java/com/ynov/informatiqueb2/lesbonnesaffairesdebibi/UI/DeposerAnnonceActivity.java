@@ -189,43 +189,16 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
                     }
                     else
                         //Appel de notre methode si toutes les conditions sont respectées
-<<<<<<< HEAD
-                    /*new PostDeposerAnnonce().execute(
-                        nom.getText().toString(),
-                        email.getText().toString(),
-                        password.getText().toString(),
-                        categorie.getSelectedItem().toString(),
-                        prix.getText().toString(),
-                        titre.getText().toString(),
-                        description.getText().toString());*/
 
-
-
-
-
-
-
-
-=======
-                    //new PostDeposerAnnonce().execute(
-                        // nom.getText().toString(),
-                        // email.getText().toString(),
-                        // password.getText().toString(),
-                        // categorie.getSelectedItem().toString(),
-                        // prix.getText().toString(),
-                        // titre.getText().toString(),
-                        // description.getText().toString());
-
-                    new PostDeposerAnnonce().execute(nom.getText().toString(),
+                   /* new PostDeposerAnnonce().execute(nom.getText().toString(),
                             email.getText().toString(),
                             password.getText().toString(),
                             categorie.getSelectedItem().toString(),
                             prix.getText().toString(),
                             titre.getText().toString(),
                             description.getText().toString(),
-                            pathFile.getText().toString());
-                    ;
->>>>>>> 04146cd86faec93cee8838f07334ec855a5c4af5
+                            pathFile.getText().toString());*/
+
                         Toast.makeText(DeposerAnnonceActivity.this, "Valider ", Toast.LENGTH_SHORT).show();
                     //On passe sur notre écran de confirmation
                     Intent intentConfirmationAn = new Intent(DeposerAnnonceActivity.this,ConfirmationDeposerAnnonce.class);
