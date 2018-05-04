@@ -11,6 +11,8 @@ import com.bumptech.glide.Glide;
 import lesbonnesaffairesdebibi.ynov.informatiqueb2.galvani.R;
 
 public class SplashScreenActivity extends AppCompatActivity {
+    
+    // Class SplashScreen pour afficher un SplashScreen quand l'application se lance et reste 3sec avant de changer pour la Homepage
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
