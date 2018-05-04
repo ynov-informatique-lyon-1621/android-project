@@ -91,9 +91,9 @@
         android:id="@+id/retourConfirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/catConfirm"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="47dp"
+        android:layout_marginBottom="42dp"
         android:text="Retour Recherche" />
 
     <Button
