@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/drawer_identification"
+            android:icon="@drawable/drawer_iden"
+            android:title="Login" />
+        <item
+            android:id="@+id/drawer_list_ads"
+            android:icon="@drawable/drawer_list_ads"
+            android:title="Liste des annonces" />
+        <item
+            android:id="@+id/drawer_add_add"
+            android:icon="@drawable/drawer_add_ad"
+            android:title="Ajouter une annonce" />
+        <item
+            android:id="@+id/drawer_favorite"
+            android:icon="@drawable/drawer_favorite"
+            android:title="Mes favoris" />
+        <item
+            android:id="@+id/drawer_logout"
+            android:icon="@drawable/drawer_logout"
+            android:title="Logout" />
+    </group>
+</menu>

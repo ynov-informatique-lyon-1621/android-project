@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/CreatScroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UI.CreationAdsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/imageCreaView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_margin="25dp"
+            app:srcCompat="@mipmap/pasdimage" />
+
+        <Button
+            android:id="@+id/btnSelectImage"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="@color/colorPrimary"
+            android:text="Sélectionner une photo"
+            android:textColor="@android:color/white" />
+
+        <EditText
+            android:id="@+id/editName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:hint="Nom*"
+            android:inputType="textPersonName"
+            android:text="Giblert" />
+
+        <EditText
+            android:id="@+id/editMail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:hint="Adresse Email*"
+            android:inputType="textEmailAddress"
+            android:text="Gilbert@gilbert.com" />
+
+        <EditText
+            android:id="@+id/editMDP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:hint="Mot de Passe"
+            android:inputType="textPassword"
+            android:text="123" />
+
+        <EditText
+            android:id="@+id/editConfirmationMDP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:hint="Confirmation du mot de passe"
+            android:inputType="textPassword"
+            android:text="123" />
+
+        <Spinner
+            android:id="@+id/spinnerCategory"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="10dp" />
+
+        <EditText
+            android:id="@+id/editPrice"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:hint="Prix*"
+            android:inputType="number"
+            android:text="123" />
+
+        <EditText
+            android:id="@+id/editDescription"
+            android:layout_width="250dp"
+            android:layout_height="200dp"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:hint="Description*"
+            android:inputType="textPersonName"
+            android:text="Gilbert va débarquer chez vous bande de misérables paysans."
+            android:textAlignment="textStart" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btnValider"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@color/colorPrimary"
+                android:text="Valider"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/btnAnnuler"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="Annuler" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
