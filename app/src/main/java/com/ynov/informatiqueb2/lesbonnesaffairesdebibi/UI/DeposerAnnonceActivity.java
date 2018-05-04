@@ -202,7 +202,7 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
                         try {
                             //On call notre méthode POST retrofit2.0, on y passe les arguements
                             File file = new File(GetImageName(pathFile.getText().toString()));
-                            RequestBody requestBody = RequestBody.create(MediaType.parse("/images/lesbonsplandebibi/"), file);
+                            RequestBody requestBody = RequestBody.create(MediaType.parse("src/main/resources/static/images/lesbonsplansdebibi/"), file);
 
                             MultipartBody.Part body = MultipartBody.Part.createFormData("image", file.getName(), requestBody);
 
@@ -210,6 +210,7 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
                                 @Override
                                 //methode onReponse appelée une fois le message envoyé
                                 public void onResponse(Call<ListAnnonceModel> call, retrofit2.Response<ListAnnonceModel> response) {
+                                    Log.e("POSTANNONCE", "POST OuytK");
                                     if (response.isSuccessful()) {
 //                                        Toast.makeText(DeposerAnnonceActivity.this, "Success post", Toast.LENGTH_SHORT).show();
                                         Log.e("POSTANNONCE", "POST OK");
@@ -221,7 +222,8 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
                                 @Override
                                 //Si le post a fail, call de la methode onFailure
                                 public void onFailure(Call<ListAnnonceModel> call, Throwable t) {
-                                    Log.e("POSTANNONCE", "POST failure");
+
+                                    Log.e("POSTANNONCE", t.toString());
 
                                 }
                             });
