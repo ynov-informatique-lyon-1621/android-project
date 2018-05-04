@@ -25,6 +25,7 @@ import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model.Announcement;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.service.ApiService;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.utils.AlertUtils;
+import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.utils.FormUtils;
 
 import java.io.File;
 
@@ -240,25 +241,14 @@ public class EditionFragment extends Fragment {
 
     protected boolean checkForm() {
         boolean hasError = false;
-        EditText[] toChek = {this.titreIpt, this.localisationIpt, this.nameIpt, this.mailIpt, this.descIpt,
+        EditText[] toChek = {this.titreIpt, this.localisationIpt, this.nameIpt, this.descIpt,
                 this.passwdConfirmIpt,this.passwdIpt, this.priceIpt};
-        for(EditText input: toChek) {
-            if(TextUtils.isEmpty(input.getText())){
-                input.setError(getString(R.string.empty_error));
-                hasError = true;
-            }
-        }
-        if(!android.util.Patterns.EMAIL_ADDRESS.matcher(this.mailIpt.getText()).matches()){
-            this.mailIpt.setError(getString(R.string.mail_invalid_error));
-            hasError = true;
-        }
-        //Spinner check
-        if(this.categorieSpinner.getSelectedItem().toString().equals(getString(R.string.cate_all))){
-            this.categorieSpinner.performClick();
-            hasError = true;
-        }
+        hasError = FormUtils.validateNotEmpty(getActivity(),toChek);
+        hasError =  !FormUtils.validateEmail(getActivity(),this.mailIpt) || hasError;
+        hasError = !FormUtils.validateSpinnerNotEmpty(getActivity(),this.categorieSpinner,R.string.cate_all) || hasError;
+
         if(!this.passwdIpt.getText().toString().equals(this.passwdConfirmIpt.getText().toString())){
-            this.passwdConfirmIpt.setError("Les mots de passes ne correspondent pas");
+            this.passwdConfirmIpt.setError(getString(R.string.password_unmatch_error));
             hasError = true;
         }
         if(this.newImageUri == null && this.mode == NEW_MODE) {

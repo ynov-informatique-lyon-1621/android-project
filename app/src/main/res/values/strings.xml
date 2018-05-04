@@ -28,7 +28,7 @@
     <string name="invalid_credentials">Vos identifiants ne sont pas reconnus</string>
     <string name="message_not_send">Votre message n\'a pas été envoyé</string>
     <string name="mail_invalid_error">Merci de renseigner un email valide</string>
-
+    <string name="password_unmatch_error">Les mots de passes ne correspondent pas</string>
 
     <!--Sucess messages-->
     <string name="edit_success">Votre annonce à été modifiée</string>
