@@ -10,6 +10,10 @@ import android.view.MenuItem;
 import lesbonnesaffairesdebibi.ynov.informatiqueb2.galvani.R;
 
 public class EditEntryActivity extends AppCompatActivity {
+    
+        // Simple Class pour éditer les annonces en se connectant
+
+    // Menu
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
