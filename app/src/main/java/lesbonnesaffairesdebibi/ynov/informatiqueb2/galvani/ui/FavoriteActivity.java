@@ -11,6 +11,10 @@ import lesbonnesaffairesdebibi.ynov.informatiqueb2.galvani.R;
 
 public class FavoriteActivity extends AppCompatActivity {
 
+        // Simple Class pour afficher les favoris
+
+    // Menu
+    
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
