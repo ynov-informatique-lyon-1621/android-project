@@ -203,19 +203,20 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
                         Toast.makeText(DeposerAnnonceActivity.this, "Veuillez renseigner un email valide", Toast.LENGTH_SHORT).show();
                     }
                     else{
+
                         //Appel de notre methode si toutes les conditions sont respectées
 
+                        nouvelleAnnonce = new ListAnnonceModel();
 
-                   nouvelleAnnonce = new ListAnnonceModel();
+                       nouvelleAnnonce.setCategorie(categorie.getSelectedItem().toString());
+                       nouvelleAnnonce.setDescription(description.getText().toString());
+                       nouvelleAnnonce.setPrix(prix.getText().toString());
+                       nouvelleAnnonce.setTitle(titre.getText().toString());
+                       nouvelleAnnonce.setVendeur(nom.getText().toString());
+                       nouvelleAnnonce.setEmail(email.getText().toString());
+                       nouvelleAnnonce.setLocalisation("Lyon");
+                       nouvelleAnnonce.setMdp(password.getText().toString());
 
-                   nouvelleAnnonce.setCategorie(categorie.getSelectedItem().toString());
-                   nouvelleAnnonce.setDescription(description.getText().toString());
-                   nouvelleAnnonce.setPrix(prix.getText().toString());
-                   nouvelleAnnonce.setTitle(titre.getText().toString());
-                   nouvelleAnnonce.setVendeur(nom.getText().toString());
-                   nouvelleAnnonce.setEmail(email.getText().toString());
-                   nouvelleAnnonce.setLocalisation("Lyon");
-                   nouvelleAnnonce.setMdp(password.getText().toString());
 
                         try {
                             File file = new File(GetImageName(pathFile.getText().toString()));
@@ -227,15 +228,14 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
                                 @Override
                                 public void onResponse(Call<ListAnnonceModel> call, retrofit2.Response<ListAnnonceModel> response) {
                                     if (response.isSuccessful()) {
-                                        Toast.makeText(DeposerAnnonceActivity.this, "Success post", Toast.LENGTH_SHORT).show();
-                                    }else {
-                                        //appelé en cas d'erreur API / HTTP
-                                        if(response.code() == 400) {
-                                            Toast.makeText(DeposerAnnonceActivity.this, "Echec post", Toast.LENGTH_SHORT).show();
-                                            Log.d("HeyCPasbon","Hey c'est bon");
-                                        }
+
+//                                        Toast.makeText(DeposerAnnonceActivity.this, "Success post", Toast.LENGTH_SHORT).show();
+                                        Log.e("POSTANNONCE", "POST OK");
+                                    } else {
+                                        Log.e("POSTANNONCE", "POST NOPE");
                                     }
                                 }
+
                                 @Override
                                 public void onFailure(Call<ListAnnonceModel> call, Throwable t) {
 
@@ -243,27 +243,28 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
                                 }
                             });
 
-                            Log.d("HeyCbon","Hey c'est bon");
+                            Log.d("HeyCbon", "Hey c'est bon");
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
 
 
                         //Toast.makeText(DeposerAnnonceActivity.this, "Valider ", Toast.LENGTH_SHORT).show();
-                    //On passe sur notre écran de confirmation
-                    Intent intentConfirmationAn = new Intent(DeposerAnnonceActivity.this,ConfirmationDeposerAnnonce.class);
-                    startActivity(intentConfirmationAn);
-
-                    break;
+                        //On passe sur notre écran de confirmation
+                        Intent intentConfirmationAn = new Intent(DeposerAnnonceActivity.this, ConfirmationDeposerAnnonce.class);
+                        startActivity(intentConfirmationAn);
                     }
+                    break;
+
                 //Clique sur le bouton Annuler
                 case R.id.annulerDepAn:
                     //On termine notre activity pour revenir à la précedente.
                     DeposerAnnonceActivity.this.finish();
                     break;
+
             }
         }
-    };
+
     public String GetImageName(String fullPath){
         String imageName = null;
 
@@ -280,4 +281,5 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
         return imageName;
     }
 
+    };
 }
