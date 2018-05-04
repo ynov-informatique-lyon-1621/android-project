@@ -44,11 +44,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) { //on attache nos données à nos view
         Advert advert = list.get(position);
         holder.textTitre.setText(advert.getTitre());
         holder.textCategorie.setText(advert.getCategorie());
-        holder.textPrix.setText(String.valueOf(advert.getPrix()) +"€");
+        holder.textPrix.setText(String.valueOf(advert.getPrix()) + "€");
         holder.textDate.setText(String.valueOf(advert.getDateCreation()));
         holder.imageViewset.setImageResource(R.drawable.polo);
     }
@@ -63,7 +63,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         public TextView textTitre, textPrix, textDate, textCategorie;
         public ImageView imageViewset;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView) { //on déclare nos veiw
             super(itemView);
             textTitre = itemView.findViewById(R.id.titre);
             textPrix = itemView.findViewById(R.id.prix);
@@ -87,8 +87,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             intent.putExtra("desc", advert.getDescritpion());
             intent.putExtra("date", advert.getDateCreation());
             context.startActivity(intent);
-
-            //Toast.makeText(context, "YO", Toast.LENGTH_SHORT).show();
 
 
         }

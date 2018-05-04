@@ -9,13 +9,13 @@
 
     <TextView
         android:id="@+id/advertTitre"
-        android:layout_width="126dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
+        android:layout_width="133dp"
+        android:layout_height="79dp"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="85dp"
-        android:layout_marginTop="14dp"
-        android:gravity="center"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="104dp"
+        android:gravity="center_horizontal"
         android:text="titre"
         android:textColor="@android:color/black" />
 
@@ -23,28 +23,29 @@
         android:id="@+id/btnContact"
         android:layout_width="94dp"
         android:layout_height="70dp"
-        android:layout_alignTop="@+id/advertTitre"
+        android:layout_alignBottom="@+id/advertTitre"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="11dp"
         android:text="Contacter le vendeur"
         android:textSize="11sp" />
 
     <TextView
         android:id="@+id/advertDesc"
-        android:layout_width="139dp"
-        android:layout_height="94dp"
-        android:layout_alignBaseline="@+id/textView6"
-        android:layout_centerHorizontal="true"
+        android:layout_width="216dp"
+        android:layout_height="150dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="53dp"
+        android:layout_marginBottom="77dp"
         android:text="description"
-        android:textSize="12sp" />
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/imageView2"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="134dp"
+        android:layout_alignTop="@+id/advertDesc"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="28dp"
         android:text="Description:"
         android:textColor="@android:color/black" />
 
@@ -52,26 +53,25 @@
         android:id="@+id/advertPrix"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/advertTitre"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="126dp"
+        android:layout_alignEnd="@+id/advertTitre"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="177dp"
         android:text="prix" />
 
     <TextView
         android:id="@+id/dateDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnContact"
-        android:layout_alignStart="@+id/advertPrix"
+        android:layout_alignEnd="@+id/advertTitre"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="122dp"
         android:text="@string/date" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="70dp"
-        android:layout_height="67dp"
-        android:layout_alignBottom="@+id/btnContact"
+        android:layout_width="135dp"
+        android:layout_height="110dp"
+        android:layout_alignTop="@+id/btnContact"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="14dp"
-        android:layout_marginBottom="5dp"
         app:srcCompat="@drawable/polo" />
 </RelativeLayout>

@@ -57,7 +57,7 @@ public class ListAdvertActivity extends AppCompatActivity {
 
         adapter = new Adapter.ListAdapter(this, advertTab);
 
-
+        // set le layout du recycleview
         linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), linearLayoutManager.getOrientation());
@@ -87,7 +87,7 @@ public class ListAdvertActivity extends AppCompatActivity {
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject jsonObject = response.getJSONObject(i);
-
+                        // récupération des données json sur la classe
                         Advert advert = new Advert();
                         advert.setId(jsonObject.getInt("id"));
                         advert.setNomVendeur(jsonObject.getString("nomVendeur"));
@@ -109,7 +109,7 @@ public class ListAdvertActivity extends AppCompatActivity {
                         progressDialog.dismiss();
                     }
                 }
-                adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged(); //l'adapter est updaet
                 progressDialog.dismiss();
             }
         }, new Response.ErrorListener() {
