@@ -30,7 +30,7 @@ public class GetAnnonceByEmail extends AsyncTask<String, String, String> {
     String txtUrl = "";
 
     public GetAnnonceByEmail(Activity activity, int listView) {
-        txtUrl = weakActivity.get().getString(R.string.urlEndPoint);
+        txtUrl = activity.getString(R.string.urlEndPoint);
         weakActivity = new WeakReference<Activity>(activity);
         this.listViewId = listView;
     }

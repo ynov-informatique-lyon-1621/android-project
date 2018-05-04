@@ -1,6 +1,7 @@
 package fr.lesbonnesaffairesdebibi.prjandroid.Controller;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -30,6 +31,8 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.lang.ref.WeakReference;
 
+import fr.lesbonnesaffairesdebibi.prjandroid.Activity.CreationAnnonceActivity;
+import fr.lesbonnesaffairesdebibi.prjandroid.Activity.CreationAnnonceValActivity;
 import fr.lesbonnesaffairesdebibi.prjandroid.Entity.Annonce;
 import fr.lesbonnesaffairesdebibi.prjandroid.R;
 
@@ -104,6 +107,9 @@ public class PostAnnonce extends AsyncTask<Annonce, String, String> {
                         ).show();
                     }
                 });
+
+                Intent intent = new Intent(weakActivity.get().getBaseContext(), CreationAnnonceValActivity.class);
+                weakActivity.get().getApplicationContext().startActivity(intent);
 
             } else {
                 //Création d'un toast (alert) sur l'écran pour dire que l'entrée n'a pas pu être créée

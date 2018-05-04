@@ -33,7 +33,8 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".Activity.ReponseValideActivity"></activity>
+        <activity android:name=".Activity.ReponseValideActivity" />
+        <activity android:name=".Activity.CreationAnnonceValActivity"></activity>
     </application>
 
 </manifest>

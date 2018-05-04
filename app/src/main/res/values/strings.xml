@@ -40,4 +40,13 @@
     <string name="Message">Message</string>
     <string name="NumTel">Numéro de Téléphone</string>
     <string name="reinit">Réinitialiser</string>
+    <string name="valCreaAnnonce">
+        Votre annonce a bien été enregistrée\n
+        Un email de confirmation de la publication de celle ci\n
+        vous sera envoyé das les meilleurs délais\n
+        \n
+        Bonne journée.\n
+        \n
+        L\'équipe de lesbonnesaffairesdebibi.fr\n
+    </string>
 </resources>

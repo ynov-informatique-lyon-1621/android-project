@@ -46,8 +46,8 @@ public class AnnonceDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_annonce_detail);
 
         ArrayList<Annonce> favTab = Favoris.getInstance().getFavoris();
-        for (int y=0;y < favTab.size();y++){
-            Log.i("debug fav[" + String.valueOf(y) + "]:",favTab.get(y).getId());
+        for (int y = 0; y < favTab.size(); y++) {
+            Log.i("debug fav[" + String.valueOf(y) + "]:", favTab.get(y).getId());
         }
 
         //Récupération Text Views
@@ -68,11 +68,14 @@ public class AnnonceDetailActivity extends AppCompatActivity {
         annonce = (Annonce) i.getSerializableExtra("detail");
 
 
+        Glide.with(AnnonceDetailActivity.this).load(R.drawable.loading).into(imageAnnonce);
+
         //Téléchargement de l'image et insertion dans l'image view
         RequestOptions options = new RequestOptions()
                 .centerCrop()
                 .placeholder(R.drawable.no_image)
                 .error(R.drawable.no_image);
+
         Glide.with(this).load(getString(R.string.urlEndPoint) + "images/lesbonsplansdebibi/" + annonce.getImage()).apply(options).into(imageAnnonce);
 
         //Mise en place des infos des les text view
@@ -83,7 +86,6 @@ public class AnnonceDetailActivity extends AppCompatActivity {
         dateAnnonce.setText(annonce.getDateCreation());
         categorieAnnonce.setText("Categorie : " + annonce.getCategorie());
 
-        Glide.with(AnnonceDetailActivity.this).load(R.drawable.loading).into(imageAnnonce);
 
         btnGoToRep.setOnClickListener(genericOnClicListener);
     }
@@ -101,7 +103,7 @@ public class AnnonceDetailActivity extends AppCompatActivity {
         }
     };
 
-    private void goToReponseActivity(){
+    private void goToReponseActivity() {
         Intent intent = new Intent(this, ReponseActivity.class);
         intent.putExtra("detail", annonce);
         startActivity(intent);
@@ -111,7 +113,7 @@ public class AnnonceDetailActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         //ajoute les entrées de menu_test à l'ActionBar
         getMenuInflater().inflate(R.menu.menu_fav, menu);
-        if(fav.isInFavoris(annonce)){
+        if (fav.isInFavoris(annonce)) {
             MenuItem item = menu.getItem(0);
             item.setIcon(ContextCompat.getDrawable(this, R.drawable.coeur_plein));
         }
@@ -123,7 +125,7 @@ public class AnnonceDetailActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.favorisIcon:
-                if(fav.isInFavoris(annonce)){
+                if (fav.isInFavoris(annonce)) {
                     fav.delFavoris(annonce);
                     item.setIcon(ContextCompat.getDrawable(this, R.drawable.coeur_vide));
                 } else {
