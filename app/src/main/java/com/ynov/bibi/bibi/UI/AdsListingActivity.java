@@ -25,7 +25,7 @@ import com.ynov.bibi.bibi.Services.GetData;
 import static com.ynov.bibi.bibi.StaticClass.SupplyDepot._currentAds;
 import static com.ynov.bibi.bibi.StaticClass.SupplyDepot.connected;
 
-
+//Activité listant les annonces
 public class AdsListingActivity extends AppCompatActivity
             implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -44,33 +44,36 @@ public class AdsListingActivity extends AppCompatActivity
         //setup du spinner
         Spinner categorieSelec = findViewById(R.id.categorySearch);
         ArrayAdapter<CharSequence> adapterSpinner = ArrayAdapter.createFromResource(this, R.array.categories_array, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
+        // On spécifie le layout à utiliser lorsque les choix apparaissent
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
         categorieSelec.setAdapter(adapterSpinner);
 
         content = findViewById(R.id._AdsList);
         if (_currentAds == null)
-            new GetData().get("all", this);
+            new GetData().get(this);
         else
             content.setAdapter(new AdsAdapater(this, _currentAds));
     }
 
     public void setupDrawer()
     {
+
+        //On active la toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //On active le Drawer
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        //Le drawer va écouter les actions utilisateur pour s'ouvrir ou se fermé
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
             NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
+        //Nous vérifions si l'utilisateur et connecter et nous affichons / dissimulons certains élément en conséquence.
         if (!connected)
         {
             navigationView.getMenu().getItem(2).setVisible(false);
@@ -93,22 +96,7 @@ public class AdsListingActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.drawer_identification) {
-            Intent goToLogin = new Intent(AdsListingActivity.this, LoginActivity.class);
-            startActivity(goToLogin);
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
+    //Fonction permettant de faire des actions au click d'un élément dans le drawer
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {

@@ -26,13 +26,6 @@ public class ContactVendeurActivity extends AppCompatActivity {
     private TextView date;
     private TextView nomVendreurContact;
     private TextView categorieContact;
-    private EditText nomContact;
-    private EditText mailContact;
-    private EditText numContact;
-    private EditText descriptContact;
-    private Button envoyer;
-    private Button reinistialize;
-    private Button retour;
 
     private int _currentPosition;
 

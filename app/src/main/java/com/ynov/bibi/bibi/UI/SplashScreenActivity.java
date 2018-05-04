@@ -1,6 +1,5 @@
 package com.ynov.bibi.bibi.UI;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +12,10 @@ import com.ynov.bibi.bibi.Services.GetData;
 
 import static com.ynov.bibi.bibi.StaticClass.SupplyDepot.connected;
 
+/*
+* SplashScreenActivity:
+*   Activité gérant la première page de l'application
+* */
 public class SplashScreenActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
@@ -25,14 +28,19 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(SplashScreenActivity.this);
 
+        /*
+        * Si nous sommes déjà connecté l'application nous met sur connecté par défaut.
+        * */
         if (sharedPreferences.getString("login", "") != "" && sharedPreferences.getString("pwd", "") != "")
         {
             connected = true;
         }
 
+        //Librairie nous permettant de mettre des loader fluide.
         AVLoadingIndicatorView loader = findViewById(R.id.avi);
             loader.show();
 
-            new GetData().get(this);
+        //nous récupérons les donnés du serveur.
+        new GetData().get(this);
     }
 }

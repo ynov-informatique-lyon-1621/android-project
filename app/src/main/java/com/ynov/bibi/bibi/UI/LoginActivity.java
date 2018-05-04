@@ -16,6 +16,10 @@ import com.ynov.bibi.bibi.Services.GetData;
 
 import static com.ynov.bibi.bibi.StaticClass.SupplyDepot.connected;
 
+/*
+* LoginActivity:
+*   Activité gérant la page d'identification.
+* */
 public class LoginActivity extends AppCompatActivity {
 
     private EditText _loginBox;
@@ -34,7 +38,9 @@ public class LoginActivity extends AppCompatActivity {
         _pwdBox = findViewById(R.id.pwdBox);
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
-
+        /*
+        * Si nous sommes déjà connecté l'application nous connecte automatiquement et nous renvois à la page de listing d'annonces.
+        * */
         if (sharedPreferences.getString("login", "") != "" && sharedPreferences.getString("pwd", "") != "")
         {
             connected = true;

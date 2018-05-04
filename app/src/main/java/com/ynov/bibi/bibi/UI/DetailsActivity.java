@@ -18,6 +18,11 @@ import java.util.Locale;
 
 import static com.ynov.bibi.bibi.StaticClass.SupplyDepot._currentAds;
 
+
+/*
+* DetailsActivity:
+*   Activité de la page détails d'un article.
+* */
 public class DetailsActivity extends AppCompatActivity {
 
     private ImageView _picture;
@@ -36,13 +41,16 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
+        //Nous récupérons un Intent de AdsListingActivity
         Intent infos = getIntent();
+        //Nous récupérons la position de l'item qui a été séléctionné
         _currentPosition = infos.getIntExtra("postition", 0);
 
         initWidgets();
         setupInformations();
     }
 
+    //Nous initialisons les éléments de la page.
     public void initWidgets()
     {
         _picture = findViewById(R.id.pictureDetail);
@@ -55,6 +63,7 @@ public class DetailsActivity extends AppCompatActivity {
         _nameVendor = findViewById(R.id.vendorDetails);
     }
 
+    //Nous attribuons des valeurs à ces éléments en fonction de la position récupéré.
     public void setupInformations()
     {
         PrettyTime p = new PrettyTime(Locale.FRENCH);

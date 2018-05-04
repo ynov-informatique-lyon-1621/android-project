@@ -156,8 +156,6 @@ public class CreationAdsActivity extends AppCompatActivity {
                         Log.e("CreationActivity : ", e.getMessage());
                     }
                     new GetData().send(CreationAdsActivity.this, _data, file);
-                    Intent confirmation = new Intent(CreationAdsActivity.this, ConfirmationCreaActivity.class);
-                    startActivity(confirmation);//rediriger vers confirmation de creation
                 }
             }
         });
