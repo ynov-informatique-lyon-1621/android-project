@@ -248,6 +248,10 @@ public class EditionFragment extends Fragment {
                 hasError = true;
             }
         }
+        if(!android.util.Patterns.EMAIL_ADDRESS.matcher(this.mailIpt.getText()).matches()){
+            this.mailIpt.setError(getString(R.string.mail_invalid_error));
+            hasError = true;
+        }
         //Spinner check
         if(this.categorieSpinner.getSelectedItem().toString().equals(getString(R.string.cate_all))){
             this.categorieSpinner.performClick();

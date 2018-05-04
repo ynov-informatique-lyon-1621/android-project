@@ -27,6 +27,7 @@
     <string name="image_missing">Veuillez ajouter une image</string>
     <string name="invalid_credentials">Vos identifiants ne sont pas reconnus</string>
     <string name="message_not_send">Votre message n\'a pas été envoyé</string>
+    <string name="mail_invalid_error">Merci de renseigner un email valide</string>
 
 
     <!--Sucess messages-->
@@ -59,7 +60,7 @@
     <string name="price_placeholder">%1$d €</string>
     <string name="cate_placeholder">Catégorie : %1$s</string>
     <string name="phone_label">Numéro de téléphone</string>
-    <string name="message_label">Numéro de téléphone</string>
+    <string name="message_label">Message</string>
     <string name="vendor_placeholder">Vendu par %1$s</string>
 
     <!--Navigation-->

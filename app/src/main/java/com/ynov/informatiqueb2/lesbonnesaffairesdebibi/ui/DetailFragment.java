@@ -3,6 +3,7 @@ package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.text.format.DateFormat;
 import android.text.format.DateUtils;
@@ -56,7 +57,7 @@ public class DetailFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v =  inflater.inflate(R.layout.fragment_detail, container, false);
@@ -66,6 +67,7 @@ public class DetailFragment extends Fragment {
         ImageView image = v.findViewById(R.id.image);
         TextView vendorName = v.findViewById(R.id.vendorNameDsp);
         TextView date = v.findViewById(R.id.dateDsp);
+        TextView price = v.findViewById(R.id.priceDsp);
         Button contactBtn = v.findViewById(R.id.contactBtn);
 
         description.setText(announcement.getDescription());
@@ -74,6 +76,7 @@ public class DetailFragment extends Fragment {
         Glide.with(this).load(announcement.getImage()).into(image);
         vendorName.setText(announcement.getNomVendeur());
         date.setText(DateFormater.format(this.announcement.getDateCreation()));
+        price.setText(getString(R.string.price_placeholder,this.announcement.getPrix()));
 
 
         contactBtn.setOnClickListener(new View.OnClickListener() {

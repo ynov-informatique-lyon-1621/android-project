@@ -125,7 +125,7 @@ public class MessageFormFragment extends Fragment {
 
     protected boolean checkForm() {
         boolean hasError = false;
-        EditText[] toChek = {this.nameIpt, this.mailIpt, this.phoneIpt,
+        EditText[] toChek = {this.nameIpt, this.mailIpt,
                 this.messageIpt};
         for (EditText input : toChek) {
             if (TextUtils.isEmpty(input.getText())) {
@@ -142,7 +142,9 @@ public class MessageFormFragment extends Fragment {
             message.setEmail(this.mailIpt.getText().toString());
             message.setMessage(this.messageIpt.getText().toString());
             message.setNom(this.nameIpt.getText().toString());
-            message.setNumeroTelephone(this.phoneIpt.getText().toString());
+            //Api requirements matching
+            // TODO : Change api requirements
+            message.setNumeroTelephone(!TextUtils.isEmpty(this.phoneIpt.getText().toString()) ? this.phoneIpt.getText().toString() : "000");
             message.setIdAnnonce(String.valueOf(this.id));
             message.setNomVendeur(this.vendorName);
             ApiService.getInstance().sendMessage(message).enqueue(this.onMessageSend);
@@ -150,9 +152,9 @@ public class MessageFormFragment extends Fragment {
     }
 
     private void OnResetClicked(){
-        EditText[] toChek = {this.nameIpt, this.mailIpt, this.phoneIpt,
+        EditText[] toClean = {this.nameIpt, this.mailIpt, this.phoneIpt,
                 this.messageIpt};
-        for (EditText input : toChek) {
+        for (EditText input : toClean) {
             input.setText("");
         }
     }

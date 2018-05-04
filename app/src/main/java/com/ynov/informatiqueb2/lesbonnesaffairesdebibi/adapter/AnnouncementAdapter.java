@@ -59,15 +59,20 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
 
         this.mode = mode;
 
+        filterDataset();
+
+    }
+
+    private void filterDataset() {
         if(this.mode == FAV_ONLY_MODE) {
             List<Announcement> filteredDataset = new ArrayList<>();
             for (int i = 0; i < dataset.size(); i++) {
-                if(this.favoritesAnnoucementsManager.isFav(dataset.get(i).getId()))
-                {
+                if (this.favoritesAnnoucementsManager.isFav(dataset.get(i).getId())) {
                     filteredDataset.add(dataset.get(i));
                 }
             }
             this.dataset = filteredDataset;
+            notifyDataSetChanged();
         }
     }
 
@@ -76,6 +81,7 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
         public TextView date;
         public TextView price;
         public ImageView imageView;
+        public TextView cate;
         public ToggleButton favButton;
         public View fullView;
         public ImageButton editButton;
@@ -94,6 +100,7 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
             this.editButton = v.findViewById(R.id.editBtn);
             this.deleteButton = v.findViewById(R.id.deleteBtn);
             this.editionTools = v.findViewById(R.id.editionTools);
+            this.cate = v.findViewById(R.id.cate);
         }
     }
 
@@ -114,6 +121,7 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
         holder.label.setText(announcement.getTitre());
         holder.price.setText(this.activityWeakReference.get().getString(R.string.price_placeholder,announcement.getPrix()));
         holder.date.setText(DateFormater.format(announcement.getDateCreation()));
+        holder.cate.setText(this.activityWeakReference.get().getString(R.string.cate_placeholder,announcement.getCategorie()));
         this.glide.load(announcement.getImage()).into(holder.imageView);
 
 
@@ -152,6 +160,7 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
                 @Override
                 public void onClick(View v) {
                     favoritesAnnoucementsManager.toggleFav(announcement.getId());
+                    filterDataset();
                 }
             });
         }

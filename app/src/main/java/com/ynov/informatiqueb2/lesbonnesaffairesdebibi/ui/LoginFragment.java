@@ -103,8 +103,13 @@ public class LoginFragment extends Fragment {
         if(TextUtils.isEmpty(passwordIpt.getText())){
             passwordIpt.setError(getString(R.string.empty_error));
             error = true;
-        }if(TextUtils.isEmpty(usernameIpt.getText())){
+        }
+        if(TextUtils.isEmpty(usernameIpt.getText())){
             usernameIpt.setError(getString(R.string.empty_error));
+            error = true;
+        }
+        if(!android.util.Patterns.EMAIL_ADDRESS.matcher(this.usernameIpt.getText()).matches()){
+            this.usernameIpt.setError(getString(R.string.mail_invalid_error));
             error = true;
         }
         if(!error) {
