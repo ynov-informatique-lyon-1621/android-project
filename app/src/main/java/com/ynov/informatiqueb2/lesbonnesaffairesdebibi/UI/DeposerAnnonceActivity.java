@@ -152,23 +152,26 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
                     }
                     //Champs mandatory
                     else if (TextUtils.isEmpty(email.getText().toString())){
-                        email.setError("Veuillez renseigner le nom du personnage");
+                        email.setError("Veuillez renseigner botre email");
                     }
                     //Champs mandatory
                     else if (TextUtils.isEmpty(password.getText().toString())){
-                        password.setError("Veuillez renseigner le nom du personnage");
+                        password.setError("Veuillez renseigner votre mot de passe");
+                    }
+                    else if (TextUtils.isEmpty(password2.getText().toString())){
+                        password2.setError("Veuillez confirmer votre mot de passe");
                     }
                     //Champs mandatory
                     else if (TextUtils.isEmpty(titre.getText().toString())){
-                        titre.setError("Veuillez renseigner le nom du personnage");
+                        titre.setError("Veuillez renseigner le titre de votre annonce");
                     }
                     //Champs mandatory
                     else if (TextUtils.isEmpty(prix.getText().toString())){
-                        prix.setError("Veuillez renseigner le nom du personnage");
+                        prix.setError("Veuillez renseigner le prix de votre article");
                     }
                     //Champs mandatory
                     else if (TextUtils.isEmpty(description.getText().toString())){
-                        description.setError("Veuillez renseigner le nom du personnage");
+                        description.setError("Veuillez renseigner une description pour votre annonce");
                     }
                     //Si item catégorie est select, on léve un toast pour l'utilisateur
                     else if (categorie.getSelectedItem().toString().equals("Categorie")){
