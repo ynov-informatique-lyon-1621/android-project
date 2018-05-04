@@ -25,13 +25,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ynov.bibi.bibi.R;
-import com.ynov.bibi.bibi.Services.GetData;
 
-import org.json.JSONObject;
-
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -49,11 +44,9 @@ public class CreationAdsActivity extends AppCompatActivity {
     private Button annuler;
     private Spinner selectCategory;
     private ImageView imageCrea;
-    private File file;
 
     private static final int PERMISSION_REQUEST_CODE = 1;
     private ArrayList<String> data = new ArrayList<>();
-    private JSONObject _data = new JSONObject();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,9 +68,8 @@ public class CreationAdsActivity extends AppCompatActivity {
 
         //setup du spinner
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.categories_array, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
+        // On spécifie le layout à utiliser lorsque les choix apparaissent
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
         selectCategory.setAdapter(adapter);
 
 
@@ -91,8 +83,10 @@ public class CreationAdsActivity extends AppCompatActivity {
                     editConfPass.setError("La saisie ne correspond pas");
                 }
             }
+
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
+
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
         });
@@ -133,30 +127,14 @@ public class CreationAdsActivity extends AppCompatActivity {
                 if (spinner.equals("Catégories*")) {
                     setSpinnerError(selectCategory, "Veillez sélectionner une catégorie");
                 }
-                if (!TextUtils.isEmpty(editNom.getText().toString()) &&
-                        !TextUtils.isEmpty(editEmail.getText().toString()) &&
-                        !TextUtils.isEmpty(editPass.getText().toString()) &&
-                        (mdp.equals(conf)) &&
-                        !TextUtils.isEmpty(editPrix.getText().toString()) &&
-                        !TextUtils.isEmpty(editDescription.getText().toString()) &&
-                        (!spinner.equals("Catégories*")) &&
-                        isValidEmailAddress(editEmail.getText().toString()))
-                {
-                    try {
-                        _data.put("nomVendeur", "Sarouman le blanc");
-                        _data.put("mdp", "LESEIGNEURDESENFERS");
-                        _data.put("titre", nom);
-                        _data.put("localisation", "En Isengard");
-                        _data.put("categorie", spinner);
-                        _data.put("email", email);
-                        _data.put("prix", Float.valueOf(prix));
-                        _data.put("description", description);
-                    }
-                    catch (Exception e)
-                    {
-                        Log.e("CreationActivity : ", e.getMessage());
-                    }
-                    new GetData().send(CreationAdsActivity.this, _data, file);
+                //On stock les infos dans un tableau lorsque tout les champs sont remplits
+                if (!TextUtils.isEmpty(editNom.getText().toString()) && !TextUtils.isEmpty(editEmail.getText().toString()) && !TextUtils.isEmpty(editPass.getText().toString()) && (mdp.equals(conf)) && !TextUtils.isEmpty(editPrix.getText().toString()) && !TextUtils.isEmpty(editDescription.getText().toString()) && (!spinner.equals("Catégories*")) && isValidEmailAddress(editEmail.getText().toString())) {
+                    data.add(nom);
+                    data.add(email);
+                    data.add(mdp);
+                    data.add(prix);
+                    data.add(description);
+
                     Intent confirmation = new Intent(CreationAdsActivity.this, ConfirmationCreaActivity.class);
                     startActivity(confirmation);//rediriger vers confirmation de creation
                 }
@@ -167,7 +145,7 @@ public class CreationAdsActivity extends AppCompatActivity {
         annuler.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();//rediriger vers liste d'annonces
+                finish();//on kill l'activité
             }
         });
 
@@ -175,7 +153,7 @@ public class CreationAdsActivity extends AppCompatActivity {
         selectImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //demander permission
+                //demande de permission puis redirection vers la librairie si permission accordée
                 if (checkPermission()) {
                     Log.e("permission", "Permission already granted.");
                     Intent intent = new Intent(Intent.ACTION_PICK,
@@ -191,6 +169,7 @@ public class CreationAdsActivity extends AppCompatActivity {
 
     }
 
+    //gestion de la permission
     private boolean checkPermission() {
         int result = ContextCompat.checkSelfPermission(CreationAdsActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE);
 
@@ -223,22 +202,16 @@ public class CreationAdsActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent dataRes) {
-        // Auto-generated method stub
+        // methode de recupération du fichier et de son chemin pour l'exploiter lors d'envoie au serveur
         super.onActivityResult(requestCode, resultCode, dataRes);
 
         imageCrea = findViewById(R.id.imageCreaView);
+        String pathImage;
 
-        if (resultCode == RESULT_OK){
+        if (resultCode == RESULT_OK) {
             Uri targetUri = dataRes.getData();
-            file = new File("/storage/emulated/0/Download/1481985771-gendarmedeuxsucres.png");
-            Log.d("FUCK1", file.getAbsolutePath());
-            Log.d("FUCK2", file.getPath());
-            try {
-                Log.d("FUCK3", file.getCanonicalPath());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Log.d("FUCK4", file.toString());
+            pathImage = targetUri.toString();
+            data.add(pathImage);
             Bitmap bitmap;
             try {
                 bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(targetUri));
@@ -256,9 +229,9 @@ public class CreationAdsActivity extends AppCompatActivity {
 
         Log.d("verfiication", "verif mail");
 
-        // Regex for a valid email address
+        // Regex pour une adresse email valide
         emailRegEx = "^[A-Za-z0-9._%+\\-]+@[A-Za-z0-9.\\-]+\\.[A-Za-z]{2,4}$";
-        // Compare the regex with the email address
+        // on compare le regex avec l'email address
         pattern = Pattern.compile(emailRegEx);
         Matcher matcher = pattern.matcher(emailAddress);
         if (!matcher.find()) {
@@ -273,10 +246,11 @@ public class CreationAdsActivity extends AppCompatActivity {
         if (selectedView != null && selectedView instanceof TextView) {
             spinner.requestFocus();
             TextView selectedTextView = (TextView) selectedView;
-            selectedTextView.setError("error"); // any name of the error will do
-            selectedTextView.setTextColor(Color.RED); //text color in which you want your error message to be displayed
+            selectedTextView.setError("error"); //setup de l'erreur
+            selectedTextView.setTextColor(Color.RED);
             selectedTextView.setText(error); // actual error message
-            spinner.performClick(); // to open the spinner list if error is found.
+            spinner.performClick(); // on ouvre le spinner si une erreur est trouvée
+
         }
     }
 }

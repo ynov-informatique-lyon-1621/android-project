@@ -36,11 +36,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_margin="10dp"
             android:ems="10"
             android:hint="Nom*"
             android:inputType="textPersonName"
-            android:text="Giblert" />
+            android:layout_margin="10dp"/>
 
         <EditText
             android:id="@+id/editMail"
@@ -48,11 +47,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_margin="10dp"
             android:ems="10"
             android:hint="Adresse Email*"
             android:inputType="textEmailAddress"
-            android:text="Gilbert@gilbert.com" />
+            android:layout_margin="10dp"/>
 
         <EditText
             android:id="@+id/editMDP"
@@ -61,8 +59,7 @@
             android:layout_margin="10dp"
             android:ems="10"
             android:hint="Mot de Passe"
-            android:inputType="textPassword"
-            android:text="123" />
+            android:inputType="textPassword" />
 
         <EditText
             android:id="@+id/editConfirmationMDP"
@@ -71,8 +68,7 @@
             android:layout_margin="10dp"
             android:ems="10"
             android:hint="Confirmation du mot de passe"
-            android:inputType="textPassword"
-            android:text="123" />
+            android:inputType="textPassword" />
 
         <Spinner
             android:id="@+id/spinnerCategory"
@@ -91,8 +87,7 @@
             android:layout_margin="10dp"
             android:ems="10"
             android:hint="Prix*"
-            android:inputType="number"
-            android:text="123" />
+            android:inputType="number" />
 
         <EditText
             android:id="@+id/editDescription"
@@ -102,7 +97,6 @@
             android:ems="10"
             android:hint="Description*"
             android:inputType="textPersonName"
-            android:text="Gilbert va débarquer chez vous bande de misérables paysans."
             android:textAlignment="textStart" />
 
 

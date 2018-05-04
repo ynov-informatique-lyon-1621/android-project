@@ -2,9 +2,6 @@ package com.ynov.bibi.bibi.Models;
 
 import com.google.gson.annotations.SerializedName;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.Serializable;
 
 public class Ad implements Serializable{
@@ -53,11 +50,7 @@ public class Ad implements Serializable{
         this.price = price;
         this.description = description;
         this.picture = picture;
-        if (date != null)
-            this.dateCreation = date;
-        else
-            this.dateCreation = new Long(0);
-
+        this.dateCreation = date;
     }
 
     public int getId()
@@ -163,26 +156,4 @@ public class Ad implements Serializable{
     public void setDateCreation (Long newDate) { this.dateCreation = newDate; }
 
     public Long getDateCreation () { return this.dateCreation; }
-
-    public JSONObject toJson()
-    {
-        JSONObject res = new JSONObject();
-        try
-        {
-            res.put("nomVendeur", owner);
-            res.put("email", email);
-            res.put("mdp", password);
-            res.put("title", name);
-            res.put("localisation", location);
-            res.put("categorie", category);
-            res.put("prix", price);
-            res.put("description", description);
-            res.put("dateCreation", dateCreation);
-        }
-        catch (JSONException e)
-        {
-            e.printStackTrace();
-        }
-        return res;
-    }
 }
