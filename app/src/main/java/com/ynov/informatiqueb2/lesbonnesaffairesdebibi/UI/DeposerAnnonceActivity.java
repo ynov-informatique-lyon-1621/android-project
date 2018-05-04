@@ -220,13 +220,14 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
 
                         try {
                             File file = new File(GetImageName(pathFile.getText().toString()));
-                            RequestBody requestBody = RequestBody.create(MediaType.parse("/images/lesbonsplandebibi/"), file);
+                            RequestBody requestBody = RequestBody.create(MediaType.parse("src/main/resources/static/images/lesbonsplansdebibi/"), file);
 
                             MultipartBody.Part body = MultipartBody.Part.createFormData("image", file.getName(), requestBody);
 
                             ApiClass.getInstance().addAnnonce(nouvelleAnnonce, body).enqueue(new retrofit2.Callback<ListAnnonceModel>() {
                                 @Override
                                 public void onResponse(Call<ListAnnonceModel> call, retrofit2.Response<ListAnnonceModel> response) {
+                                    Log.e("POSTANNONCE", "POST OuytK");
                                     if (response.isSuccessful()) {
 
 //                                        Toast.makeText(DeposerAnnonceActivity.this, "Success post", Toast.LENGTH_SHORT).show();
@@ -239,6 +240,7 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
                                 @Override
                                 public void onFailure(Call<ListAnnonceModel> call, Throwable t) {
 
+                                    Log.e("POSTANNONCE", t.toString());
 
                                 }
                             });
