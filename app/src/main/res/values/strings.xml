@@ -1,6 +1,6 @@
 <resources>
     <!--App metadata-->
-    <string name="app_name">Les Bonnes Affaires De Bibi</string>
+    <string name="app_name">LesBonnesAffairesDeBibi.fr</string>
     <!--Utils-->
     <string name="all">Tous</string>
 
@@ -66,6 +66,7 @@
     <!--Navigation-->
     <string name="action_home">Acceuil </string>
     <string name="action_fav">Favoris </string>
+    <string name="action_menu">Menu</string>
 
     <!--Lists-->
     <string-array name="type_select">

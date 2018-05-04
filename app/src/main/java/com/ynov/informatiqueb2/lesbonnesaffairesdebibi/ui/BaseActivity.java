@@ -61,8 +61,8 @@ public class BaseActivity extends AppCompatActivity  implements
         if (toolbar != null) {
             setSupportActionBar(toolbar);
             ActionBar actionbar = getSupportActionBar();
-            actionbar.setDisplayHomeAsUpEnabled(true);
-            actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
+//            actionbar.setDisplayHomeAsUpEnabled(true);
+//            actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
         }
 
         navigationView.setNavigationItemSelectedListener(this.navigationItemSelectedListener);
@@ -80,8 +80,8 @@ public class BaseActivity extends AppCompatActivity  implements
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case android.R.id.home:
-                navDrawer.openDrawer(Gravity.START);
+            case R.id.action_menu:
+                navDrawer.openDrawer(Gravity.END);
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -107,7 +107,7 @@ public class BaseActivity extends AppCompatActivity  implements
                     break;
             }
             navigate(fragment);
-            navDrawer.closeDrawer(Gravity.START);
+            navDrawer.closeDrawer(Gravity.END);
             return true;
         }
     };
