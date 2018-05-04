@@ -191,10 +191,9 @@ public class AnnouncementListFragment extends Fragment {
             if (expandableLayout.isExpanded()) {
                 list.requestFocus();
                 expandableLayout.collapse();
-                Log.i("click", "collpse");
+                filter();
             } else if (expandableLayout.isCollapsed()) {
                 expandableLayout.expand();
-                Log.i("click", "exp");
             }
         }
     };
@@ -202,26 +201,32 @@ public class AnnouncementListFragment extends Fragment {
     private View.OnClickListener onFilterClicked = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if (!TextUtils.isEmpty(locationIpt.getText())) {
-                filters.put("localisation", locationIpt.getText().toString());
-            } else {
-                filters.remove("localisation");
-            }
-            if (!TextUtils.isEmpty(search.getText())) {
-                filters.put("motCle", search.getText().toString());
-            } else {
-                filters.remove("motCle");
-            }
-            String typeSelected = typeSpinner.getSelectedItem().toString();
-            if (!typeSelected.equals(getString(R.string.cate_all))) {
-                filters.put("categorie", typeSelected);
-            } else {
-                filters.remove("categorie");
-            }
-            fetchAnnouncements();
-            saveFilters();
+            expandableLayout.collapse();
+            filter();
         }
     };
+
+    private void filter() {
+        if (!TextUtils.isEmpty(locationIpt.getText())) {
+            filters.put("localisation", locationIpt.getText().toString());
+        } else {
+            filters.remove("localisation");
+        }
+        if (!TextUtils.isEmpty(search.getText())) {
+            filters.put("motCle", search.getText().toString());
+        } else {
+            filters.remove("motCle");
+        }
+        String typeSelected = typeSpinner.getSelectedItem().toString();
+        if (!typeSelected.equals(getString(R.string.cate_all))) {
+            filters.put("categorie", typeSelected);
+        } else {
+            filters.remove("categorie");
+        }
+        fetchAnnouncements();
+        saveFilters();
+    }
+
 
     private void saveFilters() {
         PreferenceManager.getDefaultSharedPreferences(getActivity()).edit()
