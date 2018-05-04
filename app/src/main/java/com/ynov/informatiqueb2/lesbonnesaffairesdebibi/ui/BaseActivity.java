@@ -1,58 +1,34 @@
 package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.ui;
 
-import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.adapter.AnnouncementAdapter;
-import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.model.Announcement;
 
 import java.util.List;
 
 public class BaseActivity extends AppCompatActivity  implements
-        DetailFragment.OnFragmentInteractionListener,
-        AnnouncementListFragment.OnFragmentInteractionListener,
-        EditionFragment.OnFragmentInteractionListener,
-        LoginFragment.OnFragmentInteractionListener,
-        OwnedAnnouncementFragment.OnFragmentInteractionListener,
-        DetailSmallFragment.OnFragmentInteractionListener,
-        MessageFragment.OnFragmentInteractionListener,
         MessageFormFragment.OnFragmentInteractionListener
 {
 
     Toolbar toolbar;
     DrawerLayout navDrawer;
-    protected int getLayoutResource(){
-        return 0;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
-
-//        FrameLayout contentLayout =  findViewById(R.id.content_frame);
-//        getLayoutInflater().inflate(getLayoutResource(), contentLayout, true);
 
         toolbar = findViewById(R.id.toolbar);
         navDrawer = findViewById(R.id.drawer_layout);
@@ -60,9 +36,6 @@ public class BaseActivity extends AppCompatActivity  implements
 
         if (toolbar != null) {
             setSupportActionBar(toolbar);
-            ActionBar actionbar = getSupportActionBar();
-//            actionbar.setDisplayHomeAsUpEnabled(true);
-//            actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
         }
 
         navigationView.setNavigationItemSelectedListener(this.navigationItemSelectedListener);
@@ -120,11 +93,6 @@ public class BaseActivity extends AppCompatActivity  implements
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
-
-    @Override
     public void onBackPressed() {
         getSupportFragmentManager().popBackStackImmediate();
     }
@@ -145,5 +113,4 @@ public class BaseActivity extends AppCompatActivity  implements
     public void onMessageSent() {
         ((MessageFragment)getSupportFragmentManager().findFragmentById(R.id.content_frame)).showConfirmation();
     }
-
 }

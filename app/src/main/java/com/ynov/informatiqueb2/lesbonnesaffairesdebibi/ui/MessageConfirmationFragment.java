@@ -12,9 +12,7 @@ import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 
 
 public class MessageConfirmationFragment extends Fragment {
-    public MessageConfirmationFragment() {
-        // Required empty public constructor
-    }
+    public MessageConfirmationFragment() { }
 
 
     public static MessageConfirmationFragment newInstance() {
