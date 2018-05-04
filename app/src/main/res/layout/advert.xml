@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="27dp"
+        android:layout_height="34dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/titre"
+        android:layout_width="89dp"
+        android:layout_height="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/imageView"
+        android:gravity="left"
+        android:text="Titre"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="8sp" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="48dp"
+        android:layout_height="33dp"
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="117dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="date"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/prix"
+        android:layout_width="25dp"
+        android:layout_height="39dp"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/titre"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="prix"
+        android:textSize="10sp" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="31dp"
+        android:text="Favoris"
+        android:textSize="8sp" />
+
+    <TextView
+        android:id="@+id/categorie"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/checkBox"
+        android:layout_toEndOf="@+id/imageView"
+        android:text="Categorie"
+        android:textSize="8sp" />
+
+</RelativeLayout>

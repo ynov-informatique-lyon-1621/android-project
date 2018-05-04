@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Ui.CreateAdvertActivity">
+
+    <ImageView
+        android:id="@+id/addImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/ajoutvalider"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <Button
+        android:id="@+id/btnselectphoto"
+        android:layout_width="137dp"
+        android:layout_height="32dp"
+        android:layout_below="@+id/addImage"
+        android:layout_centerHorizontal="true"
+        android:text="Selectionner une photo"
+        android:textSize="8sp" />
+
+    <EditText
+        android:id="@+id/addNom"
+        android:layout_width="186dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/addMdp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="105dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="nom*"
+        android:textSize="8sp" />
+
+    <EditText
+        android:id="@+id/addEmail"
+        android:layout_width="184dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/addNom"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="144dp"
+        android:ems="10"
+        android:inputType="textEmailAddress|textPersonName"
+        android:text="Adressse email*"
+        android:textSize="8sp" />
+
+    <EditText
+        android:id="@+id/addMdp"
+        android:layout_width="185dp"
+        android:layout_height="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="186dp"
+        android:ems="10"
+        android:inputType="textPassword|textVisiblePassword"
+        android:text="Mot de passe*"
+        android:textSize="8sp" />
+
+    <EditText
+        android:id="@+id/addMdp2"
+        android:layout_width="184dp"
+        android:layout_height="34dp"
+        android:layout_below="@+id/addMdp"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:inputType="textPassword|textVisiblePassword"
+        android:text="Confirmation du mot de passe"
+        android:textSize="10sp" />
+
+    <EditText
+        android:id="@+id/addDesc"
+        android:layout_width="245dp"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="70dp"
+        android:ems="10"
+        android:gravity="top"
+        android:inputType="textMultiLine"
+        android:text="desc$*"
+        android:textSize="8sp" />
+
+    <EditText
+        android:id="@+id/addPrix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-166dp"
+        android:ems="10"
+        android:inputType="textPersonName|number" />
+
+    <Button
+        android:id="@+id/ajoutvalider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/addDesc"
+        android:layout_alignParentBottom="true"
+        android:text="valider" />
+
+
+    <Button
+        android:id="@+id/ajoutannuler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/addPrix"
+        android:layout_alignParentBottom="true"
+        android:text="annuler" />
+
+    <EditText
+        android:id="@+id/ajoutprix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/addMdp2"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="138dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="prix*"
+        android:textSize="8sp" />
+
+
+
+</RelativeLayout>

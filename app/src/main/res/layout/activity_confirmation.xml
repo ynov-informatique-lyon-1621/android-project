@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.confirmation">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="66dp"
+        android:layout_height="61dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="16dp"
+        app:srcCompat="@drawable/polo" />
+
+    <TextView
+        android:id="@+id/titreannonce"
+        android:layout_width="115dp"
+        android:layout_height="32dp"
+        android:layout_alignTop="@+id/imageView2"
+        android:layout_toEndOf="@+id/categorieannonce"
+        android:text="titreannonce"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/categorieannonce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="106dp"
+        android:text="categorieannonce" />
+
+    <TextView
+        android:id="@+id/prixannonce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageView2"
+        android:layout_toStartOf="@+id/nomannonce"
+        android:text="prixannonce" />
+
+    <TextView
+        android:id="@+id/nomannonce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imageView2"
+        android:layout_alignParentEnd="true"
+        android:text="nomannonce" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="277dp"
+        android:layout_height="87dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="145dp"
+        android:text="Votre message a bien été envoyé au vendeur.AssKicker reviendra vers vous rapidement. Bonne journée    L'équipe de lesbonneaffairesdebibi.fr" />
+
+    <Button
+        android:id="@+id/confirAcceuil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="50dp"
+        android:layout_toStartOf="@+id/confirBack"
+        android:text="Retour à votre recherche" />
+
+    <Button
+        android:id="@+id/confirBack"
+        android:layout_width="141dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="49dp"
+        android:text="retour l'annonce" />
+
+    <TextView
+        android:id="@+id/dateannonce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/categorieannonce"
+        android:layout_alignStart="@+id/confirBack"
+        android:layout_marginBottom="-106dp"
+        android:text="date" />
+
+</RelativeLayout>
+
