@@ -24,19 +24,10 @@ public interface CallApi {
     Call<List<ListAnnonceModel>> getAnnonces(
             @QueryMap Map<String,String> options
     );
-
-    @GET("/findAnnonces")
-    Call<List<ListAnnonceModel>> getOwnedAnnonces(
-            @QueryMap Map<String,String> options
-    );*/
+*/
 
     @Multipart
     @POST("/saveAnnonce")
     Call<ListAnnonceModel> addAnnonce(@Part("Annonce") ListAnnonceModel nouvelleAnnonce, @Part MultipartBody.Part imageAnnonce);
-
-/*
-    @POST("/sendMessage")
-    Call<Message> sendMessage(@Body Message message);*/
-
 
 }

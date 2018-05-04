@@ -202,17 +202,9 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
                     else if (Pattern.matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$",email.getText().toString()) == false){
                         Toast.makeText(DeposerAnnonceActivity.this, "Veuillez renseigner un email valide", Toast.LENGTH_SHORT).show();
                     }
-                    else
+                    else{
                         //Appel de notre methode si toutes les conditions sont respectées
 
-                   /* new PostDeposerAnnonce().execute(nom.getText().toString(),
-                            email.getText().toString(),
-                            password.getText().toString(),
-                            categorie.getSelectedItem().toString(),
-                            prix.getText().toString(),
-                            titre.getText().toString(),
-                            description.getText().toString(),
-                            pathFile.getText().toString());*/
 
                    nouvelleAnnonce = new ListAnnonceModel();
 
@@ -221,9 +213,12 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
                    nouvelleAnnonce.setPrix(prix.getText().toString());
                    nouvelleAnnonce.setTitle(titre.getText().toString());
                    nouvelleAnnonce.setVendeur(nom.getText().toString());
+                   nouvelleAnnonce.setEmail(email.getText().toString());
+                   nouvelleAnnonce.setLocalisation("Lyon");
+                   nouvelleAnnonce.setMdp(password.getText().toString());
 
                         try {
-                            File file = new File(pathFile.getText().toString());
+                            File file = new File(GetImageName(pathFile.getText().toString()));
                             RequestBody requestBody = RequestBody.create(MediaType.parse("/images/lesbonsplandebibi/"), file);
 
                             MultipartBody.Part body = MultipartBody.Part.createFormData("image", file.getName(), requestBody);
@@ -237,6 +232,7 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
                                         //appelé en cas d'erreur API / HTTP
                                         if(response.code() == 400) {
                                             Toast.makeText(DeposerAnnonceActivity.this, "Echec post", Toast.LENGTH_SHORT).show();
+                                            Log.d("HeyCPasbon","Hey c'est bon");
                                         }
                                     }
                                 }
@@ -259,6 +255,7 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
                     startActivity(intentConfirmationAn);
 
                     break;
+                    }
                 //Clique sur le bouton Annuler
                 case R.id.annulerDepAn:
                     //On termine notre activity pour revenir à la précedente.
@@ -267,5 +264,20 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
             }
         }
     };
+    public String GetImageName(String fullPath){
+        String imageName = null;
+
+        //découpe du lien selon le caractère "/"
+        String[] parts = fullPath.split("://");
+
+        for(int i=0; i<parts.length; i++){
+            //si la partie contient l'extension jpg ou jpeg ou png alors on récupère la string correspondante.
+            if(i == parts.length-1)
+            {
+                imageName = parts[i];
+            }
+        }
+        return imageName;
+    }
 
 }

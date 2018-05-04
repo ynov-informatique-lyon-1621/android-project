@@ -12,6 +12,33 @@ public class ListAnnonceModel implements Serializable {
     private String description;
     private String vendeur;
     private String image;
+    private String localisation;
+    private String mdp;
+    private String email;
+
+    public String getLocalisation() {
+        return localisation;
+    }
+
+    public void setLocalisation(String localisation) {
+        this.localisation = localisation;
+    }
+
+    public String getMdp() {
+        return mdp;
+    }
+
+    public void setMdp(String mdp) {
+        this.mdp = mdp;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getImage() {
         return image;
