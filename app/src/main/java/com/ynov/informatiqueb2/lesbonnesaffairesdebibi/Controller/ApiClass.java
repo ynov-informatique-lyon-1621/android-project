@@ -8,7 +8,7 @@ import java.util.Date;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
+//API retrofit2.0
 public abstract class ApiClass implements CallApi {
     private static CallApi callApi;
 

@@ -17,7 +17,7 @@ import retrofit2.http.Part;
 import retrofit2.http.QueryMap;
 
 public interface CallApi {
-
+//Fonctions retrofit2.0 pour appelez nos Web Servies
     String ENDPOINT = "http://139.99.98.119:8080/";
 
   /*  @GET("/findAnnonces")
@@ -25,9 +25,9 @@ public interface CallApi {
             @QueryMap Map<String,String> options
     );
 */
-
+//Appel du service POST
     @Multipart
     @POST("/saveAnnonce")
-    Call<ListAnnonceModel> addAnnonce(@Part("Annonce") ListAnnonceModel nouvelleAnnonce, @Part MultipartBody.Part imageAnnonce);
+    Call<ListAnnonceModel> addAnnonce(@Part("annonce") ListAnnonceModel nouvelleAnnonce, @Part MultipartBody.Part imageAnnonce);
 
 }

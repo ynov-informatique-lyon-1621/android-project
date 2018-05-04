@@ -1,19 +1,14 @@
 package com.ynov.informatiqueb2.lesbonnesaffairesdebibi.UI;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -25,7 +20,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.Controller.ApiClass;
-import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.Controller.PostDeposerAnnonce;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.Model.ListAnnonceModel;
 import com.ynov.informatiqueb2.lesbonnesaffairesdebibi.R;
 
@@ -33,15 +27,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.regex.Pattern;
 
-import okhttp3.Callback;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import okhttp3.Response;
 import retrofit2.Call;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.POST;
 
 
 //Cette Activity nous sert à déposer une annonce.
@@ -95,16 +84,6 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(DeposerAnnonceActivity.this, R.layout.support_simple_spinner_dropdown_item, itemsCat) {
 
             @Override
-            public boolean isEnabled(int position) {
-                if (position == 0) {
-                   // On Disable le 1er item de notre spinner, il sert de hint.
-                   return false;
-               } else {
-                   return true;
-                }
-            }
-
-            @Override
            public View getDropDownView(int position, View convertView,
                                        ViewGroup parent) {
                View view = super.getDropDownView(position, convertView, parent);
@@ -132,7 +111,7 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
             }
         });
     }
-
+    //Set l'image selectionnée dans notre ImageView
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // TODO Auto-generated method stub
@@ -159,10 +138,7 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
 
         valider.setOnClickListener(myButtonSwitch);
         annuler.setOnClickListener(myButtonSwitch);
-
     }
-
-
 
     private final View.OnClickListener myButtonSwitch = new View.OnClickListener() {
         @Override
@@ -194,6 +170,11 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
                     else if (TextUtils.isEmpty(description.getText().toString())){
                         description.setError("Veuillez renseigner le nom du personnage");
                     }
+                    //Si item catégorie est select, on léve un toast pour l'utilisateur
+                    else if (categorie.getSelectedItem().toString().equals("Categorie")){
+                        Toast.makeText(DeposerAnnonceActivity.this, "Veuilliez renseigner une catégorie", Toast.LENGTH_SHORT).show();
+
+                    }
                     //On check si les deux password sont identiques
                     else if(!password.getText().toString().equals(password2.getText().toString())){
                         Toast.makeText(DeposerAnnonceActivity.this, "Les password ne correspondent pas", Toast.LENGTH_SHORT).show();
@@ -205,9 +186,9 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
                     else{
 
                         //Appel de notre methode si toutes les conditions sont respectées
-
+                        //On crée un nouvel objet ListAnnonceModel
                         nouvelleAnnonce = new ListAnnonceModel();
-
+                        // On se nos attributs avec les valeurs
                        nouvelleAnnonce.setCategorie(categorie.getSelectedItem().toString());
                        nouvelleAnnonce.setDescription(description.getText().toString());
                        nouvelleAnnonce.setPrix(prix.getText().toString());
@@ -219,6 +200,7 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
 
 
                         try {
+                            //On call notre méthode POST retrofit2.0, on y passe les arguements
                             File file = new File(GetImageName(pathFile.getText().toString()));
                             RequestBody requestBody = RequestBody.create(MediaType.parse("/images/lesbonsplandebibi/"), file);
 
@@ -226,9 +208,9 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
 
                             ApiClass.getInstance().addAnnonce(nouvelleAnnonce, body).enqueue(new retrofit2.Callback<ListAnnonceModel>() {
                                 @Override
+                                //methode onReponse appelée une fois le message envoyé
                                 public void onResponse(Call<ListAnnonceModel> call, retrofit2.Response<ListAnnonceModel> response) {
                                     if (response.isSuccessful()) {
-
 //                                        Toast.makeText(DeposerAnnonceActivity.this, "Success post", Toast.LENGTH_SHORT).show();
                                         Log.e("POSTANNONCE", "POST OK");
                                     } else {
@@ -237,8 +219,9 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
                                 }
 
                                 @Override
+                                //Si le post a fail, call de la methode onFailure
                                 public void onFailure(Call<ListAnnonceModel> call, Throwable t) {
-
+                                    Log.e("POSTANNONCE", "POST failure");
 
                                 }
                             });
@@ -264,7 +247,7 @@ public class DeposerAnnonceActivity extends com.ynov.informatiqueb2.lesbonnesaff
 
             }
         }
-
+//Methode pour paser les strings
     public String GetImageName(String fullPath){
         String imageName = null;
 
