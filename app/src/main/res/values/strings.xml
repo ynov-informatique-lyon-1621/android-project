@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">Les Bonnes Affaires De Bibi</string>
+    <string name="app_name">LesBonnesAffairesDeBibi.fr</string>
+    <string name="action_settings">Settings</string>
+    <string name="app_title">LesBonnesAffairesDeBibi.fr</string>
+    <string name="title_activity_ad_detail">AdDetail</string>
+    <string name="categoryLibelle_adDetail">Catégorie :</string>
+    <string name="favoris">Favoris</string>
+    <string name="modifier_une_annonce">Modifier une annonce</string>
+    <string name="d_poser_une_annonce">Déposer une annonce</string>
+    <string name="accueil">Accueil</string>
+    <string name="title_activity_add_ad">AddAd</string>
+    <string name="alreadyHere">Vous êtes déjà sur cette page !</string>
+    <string name="notYet">Fonctionnalité non implémentée</string>
 </resources>
