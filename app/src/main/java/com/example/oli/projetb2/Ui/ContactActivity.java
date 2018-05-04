@@ -21,6 +21,8 @@ import org.json.JSONObject;
 import java.io.DataOutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import Model.MessageContact;
 
@@ -80,6 +82,11 @@ public class ContactActivity extends AppCompatActivity {
 
                 }
 
+                if (isEmailValid(eEmail.getText().toString()) == false) {
+                    eEmail.setError("Email invalide!");
+                }
+
+
                 if (TextUtils.isEmpty(eDesc.getText().toString())) {
                     eDesc.setError("Champ obligatoire!");
 
@@ -120,6 +127,27 @@ public class ContactActivity extends AppCompatActivity {
             }
         });
     }
+
+    public boolean isEmailValid(String email) {
+        String regExpn =
+                "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
+                        + "((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                        + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
+                        + "([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                        + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
+                        + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$";
+
+        CharSequence inputStr = email;
+
+        Pattern pattern = Pattern.compile(regExpn, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(inputStr);
+
+        if (matcher.matches())
+            return true;
+        else
+            return false;
+    }
+
 
     public void sendPost() {
         Thread thread = new Thread(new Runnable() {
