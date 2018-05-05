@@ -79,7 +79,9 @@ public class AdDetail extends AppCompatActivity implements View.OnClickListener 
             finish();
         }
         if( id == R.id.action_edit_ad) {
-            Toast.makeText(this, R.string.notYet, Toast.LENGTH_SHORT).show();
+            Intent editAd = new Intent(this, AdEdit.class);
+            startActivity(editAd);
+
         }
         if( id == R.id.action_fav) {
             Toast.makeText(this, R.string.notYet, Toast.LENGTH_SHORT).show();
@@ -161,7 +163,7 @@ public class AdDetail extends AppCompatActivity implements View.OnClickListener 
                 }else if(senderMessageEditText.getText().toString().equals("")){
                     Toast.makeText(this, "Veuillez mettre un message !", Toast.LENGTH_SHORT).show();
                 }else{
-                    CallAPI sendMsg = new CallAPI();
+                    CallAPI sendMsg = new CallAPI(this);
                     JSONObject myMsg = new JSONObject();
                     try {
                         myMsg.put("Nom", senderNameEditText.getText().toString());
@@ -171,7 +173,7 @@ public class AdDetail extends AppCompatActivity implements View.OnClickListener 
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    sendMsg.execute("http://139.99.98.119:8080/sendMessage", myMsg.toString());
+                    sendMsg.execute("http://139.99.98.119:8080/sendMessage", "POST" ,myMsg.toString());
                     linearLayoutMessage = (LinearLayout) findViewById(R.id.linearLayoutMessage);
                     LinearLayout linearLayoutMessageAfter = (LinearLayout) findViewById(R.id.linearLayoutAfterContact);
                     linearLayoutMessage.setVisibility(View.GONE);

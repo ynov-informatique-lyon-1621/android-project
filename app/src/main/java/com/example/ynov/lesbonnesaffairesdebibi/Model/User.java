@@ -3,6 +3,9 @@ package com.example.ynov.lesbonnesaffairesdebibi.Model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Created by Thoma on 03/05/2018.
+ */
 
 public class User implements Serializable {
 

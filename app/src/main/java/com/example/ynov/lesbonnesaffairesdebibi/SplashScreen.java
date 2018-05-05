@@ -7,6 +7,9 @@ import android.os.Handler;
 
 import com.example.ynov.lesbonnesaffairesdebibi.ViewModel.MainActivity;
 
+/**
+ * Created by Thoma on 04/05/2018.
+ */
 
 public class SplashScreen extends Activity{
 

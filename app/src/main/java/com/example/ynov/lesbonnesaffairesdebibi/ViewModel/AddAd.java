@@ -22,12 +22,14 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.ynov.lesbonnesaffairesdebibi.Converter.CallAPI;
+import com.example.ynov.lesbonnesaffairesdebibi.Model.Annonce;
 import com.example.ynov.lesbonnesaffairesdebibi.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -38,9 +40,11 @@ public class AddAd extends AppCompatActivity implements View.OnClickListener {
     protected EditText userName, userEmail, userPwd, userPwdConf, adTitle, adLocation, adPrice, adDescription;
     protected Spinner adCateg;
     protected ImageView adImg;
-    protected Button uploadImg, submitAd, cancelAd, buttonBackAfter;
-
+    protected Button uploadImg, submitAd, cancelAd, buttonBackAfter, deleteButton;
+    Annonce _annonce;
     private static int RESULT_LOAD_IMAGE = 1;
+    boolean inModif = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +80,32 @@ public class AddAd extends AppCompatActivity implements View.OnClickListener {
         buttonBackAfter = (Button) findViewById(R.id.buttonBackAfter);
         buttonBackAfter.setOnClickListener(this);
 
+
+        try{
+
+            Intent myIntent = getIntent(); // gets the previously created intent
+            _annonce = (Annonce) myIntent.getSerializableExtra("myAd"); // will return "FirstKeyValue
+
+
+            userName.setText(_annonce.get_seller().get_username());
+            userEmail.setText(_annonce.get_seller().get_email());
+
+            adTitle.setText(_annonce.get_title());
+            adLocation.setText(_annonce.get_localisation());
+            adPrice.setText(_annonce.get_price().toString());
+            adDescription.setText(_annonce.get_description());
+
+            inModif = true;
+
+            deleteButton = (Button) findViewById(R.id.deleteAdButton);
+            deleteButton.setVisibility(View.VISIBLE);
+            deleteButton.setOnClickListener(this);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -99,7 +129,9 @@ public class AddAd extends AppCompatActivity implements View.OnClickListener {
             Toast.makeText(this, R.string.alreadyHere, Toast.LENGTH_SHORT).show();
         }
         if( id == R.id.action_edit_ad) {
-            Toast.makeText(this, R.string.notYet, Toast.LENGTH_SHORT).show();
+            Intent editAd = new Intent(this, AdEdit.class);
+            startActivity(editAd);
+            finish();
         }
         if( id == R.id.action_fav) {
             Toast.makeText(this, R.string.notYet, Toast.LENGTH_SHORT).show();
@@ -111,6 +143,22 @@ public class AddAd extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.deleteAdButton:
+                CallAPI delAd = new CallAPI(this);
+
+                JSONObject adDelete = new JSONObject();
+                try {
+
+                    adDelete.put("id", _annonce.get_id());
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                delAd.execute("http://139.99.98.119:8080/deleteAnnonce", "DELETE", adDelete.toString());
+
+                break;
+
             case R.id.buttonBackAfter:
                 finish();
                 break;
@@ -139,7 +187,7 @@ public class AddAd extends AppCompatActivity implements View.OnClickListener {
                 }else if(adCateg.getSelectedItem().toString().equals("")){
                     Toast.makeText(this, "Veuillez mettre une catégorie !", Toast.LENGTH_SHORT).show();
                 }else{
-                    CallAPI sendAd = new CallAPI();
+                    CallAPI sendAd = new CallAPI(this);
                     // On serialize notre objet avant envoi
                     JSONObject myNewAd = new JSONObject();
                     try {
@@ -159,7 +207,14 @@ public class AddAd extends AppCompatActivity implements View.OnClickListener {
                         e.printStackTrace();
                     }
                     Log.d("new :" ,myNewAd.toString());
-                    sendAd.execute("http://139.99.98.119:8080/saveAnnonce", myNewAd.toString());
+                    if(inModif){
+                        sendAd.execute("http://139.99.98.119:8080/updateAnnonce", "PUT", myNewAd.toString());
+                    }else {
+                        sendAd.execute("http://139.99.98.119:8080/saveAnnonce", "POST", myNewAd.toString());
+                    }
+
+
+
 
                     ScrollView scrollViewForm = (ScrollView) findViewById(R.id.scrollViewForm);
                     RelativeLayout relativeLayoutAfterForm = (RelativeLayout) findViewById(R.id.relativeLayoutAfterForm);

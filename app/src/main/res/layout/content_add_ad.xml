@@ -26,7 +26,7 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/scrollViewForm"
+
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="156dp"
                 android:text="Votre annonce à bien été enregistré." />
@@ -175,6 +175,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Valider" />
+
+                    <Button
+                        android:id="@+id/deleteAdButton"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Supprimer"
+                        android:visibility="gone" />
 
                     <Button
                         android:id="@+id/cancelAd"

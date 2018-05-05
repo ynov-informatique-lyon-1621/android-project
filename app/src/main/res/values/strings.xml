@@ -11,4 +11,5 @@
     <string name="title_activity_add_ad">AddAd</string>
     <string name="alreadyHere">Vous êtes déjà sur cette page !</string>
     <string name="notYet">Fonctionnalité non implémentée</string>
+    <string name="title_activity_ad_edit">AdEdit</string>
 </resources>

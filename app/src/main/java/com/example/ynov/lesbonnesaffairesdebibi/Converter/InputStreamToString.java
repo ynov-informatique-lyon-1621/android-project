@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+/**
+ * Created by Thoma on 03/05/2018.
+ */
 
 public class InputStreamToString {
 

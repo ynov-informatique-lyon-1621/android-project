@@ -16,7 +16,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-
+/**
+ * Created by Thoma on 03/05/2018.
+ */
 
 public class Annonce implements Serializable {
 
@@ -28,12 +30,13 @@ public class Annonce implements Serializable {
     private String _category;
     private String _description;
     private User _seller;
+    private String _localisation;
 
 
     DecimalFormat decimalFormat = new DecimalFormat("0.##");
 
     public Annonce(int _id, String _picture, String _title, Double _price,
-                   Timestamp _date, String _category, String _description, User _seller) {
+                   Timestamp _date, String _category, String _description, User _seller, String _localisation) {
         this._id = _id;
         this._picture = _picture;
         this._title = _title;
@@ -49,6 +52,7 @@ public class Annonce implements Serializable {
         this._category = _category;
         this._description = _description;
         this._seller = _seller;
+        this._localisation = _localisation;
     }
 
 
@@ -134,7 +138,7 @@ public class Annonce implements Serializable {
         Date adDate = new Date(this._date.getTime());
         Date dateNow = new Date();
 
-        // On crée 2 calendrier basés sur nos 2 dates afin de les compacter et de detecter si elle date d'aujourd'hui
+        // On crée 2 calendrier basés sur nos 2 dates afin de les compater et de detecter si elle date d'aujourd'hui
         Calendar cal1 = Calendar.getInstance();
         Calendar cal2 = Calendar.getInstance();
         cal1.setTime(adDate);
@@ -166,5 +170,13 @@ public class Annonce implements Serializable {
         }
 
         return myDrawable;
+    }
+
+    public String get_localisation() {
+        return _localisation;
+    }
+
+    public void set_localisation(String _localisation) {
+        this._localisation = _localisation;
     }
 }

@@ -1,85 +1,72 @@
 package com.example.ynov.lesbonnesaffairesdebibi.ViewModel;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ynov.lesbonnesaffairesdebibi.Converter.CallAPI;
 import com.example.ynov.lesbonnesaffairesdebibi.Converter.InputStreamToString;
 import com.example.ynov.lesbonnesaffairesdebibi.Model.Annonce;
 import com.example.ynov.lesbonnesaffairesdebibi.Model.User;
 import com.example.ynov.lesbonnesaffairesdebibi.R;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.Array;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import static android.content.Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP;
+public class AdEdit extends AppCompatActivity implements View.OnClickListener{
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    protected Button cancelCoButton, connexionButton;
+    protected EditText emailEditText, pwdEditText;
 
-    private WebService monWs;
-
-    protected Button searchButton;
-    protected EditText zipCodeSearch;
-    protected EditText inputSearch;
-    protected Spinner categorySearch;
-
-    ArrayList<Annonce> _annonces = new ArrayList<>();
+    ArrayList<Annonce> _annonces;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_ad_edit);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        searchButton = (Button)  findViewById(R.id.searchButton);
-        searchButton.setOnClickListener(this);
+        emailEditText = (EditText) findViewById(R.id.emailEditText);
+        pwdEditText = (EditText) findViewById(R.id.pwdEditText);
 
-        inputSearch =  (EditText) findViewById(R.id.searchEditText);
-        zipCodeSearch = (EditText) findViewById(R.id.zipCodeEditText);
-        categorySearch = (Spinner) findViewById(R.id.categoryEditText);
-
-
-        //create a list of items for the spinner.
-        String[] items = new String[]{"","Véhicules", "Vêtements"};
-        //create an adapter to describe how the items are displayed, adapters are used in several places in android.
-        //There are multiple variations of this, but this is the basic variant.
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-        //set the spinners adapter to the previously created one.
-        categorySearch.setAdapter(adapter);
-
-        // Instanciation et lancement du web service
-        // la mise à jour de la liste est effectué dans le onProgressUpdate
-        monWs = new WebService();
+        cancelCoButton = (Button) findViewById(R.id.cancelCoButton);
+        connexionButton = (Button) findViewById(R.id.connexionButton);
+        cancelCoButton.setOnClickListener(this);
+        connexionButton.setOnClickListener(this);
 
     }
 
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -93,17 +80,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //gestion du menu option
-        if (id == R.id.action_add_ad) {
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_accueil) {
+            finish();
+        }
+        if( id == R.id.action_add_ad){
             Intent addAd = new Intent(this, AddAd.class);
             startActivity(addAd);
-        }
-        if( id == R.id.action_accueil) {
-            Toast.makeText(this, R.string.alreadyHere, Toast.LENGTH_SHORT).show();
+            finish();
         }
         if( id == R.id.action_edit_ad) {
-            Intent editAd = new Intent(this, AdEdit.class);
-            startActivity(editAd);
+            Toast.makeText(this, R.string.alreadyHere, Toast.LENGTH_SHORT).show();
         }
         if( id == R.id.action_fav) {
             Toast.makeText(this, R.string.notYet, Toast.LENGTH_SHORT).show();
@@ -112,13 +99,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return super.onOptionsItemSelected(item);
     }
 
-
     @Override
     public void onClick(View v) {
-        // Si < 1000 donc numérique, donc ça correspond à une ligne du tableau
         if(v.getId() < 1000) {
             try {
-                Intent anAd = new Intent(this, AdDetail.class);
+                Intent anAd = new Intent(this, AddAd.class);
                 anAd.putExtra("myAd", _annonces.get(v.getId()));
                 startActivity(anAd);
             }catch( Exception e){
@@ -126,21 +111,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         } else {
             switch (v.getId()) {
-                case R.id.searchButton:
-                    _annonces = new ArrayList<>();
-                    // Lancement du ws afin de récupérer les annonces suivant les paramètres rentrés
-                    monWs.getAds(inputSearch.getText().toString(), zipCodeSearch.getText().toString(), categorySearch.getSelectedItem().toString());
+                case R.id.cancelCoButton:
+                    finish();
+                    break;
+
+
+                case R.id.connexionButton:
+                    // REGEX afin de vérifier si on a une adresse mail
+                    Pattern pattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
+                    Matcher mat = pattern.matcher(emailEditText.getText().toString());
+                    if (!mat.matches()) {
+                        Toast.makeText(this, "Veuillez mettre votre email !", Toast.LENGTH_SHORT).show();
+                    } else if (pwdEditText.getText().toString().equals("")) {
+                        Toast.makeText(this, "Veuillez mettre votre mot de passe !", Toast.LENGTH_SHORT).show();
+                    } else {
+                        WebServiceEdit sendAd = new WebServiceEdit();
+
+                        sendAd.execute("http://139.99.98.119:8080/findAnnoncesByEmail", emailEditText.getText().toString(), pwdEditText.getText().toString());
+
+
+                    }
                     break;
             }
         }
 
-    }
 
+
+    }
 
     void fillTable(ArrayList<Annonce> myAnnonces){
 
         Log.d("fill table :", "e");
-        TableLayout tl = (TableLayout) findViewById(R.id.main_table);
+        TableLayout tl = (TableLayout) findViewById(R.id.tableLayoutMyAds);
 
         tl.removeAllViews();
 
@@ -223,17 +225,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-
-    public class WebService extends AsyncTask<String, String, String>{
+    class WebServiceEdit extends AsyncTask<String, String, String> {
 
 
 
         public void getAds(String searchField, String zipCode, String category){
 
 
-            WebService monWs = new WebService();
+            WebServiceEdit monWs = new WebServiceEdit();
 
-            monWs.execute("http://139.99.98.119:8080/findAnnonces" ,searchField, zipCode, category);
+            monWs.execute("http://139.99.98.119:8080/findAnnoncesByEmail" ,searchField, zipCode, category);
 
         }
 
@@ -245,7 +246,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String content = "";
             try{
                 // On prépare puis on lance la connexion
-                url = new URL(params[0] + "?titre="+ params[1] + "&localisation=" + params[2] + "&categorie=" + params[3]);
+                url = new URL(params[0] + "?email="+ params[1] + "&mpd=" + params[2]);
                 urlConnection = (HttpURLConnection) url.openConnection();
                 InputStream in = urlConnection.getInputStream();
                 content = InputStreamToString.convert(in);
@@ -259,6 +260,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         @Override
         protected void onProgressUpdate(String... values) {
             super.onProgressUpdate(values);
+
+            _annonces = new ArrayList<>();
+
             try {
                 JSONArray jsonArray = new JSONArray(values[0]);
                 for (int i = 0; i < jsonArray.length(); i++) {
@@ -289,9 +293,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     _annonces.add(newAnnonce);
                 }
                 try{
+
+
+                    RelativeLayout rlCo = (RelativeLayout) findViewById(R.id.relativeLayoutConnexion);
+                    rlCo.setVisibility(View.GONE);
+                    RelativeLayout rlTable = (RelativeLayout) findViewById(R.id.relativeLayoutMyAds);
+                    rlTable.setVisibility(View.VISIBLE);
+
                     // On dispose de toutes nos annonces on peut essayer de remplir la table
                     fillTable(_annonces);
-
                 }catch (Exception e){
                     Log.wtf("Erreur", e.toString());
                 }
