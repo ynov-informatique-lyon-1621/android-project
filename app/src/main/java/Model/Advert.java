@@ -22,8 +22,7 @@ public class Advert {
     public String descritpion;
     public int dateCreation;
     public ImageView imageView;
-    public URL image;
-    public String imageUrl;
+    public static String image;
 
 
     public Advert() {
@@ -70,9 +69,6 @@ public class Advert {
     public ImageView getImageView() { return imageView; }
     public void setImageView(ImageView imageView) { this.imageView = imageView; }
 
-    public void setImage(URL image) { this.image = image; }
-    public URL getImage() { return image; }
-
-    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
-    public String getImageUrl() { return imageUrl; }
+    public void setImage(String image) { this.image = image; }
+    public static String getImage() { return image; }
 }

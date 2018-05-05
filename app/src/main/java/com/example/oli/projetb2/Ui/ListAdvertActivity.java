@@ -29,10 +29,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import Model.Advert;
+
+import static android.net.wifi.WifiConfiguration.Status.strings;
 
 public class ListAdvertActivity extends AppCompatActivity {
 
@@ -86,6 +89,8 @@ public class ListAdvertActivity extends AppCompatActivity {
             public void onResponse(JSONArray response) {
                 for (int i = 0; i < response.length(); i++) {
                     try {
+
+
                         JSONObject jsonObject = response.getJSONObject(i);
                         // récupération des données json sur la classe
                         Advert advert = new Advert();
@@ -94,13 +99,11 @@ public class ListAdvertActivity extends AppCompatActivity {
                         advert.setEmail(jsonObject.getString("email"));
                         advert.setMdp(jsonObject.getString("mdp"));
                         advert.setTitre(jsonObject.getString("titre"));
-                        advert.setLocalisation(jsonObject.getString("localisation"));
                         advert.setCategorie(jsonObject.getString("categorie"));
                         advert.setPrix(jsonObject.getInt("prix"));
                         advert.setDescritpion(jsonObject.getString("description"));
-                        advert.setImageUrl(jsonObject.getString("image"));
+                        advert.setImage(ImageUrl(jsonObject.getString("image")));
                         advert.setDateCreation(jsonObject.getInt("dateCreation"));
-                        advert.setImageView(mImageView);
 
 
                         advertTab.add(advert);
@@ -109,6 +112,8 @@ public class ListAdvertActivity extends AppCompatActivity {
                         progressDialog.dismiss();
                     }
                 }
+
+
                 adapter.notifyDataSetChanged(); //l'adapter est updaet
                 progressDialog.dismiss();
             }
@@ -124,7 +129,7 @@ public class ListAdvertActivity extends AppCompatActivity {
     }
 
 
-    // Le menu hamburger en haut à droite
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //ajoute les entrées de menu_test à l'ActionBar
@@ -132,7 +137,46 @@ public class ListAdvertActivity extends AppCompatActivity {
         return true;
     }
 
+    public String ImageUrl(String fullPath){
+        String imageName;
 
+        String[] parts = fullPath.split("/");
+        imageName = parts[6];
+
+        return imageName;
+    }
+
+//
+//    public String FilterDownload(String[] strings)
+//    {
+//        String imageUrl;
+//        String[] endPointTab;
+//
+//        imageUrl = "http://139.99.98.119:8080/findAnnonces";
+//
+//        if(strings.length>0) {
+//            endPointTab = new String[]{"motCle", "categorie", "localisation"};
+//
+//            for (int i = 0; i < strings.length; i++) {
+//                String currentFilterContent = strings[i];
+//                String currentFilterKey = endPointTab[i];
+//
+//                if(currentFilterContent != null){
+//                    if(imageUrl.indexOf("?") < 0){
+//                        imageUrl = imageUrl + "?" + currentFilterKey + "=" + currentFilterContent;
+//                    }
+//                    else{
+//                        imageUrl = imageUrl + "&" + currentFilterKey + "=" + currentFilterContent;
+//                    }
+//                }
+//            }
+//        }
+//        return imageUrl;
+//    }
+
+
+
+    // Le menu hamburger en haut à droite
     private void acceuil() { //permet de revenir sur la liste des annonces filtrer selon les filtres utilisateurs s’il y en a
         Toast.makeText(this, R.string.action_accueil, Toast.LENGTH_LONG).show();
         intent = new Intent(ListAdvertActivity.this, ListAdvertActivity.class);

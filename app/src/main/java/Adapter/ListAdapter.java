@@ -3,6 +3,7 @@ package Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import com.example.oli.projetb2.Ui.AdvertCellActivity;
 
 import java.util.List;
 
+import Controller.ImageController;
 import Model.Advert;
 
 
@@ -41,6 +43,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.advert, parent, false);
         return new ViewHolder(v);
+
+
     }
 
     @Override
@@ -50,7 +54,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         holder.textCategorie.setText(advert.getCategorie());
         holder.textPrix.setText(String.valueOf(advert.getPrix()) + "€");
         holder.textDate.setText(String.valueOf(advert.getDateCreation()));
-        holder.imageViewset.setImageResource(R.drawable.polo);
+
+        //Pour les images, on utilise notre methode DownloadImage, avec notre champ d'image présent dans le template en parametres.
+        new ImageController((ImageView) holder.imageViewset)
+                .execute("http://139.99.98.119:8080/images/lesbonsplansdebibi/" + Advert.getImage());
+
     }
 
     @Override
@@ -71,6 +79,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             textCategorie = itemView.findViewById(R.id.categorie);
             imageViewset = itemView.findViewById(R.id.imageView);
             itemView.setOnClickListener(this);
+
 
         }
 
