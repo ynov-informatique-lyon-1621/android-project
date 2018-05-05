@@ -20,8 +20,8 @@ public class EndDrawerToggle implements DrawerLayout.DrawerListener {
     private String openDrawerContentDesc;
     private String closeDrawerContentDesc;
 
-    public EndDrawerToggle(Activity activity, DrawerLayout drawerLayout, Toolbar toolbar,
-                           int openDrawerContentDescRes, int closeDrawerContentDescRes) {
+    public EndDrawerToggle(Activity activity, DrawerLayout drawerLayout, Toolbar toolbar, int openDrawerContentDescRes, int closeDrawerContentDescRes) {
+        // Rien de spécial ici, code permettant d'afficher et de gérer le NavigationDrawer à droite (end)
 
         this.drawerLayout = drawerLayout;
         this.openDrawerContentDesc = activity.getString(openDrawerContentDescRes);

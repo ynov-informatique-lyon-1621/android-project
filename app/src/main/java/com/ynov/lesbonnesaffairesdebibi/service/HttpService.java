@@ -22,7 +22,11 @@ import retrofit2.http.Query;
 
 public interface HttpService {
 
+    // On définit le webservice global
     public static String ENDPOINT = "http://139.99.98.119:8080/";
+
+    // Pour chaque endpoint, on définit la méthode (GET, POST, PUT, DELETE), le nom, le type de retour,
+    // le nom de la méthode, les paramètres et leurs types
 
     @GET("findAnnonces")
     Call<List<Annonce>> findAnnonces(@Query("motCle") String motCle, @Query("categorie") String categorie, @Query("localisation") String localisation);
