@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -17,13 +18,16 @@ import com.ynov.lesbonnesaffairesdebibi.service.FavoriteService;
 
 import java.io.Serializable;
 
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
-        setTitle("Détail de l'annonce");
+        //setContentView(R.layout.activity_detail);
+
+        RelativeLayout contentLayout = (RelativeLayout) findViewById(R.id.content_frame);
+        getLayoutInflater().inflate(R.layout.activity_detail, contentLayout);
+        //setTitle("Détail de l'annonce");
 
         Intent intentData = getIntent();
         final Annonce annonce = (Annonce) intentData.getSerializableExtra("data");

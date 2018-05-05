@@ -153,6 +153,10 @@ public class AnnonceAdapter extends BaseAdapter {
                                     public void onResponse(Call<Void> call, Response<Void> response) {
                                         if(response.code() == 200) {
                                             Toast.makeText(mContext, "Annonce supprimée avec succès.", Toast.LENGTH_SHORT).show();
+
+                                            if(mContext instanceof MyListActivity) {
+                                                ((MyListActivity) mContext).switchToActivity(MyListActivity.class, false);
+                                            }
                                         } else if(response.code() == 400) {
                                             Toast.makeText(mContext, "Erreur lors de la suppression de l'annonce. Veuillez rééssayer ultérieurement.", Toast.LENGTH_SHORT).show();
                                         }

@@ -43,7 +43,7 @@ public class MyListActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("Mes annonces");
+        //setTitle("Mes annonces");
 
         RelativeLayout contentLayout = (RelativeLayout) findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.activity_my_list, contentLayout);

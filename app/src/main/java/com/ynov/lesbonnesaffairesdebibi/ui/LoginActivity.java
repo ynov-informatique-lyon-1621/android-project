@@ -17,7 +17,7 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("Connexion");
+        //setTitle("Connexion");
 
         RelativeLayout contentLayout = (RelativeLayout) findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.activity_login, contentLayout);

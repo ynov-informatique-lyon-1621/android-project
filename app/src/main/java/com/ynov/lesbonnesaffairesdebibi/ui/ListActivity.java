@@ -50,7 +50,7 @@ public class ListActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("Liste des annonces");
+        //setTitle("Liste des annonces");
 
         RelativeLayout contentLayout = (RelativeLayout) findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.activity_list, contentLayout);
@@ -119,7 +119,7 @@ public class ListActivity extends BaseActivity {
                     categories.add("Catégorie");
 
                     for (Annonce annonce : annonces) {
-                        if(!categories.contains(annonce.getCategorie())) {
+                        if(!categories.contains(annonce.getCategorie()) && annonce.getCategorie() != null) {
                             categories.add(annonce.getCategorie());
                         }
                     }

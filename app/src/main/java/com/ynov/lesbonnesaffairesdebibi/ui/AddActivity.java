@@ -74,7 +74,7 @@ public class AddActivity extends BaseActivity {
 
         if(editMode) {
 
-            setTitle("Modifier une annonce");
+            //setTitle("Modifier une annonce");
             addButton.setText("Enregistrer les modifications");
 
             textView.setVisibility(GONE);
@@ -94,7 +94,7 @@ public class AddActivity extends BaseActivity {
 
         } else {
 
-            setTitle("Déposer une annonce");
+            //setTitle("Déposer une annonce");
 
             imagePicker = new ImagePicker(AddActivity.this,null, imageUri -> {
                 textView.setVisibility(GONE);
@@ -129,8 +129,8 @@ public class AddActivity extends BaseActivity {
                     Toast.makeText(AddActivity.this, "Vous devez sélectionner une photo", Toast.LENGTH_SHORT).show();
                 else if(!editMode && TextUtils.isEmpty(name))
                     addName.setError("Vous devez renseigner un nom");
-                else if(!editMode && TextUtils.isEmpty(email))
-                    addEmail.setError("Vous devez renseigner une adresse mail");
+                else if(!editMode && (TextUtils.isEmpty(email) || !isValidEmail(email)))
+                    addEmail.setError("Vous devez renseigner une adresse mail valide");
                 else if(!editMode && TextUtils.isEmpty(password))
                     addPassword.setError("Vous devez renseigner un mot de passe");
                 else if(!editMode && TextUtils.isEmpty(passwordConf))

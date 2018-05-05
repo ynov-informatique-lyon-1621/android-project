@@ -30,6 +30,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setTitle("LesBonnesAffairesDeBibi.fr");
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -95,10 +96,17 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    public boolean isValidEmail(CharSequence target) {
+        return target != null && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+    }
+
     public class ListComparator implements Comparator<Annonce> {
         @Override
         public int compare(Annonce obj1, Annonce obj2) {
-            return obj2.getDateCreation().compareTo(obj1.getDateCreation());
+            if(obj1.getDateCreation() == null || obj2.getDateCreation() == null)
+                return 0;
+            else
+                return obj2.getDateCreation().compareTo(obj1.getDateCreation());
         }
     }
 

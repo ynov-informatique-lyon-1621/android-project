@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +27,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ContactActivity extends AppCompatActivity {
+public class ContactActivity extends BaseActivity {
 
     private Button contactButton;
     private HttpService httpService;
@@ -35,12 +36,15 @@ public class ContactActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contact);
+        //setContentView(R.layout.activity_contact);
+
+        RelativeLayout contentLayout = (RelativeLayout) findViewById(R.id.content_frame);
+        getLayoutInflater().inflate(R.layout.activity_contact, contentLayout);
 
         Intent intentData = getIntent();
         Annonce annonce = (Annonce) intentData.getSerializableExtra("data");
 
-        setTitle("Contacter " + annonce.getNomVendeur());
+        //setTitle("Contacter " + annonce.getNomVendeur());
 
         ImageView annImage = findViewById(R.id.annImage);
         TextView annTitle = findViewById(R.id.annTitle);
@@ -69,7 +73,7 @@ public class ContactActivity extends AppCompatActivity {
 
                 if(TextUtils.isEmpty(name)) {
                     contactName.setError("Vous devez renseigner un nom");
-                } else if(TextUtils.isEmpty(email)) {
+                } else if(TextUtils.isEmpty(email) || !isValidEmail(email)) {
                     contactEmail.setError("Vous devez renseigner une adresse mail");
                 } else if(TextUtils.isEmpty(message)) {
                     contactMessage.setError("Vous devez renseigner un message");
