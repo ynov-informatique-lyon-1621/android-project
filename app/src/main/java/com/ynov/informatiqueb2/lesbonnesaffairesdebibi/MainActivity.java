@@ -3,6 +3,8 @@ package com.ynov.informatiqueb2.lesbonnesaffairesdebibi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.elesa.projet_lelt.R;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
