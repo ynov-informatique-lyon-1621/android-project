@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Ui.Confirmation">
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="300px"
+        android:layout_height="200px"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@mipmap/ic_launcher"
+        tools:layout_editor_absoluteX="34dp"
+        tools:layout_editor_absoluteY="73dp" />
+
+    <TextView
+        android:id="@+id/prix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/titre"
+        android:layout_marginEnd="52dp"
+        android:text="prix"
+        tools:layout_editor_absoluteX="284dp"
+        tools:layout_editor_absoluteY="126dp" />
+
+    <TextView
+        android:id="@+id/categorie"
+        android:layout_width="wrap_content"
+        android:layout_height="33dp"
+        android:layout_alignTop="@+id/textView8"
+        android:layout_toEndOf="@+id/textView12"
+        android:text="categorie"
+        tools:layout_editor_absoluteX="143dp"
+        tools:layout_editor_absoluteY="160dp" />
+
+    <TextView
+        android:id="@+id/titre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="101dp"
+        android:layout_marginTop="17dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/prix"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="56dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/seller"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/prix"
+        android:layout_below="@+id/textView13"
+        android:layout_marginTop="-144dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="170dp"
+        android:text="cathégorie :" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/textView8"
+        android:layout_marginTop="206dp"
+        android:text="Votre message à bien été envoyé au vendeur" />
+
+    <TextView
+        android:id="@+id/seller2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView8"
+        android:layout_centerVertical="true"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/seller"
+        android:layout_centerVertical="true"
+        android:text="reviendra vers vous rapidement" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/textView8"
+        android:layout_marginBottom="206dp"
+        android:text="Bonne journée." />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/textView8"
+        android:layout_marginBottom="164dp"
+        android:text="l'equipe de LesBonneAffaireDeBibi" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/prix"
+        android:layout_marginBottom="152dp"
+        app:srcCompat="@drawable/affaires" />
+
+    <Button
+        android:id="@+id/retour"
+        android:layout_width="197dp"
+        android:layout_height="54dp"
+        android:layout_alignEnd="@+id/categorie"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
+        android:text="Retour a votre recherche" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/retour"
+        android:text="Retour a l'annonce" />
+
+</RelativeLayout>
