@@ -30,23 +30,30 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Définition du titre global
         setTitle("LesBonnesAffairesDeBibi.fr");
 
+        // Déclaration de la barre d'action globale
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // Déclaration du menu global
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         toggle = new EndDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
+        // Ajout d'un écouteur d'évènements sur le menu et synchronisation du menu
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        // Déclaration du contenu du menu et ajout d'un écouteur de clic des items
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
     public void onBackPressed() {
+        // Si le bouton "Retour" du téléphone est cliqué et que le menu est ouvert, on le ferme
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(Gravity.END)) {
             drawer.closeDrawer(Gravity.END);
@@ -58,9 +65,12 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+        // Appelé quand un item du menu est cliqué
+        // On récupère l'id de l'item et on le définit comme sélectionné
         int id = item.getItemId();
         item.setChecked(true);
 
+        // Redirection vers les activités correspondantes en fonction de l'item sélectionné
         switch (id) {
             case R.id.nav_list: // Activité liste des annonces
                 switchToActivity(ListActivity.class, false);
@@ -71,7 +81,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_my_list: // Mon compte: Activité liste de mes annonces
                 switchToActivity(MyListActivity.class, true);
                 break;
-            case R.id.nav_add: // Activité ajouter une annonce
+            case R.id.nav_add: // Mon compte: Activité ajouter une annonce
                 switchToActivity(AddActivity.class, false);
                 break;
         }
@@ -81,26 +91,33 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
     public void switchToActivity(final Class activity, boolean authNeeded) {
         if(activity != null) {
+            // Si l'activité nécessite une connexion, on vérifie que l'utilisateur est bien connecté
             if(!authNeeded || checkAuthenticated()) {
+                // Timer court (150 ms) pour éviter les bugs d'affichage lors de la fermeture du menu et du changement d'activité
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        // Redirection vers l'activité
                         Intent intent = new Intent(getApplicationContext(), activity);
                         startActivity(intent);
+                        // Désactivation de l'animation de transition entre les activités
                         overridePendingTransition(0, 0);
                     }
                 }, 150);
             }
 
+            // Fermeture du menu
             drawer.closeDrawers();
         }
     }
 
     public boolean isValidEmail(CharSequence target) {
+        // Vérifie si l'adresse mail passée en paramètre est valide (retourne true ou false)
         return target != null && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
     }
 
     public class ListComparator implements Comparator<Annonce> {
+        // Compare deux dates d'objets Annonce (utilisé pour le tri par date dans les Listview)
         @Override
         public int compare(Annonce obj1, Annonce obj2) {
             if(obj1.getDateCreation() == null || obj2.getDateCreation() == null)
@@ -111,15 +128,20 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private boolean checkAuthenticated() {
+        // Vérifie si l'utilisateur est connecté
+        // Utilisation de SharedPreferences pour accéder aux valeurs en mémoire (récupération de la valeur email et password)
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         String email = sp.getString("email", "");
         String password = sp.getString("password", "");
 
         if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
+            // Si les valeurs email et password sont vides, l'utilisateur n'est pas connecté
+            // On affiche alors un message et on le redirige vers l'activité contenant le formulaire de connexion
             Toast.makeText(this, "Vous devez être connecté", Toast.LENGTH_SHORT).show();
             switchToActivity(LoginActivity.class, false);
             return false;
         } else {
+            // Si les valeurs email et password sont renseignées, l'utilisateur est connecté
             return true;
         }
     }

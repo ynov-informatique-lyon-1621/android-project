@@ -36,15 +36,13 @@ public class ContactActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_contact);
 
+        // Appel du layout parent pour inclure la barre d'action globale et le menu (extension de l'activité de base - BaseActivity)
         RelativeLayout contentLayout = (RelativeLayout) findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.activity_contact, contentLayout);
 
         Intent intentData = getIntent();
         Annonce annonce = (Annonce) intentData.getSerializableExtra("data");
-
-        //setTitle("Contacter " + annonce.getNomVendeur());
 
         ImageView annImage = findViewById(R.id.annImage);
         TextView annTitle = findViewById(R.id.annTitle);

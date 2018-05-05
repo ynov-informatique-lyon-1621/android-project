@@ -53,6 +53,7 @@ public class AddActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Appel du layout parent pour inclure la barre d'action globale et le menu (extension de l'activité de base - BaseActivity)
         RelativeLayout contentLayout = (RelativeLayout) findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.activity_add, contentLayout);
 
